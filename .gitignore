@@ -21,3 +21,7 @@ __pycache__/
 /exp/sealed/sched/
 /exp/sealed/sens_sched/
 /exp/sealed/fx/
+# 분할 실행의 묶음별 중간 결과(이어 붙인 결과는 exp/sealed/res에 있다)
+/exp/sealed/res/parts/*.csv
+/exp/sealed/res/parts/*.done
+/exp/sealed/res/parts/tmp_*

@@ -6,7 +6,7 @@
 ## 저장소 안내
 - 사전 등록: `docs/prereg-v1.md`(v1.1). 판정 코드·설정·창 목록의 지문은 `exp/sealed/SHA256SUMS.txt`에 있고 `./verify_prereg.sh`로 확인한다.
 - 데이터: 원본은 넣지 않았다. 주소·지문·라이선스·인용은 `DATA.md`, 받기는 `./fetch_data.sh`다.
-- 결과: `exp/res*`(재실험 v1), `exp/res2`(방법 확정 개발), `exp/sealed/res`(봉인 시험, 실행 뒤 추가). 해석은 `docs/sim-results-v1.md`, `docs/paper-design-v1.md`에 있다.
+- 결과: `exp/res*`(재실험 v1), `exp/res2`(방법 확정 개발), `exp/sealed/res`(봉인 시험: 판정 `verdict.txt`, 실행 기록 `EXECUTION.md`). 해석은 `docs/sim-results-v1.md`, `docs/paper-design-v1.md`, `docs/sealed-results-v1.md`에 있다.
 
 | 파일 | 하는 일 |
 |---|---|
@@ -24,6 +24,7 @@
 | `prereg_analysis.py` | 사전 등록 판정(H1~H4) 계산 |
 | `dev_summary.py` | 개발 실행 비교표 |
 | `run_sealed.sh` | 봉인 시험 한 번 실행(승인 뒤) |
+| `run_sealed_parts.sh` | run_sealed.sh와 같은 명령을 묶음으로 나눠 실행(실제 봉인 시험에 쓴 판, `exp/sealed/res/EXECUTION.md`) |
 | `verify_prereg.sh` | 사전 등록 지문(코드·설정·창 목록·봉인 창, 선택: 원본) 확인 |
 | `fetch_data.sh` | 원본 트레이스 받기 + 지문 확인(`DATA.md`) |
 | `bench.sh` | build / info / L / sweep 실행기 |
