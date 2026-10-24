@@ -1,0 +1,12 @@
+[exp/sealed/sens32/traces/az24_code_h0019.csv] 요청 115674건, 길이 3599.9s, 평균 도착 32.13건/s, 크기 중앙값 2.00MiB / p90 6.06 / 최대 7.29, 평균 유입 80.88MiB/s
+az24_code_h0019: 남김 비율 0.519, 워커 5, 칸 az
+[exp/sealed/sens32/traces/az24_code_h0042.csv] 요청 62410건, 길이 3599.8s, 평균 도착 17.34건/s, 크기 중앙값 2.00MiB / p90 6.73 / 최대 9.12, 평균 유입 46.17MiB/s
+az24_code_h0042: 남김 비율 1.000, 워커 3, 칸 az
+[exp/sealed/sens32/traces/az24_code_h0048.csv] 요청 47255건, 길이 3599.9s, 평균 도착 13.13건/s, 크기 중앙값 2.00MiB / p90 6.81 / 최대 10.33, 평균 유입 36.95MiB/s
+az24_code_h0048: 남김 비율 1.000, 워커 2, 칸 az
+[exp/sealed/sens32/traces/az24_code_h0147.csv] 요청 67048건, 길이 3600.0s, 평균 도착 18.62건/s, 크기 중앙값 2.00MiB / p90 6.64 / 최대 8.37, 평균 유입 49.08MiB/s
+az24_code_h0147: 남김 비율 1.000, 워커 3, 칸 az
+[exp/sealed/sens32/traces/az24_conv_h0085.csv] 요청 115003건, 길이 3599.9s, 평균 도착 31.95건/s, 크기 중앙값 2.00MiB / p90 6.95 / 최대 16.36, 평균 유입 102.11MiB/s
+az24_conv_h0085: 남김 비율 0.476, 워커 6, 칸 az
+[exp/sealed/sens32/traces/az24_conv_h0161.csv] 요청 115311건, 길이 3600.0s, 평균 도착 32.03건/s, 크기 중앙값 2.00MiB / p90 8.10 / 최대 18.51, 평균 유입 116.45MiB/s
+az24_conv_h0161: 남김 비율 0.917, 워커 6, 칸 az

@@ -1,0 +1,6 @@
+az24_code_h0019 5 az 0.519457
+az24_code_h0042 3 az 1.000000
+az24_code_h0048 2 az 1.000000
+az24_code_h0147 3 az 1.000000
+az24_conv_h0085 6 az 0.476246
+az24_conv_h0161 6 az 0.916971

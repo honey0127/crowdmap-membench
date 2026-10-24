@@ -1,0 +1,44 @@
+{
+  "version": "prereg-v1.1",
+  "feats": "f15",
+  "wcal": 900.0,
+  "period": 30.0,
+  "tstars": [
+    0.3,
+    1.0,
+    3.0,
+    10.0
+  ],
+  "seed": 0,
+  "cap_mult": 20.0,
+  "cap_max": 300.0,
+  "min_frac": 0.02,
+  "min_n": 20,
+  "kgrid": [
+    0.25,
+    0.35,
+    0.5,
+    0.7,
+    1.0,
+    1.4,
+    2.0,
+    2.8,
+    4.0
+  ],
+  "fb_W": 300.0,
+  "fb_eps": 0.0,
+  "fb_H": 0.0,
+  "primary": "AI생존κ-온라인+대체",
+  "rule": "규칙-온라인+대체",
+  "base": "고정-온라인",
+  "ablate": true,
+  "analysis": {
+    "tie_pp": 0.5,
+    "unit": "window (one per (file, day) cluster)",
+    "test": "two-sided exact sign test",
+    "h1": "R, T*=1, primary vs 고정-온라인: p<0.05 and wins>losses and losses/units<=0.10",
+    "h2": "R, T*=1, primary vs 규칙-온라인+대체: p<0.05 and wins>losses",
+    "h3": "S cells, T*=1, primary vs 규칙-온라인+대체: Holm(4) p<0.05",
+    "h4": "synthetic 40, T*=1, factor effect on d(primary, rule): Mann-Whitney, Holm(3) p<0.05"
+  }
+}
