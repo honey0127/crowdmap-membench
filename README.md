@@ -27,6 +27,13 @@
 | `run_sealed_parts.sh` | run_sealed.sh와 같은 명령을 묶음으로 나눠 실행(실제 봉인 시험에 쓴 판, `exp/sealed/res/EXECUTION.md`) |
 | `verify_prereg.sh` | 사전 등록 지문(코드·설정·창 목록·봉인 창, 선택: 원본) 확인 |
 | `fetch_data.sh` | 원본 트레이스 받기 + 지문 확인(`DATA.md`) |
+| `paperexp3.py` | v2 후보 정책 탐색(개발 데이터 전용): 규칙 칸×AI 세분, 칸별 κ, 규칙 대체, 고운 격자 생존 |
+| `analyze_v2dev.py` | v2 후보 개발 평가 요약과 선택 규칙 적용 |
+| `sealed_pool_v2.py` | v2 봉인 창 표본(v1에서 안 쓴 BurstGPT 군집, 입력만) |
+| `run_sealed_v2.sh`, `prereg_v2_analysis.py` | v2 봉인 확인 실행·판정(사전 등록 v2 승인 뒤) |
+| `chunkpool.cpp` | 3단계: 청크 풀 반납·재확보 실제 CPU 비용(실효 T*)과 정책 결정 재생 |
+| `export_decisions.py` | 3단계: 유체 모델 정책 결정 → 청크 풀 사건 목록 |
+| `stage3.sh`, `stage3_summary.py` | 3단계 측정 실행·요약(`docs/stage3-guide.md`) |
 | `bench.sh` | build / info / L / sweep 실행기 |
 
 ## 0. 준비 (한 번)
