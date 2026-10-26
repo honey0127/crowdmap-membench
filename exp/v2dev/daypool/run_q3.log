@@ -1,0 +1,12 @@
+[bg2_h0172] 2s
+[bg2_h0180] 1s
+[bg2_h0466] 0s
+[bg2_h0585] 1s
+[bg2_h0629] AI 학습 불가(학습 조각 16개, ValueError: window shape cannot be larger than input array shape) → AI를 쓰는 정책은 대체 정책으로 계산
+[bg2_h0629] 0s
+[bg2_h0729] 1s
+[bg2_h1276] 0s
+[bg2_h1300] 0s
+[bg2_h1306] 1s
+[bg3_h0973] 0s
+끝 (6s) → exp/v2dev/daypool/res_q3.csv

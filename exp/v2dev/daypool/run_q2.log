@@ -1,0 +1,260 @@
+[bg2_h0165] 2s
+[bg2_h0177] 2s
+[bg2_h0180] 0s
+[bg2_h0182] 9s
+[bg2_h0185] 8s
+[bg2_h0188] 8s
+[bg2_h0190] 10s
+[bg2_h0192] 15s
+[bg2_h0194] 14s
+[bg2_h0196] 12s
+[bg2_h0198] 10s
+[bg2_h0200] 7s
+[bg2_h0202] 16s
+[bg2_h0205] 16s
+[bg2_h0208] 15s
+[bg2_h0210] 12s
+[bg2_h0212] 11s
+[bg2_h0214] 11s
+[bg2_h0457] 8s
+[bg2_h0459] 12s
+[bg2_h0461] 7s
+[bg2_h0463] 1s
+[bg2_h0465] 11s
+[bg2_h0467] 16s
+[bg2_h0469] 11s
+[bg2_h0471] 10s
+[bg2_h0473] 6s
+[bg2_h0475] 12s
+[bg2_h0477] 16s
+[bg2_h0479] 13s
+[bg2_h0529] 10s
+[bg2_h0531] 7s
+[bg2_h0533] 2s
+[bg2_h0537] 3s
+[bg2_h0539] 9s
+[bg2_h0541] 1s
+[bg2_h0543] 10s
+[bg2_h0549] 8s
+[bg2_h0554] 3s
+[bg2_h0560] 5s
+[bg2_h0564] 2s
+[bg2_h0567] 5s
+[bg2_h0575] 2s
+[bg2_h0579] 1s
+[bg2_h0581] 5s
+[bg2_h0583] 5s
+[bg2_h0587] 6s
+[bg2_h0589] 5s
+[bg2_h0591] 7s
+[bg2_h0593] 9s
+[bg2_h0595] 9s
+[bg2_h0624] 15s
+[bg2_h0627] 5s
+Traceback (most recent call last):
+  File "/home/claude/sealed_run/repo/paperexp3.py", line 288, in <module>
+    main()
+    ~~~~^^
+  File "/home/claude/sealed_run/repo/paperexp3.py", line 263, in main
+    Sk = pe.fit_survival(tr.X[m], tr.gtr[m], tr.h[m] / tr.h[m].mean(), tr.X, seed)  # v1 within과 같은 생존 모델
+  File "/home/claude/sealed_run/repo/paperexp.py", line 269, in fit_survival
+    random_state=seed).fit(Xtr, y, sample_weight=wtr)
+                       ~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/base.py", line 1403, in wrapper
+    return fit_method(estimator, *args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py", line 603, in fit
+    X_binned_train = self._bin_data(
+        X_train, sample_weight_train, is_training_data=True
+    )
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/ensemble/_hist_gradient_boosting/gradient_boosting.py", line 1122, in _bin_data
+    X_binned = self._bin_mapper.fit_transform(
+        X, sample_weight=sample_weight
+    )  # F-aligned array
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/utils/_set_output.py", line 327, in wrapped
+    data_to_wrap = f(self, X, *args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/base.py", line 969, in fit_transform
+    return self.fit(X, **fit_params).transform(X)
+           ~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/ensemble/_hist_gradient_boosting/binning.py", line 287, in fit
+    non_cat_thresholds = Parallel(n_jobs=self.n_threads, backend="threading")(
+        delayed(_find_binning_thresholds)(
+    ...<3 lines>...
+        if not self.is_categorical_[f_idx]
+    )
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/utils/parallel.py", line 91, in __call__
+    return super().__call__(iterable_with_config_and_warning_filters)
+           ~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/joblib/parallel.py", line 2012, in __call__
+    return output if self.return_generator else list(output)
+                                                ~~~~^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/joblib/parallel.py", line 1940, in _get_sequential_output
+    res = func(*args, **kwargs)
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/utils/parallel.py", line 184, in __call__
+    return self.function(*args, **kwargs)
+           ~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/sklearn/ensemble/_hist_gradient_boosting/binning.py", line 82, in _find_binning_thresholds
+    bin_thresholds = sliding_window_view(distinct_values, 2).mean(axis=1)
+                     ~~~~~~~~~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^
+  File "/usr/local/lib/python3.13/dist-packages/numpy/lib/_stride_tricks_impl.py", line 439, in sliding_window_view
+    raise ValueError(
+        'window shape cannot be larger than input array shape')
+ValueError: window shape cannot be larger than input array shape
+[bg2_h0180] 1s
+[bg2_h0629] 제외(생존 모델 학습 불가, 학습 조각 16개): ValueError: window shape cannot be larger than input array shape
+[bg2_h0631] 4s
+[bg2_h0634] 2s
+[bg2_h0636] 7s
+[bg2_h0638] 19s
+[bg2_h0640] 12s
+[bg2_h0642] 16s
+[bg2_h0644] 13s
+[bg2_h0646] 15s
+[bg2_h0720] 9s
+[bg2_h0724] 7s
+[bg2_h0726] 5s
+[bg2_h0729] 0s
+[bg2_h0732] 6s
+[bg2_h0734] 12s
+[bg2_h0736] 9s
+[bg2_h0738] 7s
+[bg2_h0742] 7s
+[bg2_h1278] 9s
+[bg2_h1286] 1s
+[bg2_h1298] 1s
+[bg2_h1306] 0s
+[bg2_h1316] 1s
+[bg2_h1396] 2s
+[bg2_h1405] 1s
+[bg2_h1412] 9s
+[bg3_h0012] 1s
+[bg3_h0014] 8s
+[bg3_h0089] 2s
+[bg3_h0091] 11s
+[bg3_h0131] 1s
+[bg3_h0133] 10s
+[bg3_h0367] 6s
+[bg3_h0475] 제외(생존 모델 학습 불가, 학습 조각 13909개): ValueError: The least populated classes in y have only 1 member, which is too few. The minimum number of groups for any class cannot be less than 2. Classes with too few members are: [1.0]
+[bg3_h0477] 4s
+[bg3_h0602] 9s
+[bg3_h0604] 12s
+[bg3_h0606] 18s
+[bg3_h0608] 18s
+[bg3_h0613] 9s
+[bg3_h0615] 9s
+[bg3_h0617] 23s
+[bg3_h0619] 8s
+[bg3_h0621] 9s
+[bg3_h0623] 8s
+[bg3_h0673] 7s
+[bg3_h0675] 6s
+[bg3_h0677] 7s
+[bg3_h0679] 6s
+[bg3_h0681] 6s
+[bg3_h0683] 6s
+[bg3_h0685] 7s
+[bg3_h0687] 8s
+[bg3_h0689] 7s
+[bg3_h0691] 5s
+[bg3_h0693] 6s
+[bg3_h0695] 6s
+[bg3_h0952] 13s
+[bg3_h0976] 2s
+[bg3_h1033] 6s
+[bg3_h1035] 3s
+[bg3_h1041] 13s
+[bg3_h1043] 12s
+[bg3_h1046] 12s
+[bg3_h1048] 15s
+[bg3_h1050] 18s
+[bg3_h1052] 20s
+[bg3_h1054] 22s
+[bg3_h1056] 23s
+[bg3_h1058] 17s
+[bg3_h1060] 24s
+[bg3_h1062] 15s
+[bg3_h1070] 9s
+[bg3_h1074] 7s
+[bg3_h1076] 7s
+[bg3_h1078] 6s
+[bg3_h1104] 15s
+[bg3_h1106] 16s
+[bg3_h1108] 22s
+[bg3_h1110] 16s
+[bg3_h1112] 25s
+[bg3_h1114] 16s
+[bg3_h1116] 16s
+[bg3_h1119] 8s
+[bg3_h1121] 6s
+[bg3_h1153] 5s
+[bg3_h1155] 4s
+[bg3_h1158] 3s
+[bg3_h1160] 4s
+[bg3_h1162] 5s
+[bg3_h1164] 1s
+[bg3_h1166] 8s
+[bg3_h1168] 7s
+[bg3_h1170] 5s
+[bg3_h1191] 2s
+[bg3_h1193] 11s
+[bg3_h1195] 6s
+[bg3_h1199] 10s
+[bg3_h1249] 5s
+[bg3_h1251] 7s
+[bg3_h1253] 8s
+[bg3_h1255] 8s
+[bg3_h1257] 8s
+[bg3_h1259] 7s
+[bg3_h1261] 7s
+[bg3_h1263] 6s
+[bg3_h1265] 12s
+[bg3_h1267] 7s
+[bg3_h1269] 5s
+[bg3_h1271] 5s
+[bg3_h1321] 7s
+[bg3_h1323] 9s
+[bg3_h1325] 3s
+[bg3_h1451] 1s
+[bg3_h1453] 16s
+[bg3_h1455] 17s
+[bg3_h1458] 4s
+[bg3_h1460] 7s
+[bg3_h1462] 10s
+[bg3_h1882] 2s
+[bg3_h2007] 12s
+[bg3_h2009] 12s
+[bg3_h2011] 13s
+[bg3_h2013] 11s
+[bg3_h2015] 9s
+[bg3_h2172] 2s
+[bg3_h2175] 4s
+[bg3_h2177] 19s
+[bg3_h2179] 13s
+[bg3_h2182] 5s
+[bg3_h2276] 5s
+[bg3_h2278] 18s
+[bg3_h2353] 6s
+[bg3_h2363] 13s
+[bg3_h2365] 11s
+[bg3_h2368] 17s
+[bg3_h2370] 17s
+[bg3_h2372] 23s
+[bg3_h2374] 4s
+[bg3_h2376] 17s
+[bg3_h2380] 2s
+[bg3_h2390] 20s
+[bg3_h2392] 18s
+[bg3_h2394] 17s
+[bg3_h2396] 14s
+[bg3_h2417] 23s
+[bg3_h2419] 18s
+[bg3_h2421] 9s
+[bg3_h2450] 6s
+[bg3_h2452] 6s
+[bg3_h2454] 7s
+[bg3_h2535] 10s
+[bg3_h2537] 8s
+[bg3_h2539] 8s
+[bg3_h2541] 8s
+[bg3_h2543] 9s
+[bg3_h2563] 2s
+끝 (1467s) → exp/v2dev/daypool/res_q2.csv

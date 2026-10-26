@@ -1,0 +1,23 @@
+block,source,week,n_days,n_windows,days
+bg2_w00,bg2,0,2,45,bg2_d002 bg2_d003
+bg2_w01,bg2,1,1,23,bg2_d012
+bg2_w02,bg2,2,4,76,bg2_d014 bg2_d017 bg2_d018 bg2_d020
+bg2_w03,bg2,3,1,22,bg2_d021
+bg2_w07,bg2,7,1,3,bg2_d052
+bg2_w08,bg2,8,1,7,bg2_d059
+bg3_w00,bg3,0,1,10,bg3_d006
+bg3_w01,bg3,1,4,45,bg3_d009 bg3_d010 bg3_d012 bg3_d013
+bg3_w02,bg3,2,1,11,bg3_d020
+bg3_w03,bg3,3,3,40,bg3_d021 bg3_d022 bg3_d026
+bg3_w04,bg3,4,2,9,bg3_d030 bg3_d034
+bg3_w05,bg3,5,1,4,bg3_d036
+bg3_w06,bg3,6,2,18,bg3_d042 bg3_d047
+bg3_w07,bg3,7,2,29,bg3_d051 bg3_d054
+bg3_w08,bg3,8,3,7,bg3_d059 bg3_d061 bg3_d062
+bg3_w09,bg3,9,2,2,bg3_d063 bg3_d064
+bg3_w10,bg3,10,2,11,bg3_d073 bg3_d075
+bg3_w11,bg3,11,1,2,bg3_d079
+bg3_w12,bg3,12,1,14,bg3_d084
+bg3_w13,bg3,13,4,24,bg3_d091 bg3_d095 bg3_d096 bg3_d097
+bg3_w14,bg3,14,1,1,bg3_d101
+bg3_w15,bg3,15,1,2,bg3_d108

@@ -16,6 +16,17 @@ v1 봉인 시험의 특징 통제 결과(같은 특징에서도 AI가 규칙에 
   어느 T*에서도 고정-온라인 대비 후퇴 비율이 10%를 넘으면 뺀다.
 
   python3 paperexp3.py --out exp/v2dev/res_a.csv exp/sched/*.csv ...   # 이미 처리한 일정은 건너뛴다(이어 하기)
+
+평가 모델(--model)
+  v1     policysim.slices(v1과 같다). 조각 특징 pos·수준·이전놀이가 뒤의 재사용으로 정해지는 조각 중점을 써서
+         결정 시각 뒤의 정보가 섞인다(docs/causality-check.md). v1·v2 개발 결과를 다시 만들 때만 쓴다.
+  chunk  chunkslices.py(v2 평가 모델): 크기를 1 MiB 청크로 올리고 청크마다 조각 하나, 특징은 청크 위치(인과적).
+
+창을 빼지 않는 규칙(사전 등록 v2 개정 4)
+  - 생존 모델을 학습할 수 없는 창(fit_survival3가 ValueError)도 뺀다. 그 창에서 AI를 쓰는 정책은 미리 정한 대체 정책으로
+    계산한다: C3 AI→규칙대체와 C1 → 규칙-온라인+대체, v1 주 AI·C2·C4 → 고정-온라인(각자의 '+대체' 기준). 출력 ai 열이 none이다.
+  - --model chunk에서는 v1의 '학습 정답이 한 종류뿐인 T*는 건너뛴다' 규칙을 쓰지 않는다(생존 모델은 매듭별로 학습하므로
+    T*에서 정답이 한 종류여도 정책을 계산할 수 있다). --model v1은 v1·v2 개발 결과 재현을 위해 그 규칙을 그대로 쓴다.
 """
 import argparse
 import csv
@@ -33,7 +44,83 @@ import paperexp2 as p2  # noqa: E402
 
 MiB = pe.MiB
 KNOTS = np.concatenate([[0.0], pe.TAU])
-SRC = {"exp/sched": "dev", "exp/fx/sched": "devfx", "exp/sealed/sched": "v1real", "exp/sealed/fx/sched": "v1fx"}
+SRC = {"exp/sched": "dev", "exp/fx/sched": "devfx", "exp/sealed/sched": "v1real", "exp/sealed/fx/sched": "v1fx",
+       "exp/sealed_v2/sched": "v2real", "exp/sealed_v2/fx/sched": "v2fx"}
+
+
+def use_chunk_model(chunk=MiB):
+    """v2 평가 모델을 켠다: 일정의 크기를 청크 배수로 올리고(load_schedule) 청크 조각 분해(slices)를 쓴다.
+    paperexp.Trace와 paperexp2.Trace2는 policysim 모듈의 두 함수를 부르므로, 그 둘만 바꾼다(다른 코드는 같다)."""
+    import chunkslices as cs
+
+    load0 = pe.ps.load_schedule
+
+    def load_q(path):
+        ta, tf, sz = load0(path)
+        return ta, tf, cs.quantize(sz, chunk)
+
+    pe.ps.load_schedule = load_q
+    pe.ps.slices = lambda ta, tf, sz: cs.slices_chunk(ta, tf, sz, chunk)
+    global FALLBACK
+    FALLBACK = run_fallback3
+
+
+def fit_survival3(Xtr, gtr, wtr, Xall, seed=0):
+    """paperexp.fit_survival과 같다. 다만 학습기가 매듭 하나에서 오류를 내고 그 매듭의 적은 쪽 정답이 1개뿐이면
+    그 매듭을 상수 확률로 둔다(학습 행이 1만 개를 넘으면 조기 종료의 층화 분할이 정답마다 2개 이상을 요구한다).
+    paperexp.fit_survival이 오류 없이 끝나는 경우에는 결과가 같다. paperexp.py는 v1 지문에 들어 있어 고치지 않는다."""
+    from sklearn.ensemble import HistGradientBoostingClassifier
+
+    Sk = np.empty((len(Xall), len(pe.TAU)))
+    for k, tau in enumerate(pe.TAU):
+        y = (gtr > tau).astype(int)
+        if len(np.unique(y)) < 2:
+            Sk[:, k] = float(y.mean()) if len(y) else 0.0
+            continue
+        try:
+            clf = HistGradientBoostingClassifier(max_iter=120, learning_rate=0.1, max_leaf_nodes=31, l2_regularization=1.0,
+                                                 random_state=seed).fit(Xtr, y, sample_weight=wtr)
+        except ValueError:
+            if min(int(y.sum()), len(y) - int(y.sum())) >= 2:
+                raise
+            Sk[:, k] = float(y.mean())
+            continue
+        Sk[:, k] = clf.predict_proba(Xall)[:, 1]
+    return np.minimum.accumulate(Sk, axis=1)
+
+
+def ledger_diff_events(ts, g, h, r, Ta, Tb, b):
+    """두 정책 그림자 장부의 차이(A − B) 사건. T가 같은 조각은 두 장부의 사건이 같아 빼면 정확히 0이므로 넣지 않는다."""
+    m = Ta != Tb
+    t_a, a_a = pe.ledger_events(ts[m], g[m], h[m], r[m], Ta[m], b)
+    t_b, a_b = pe.ledger_events(ts[m], g[m], h[m], r[m], Tb[m], b)
+    return np.concatenate([t_a, t_b]), np.concatenate([a_a, -a_b])
+
+
+def run_fallback3(tr, T_ai, T_b, b, dec_mask, W, eps, H):
+    """paperexp2.run_fallback2와 같은 전환 규칙(창 합 A_i > B_i면 B, 같으면 A)을 수치 잡음 없이 계산한다(v2 평가 모델).
+    - A_i − B_i를 두 장부의 차이 사건으로 바로 더한다. 창 안에서 두 정책의 결정이 같으면 차이 사건이 없어 정확히 0이고 A를 쓴다.
+    - 사건은 안정 정렬한다. 같은 시각 사건의 순서가 뒤의 사건에 따라 바뀌지 않으므로, 시각 t의 합은 t 이전 사건만으로 정해진다.
+    run_fallback2는 두 장부를 따로 누적합의 차로 구해서, 같아야 할 두 값이 10⁻⁹ 정도 어긋나 '같음'이 반올림으로 갈렸다
+    (불안정 정렬이라 그 반올림이 뒤의 사건에도 따라 달라졌다, docs/causality-check.md)."""
+    assert eps == 0.0 and H <= 0, "v2 고정값(ε 0, H 0)만 쓴다"
+    ts, g, h, r = tr.ts, tr.g, tr.h, tr.r
+    idx = np.where(dec_mask)[0]
+    idx = idx[np.argsort(ts[idx], kind="stable")]
+    Ta, Tb = T_ai[idx], T_b[idx]
+    assert np.isfinite(Ta).all() and np.isfinite(Tb).all()
+    ev_t, ev_a = ledger_diff_events(ts[idx], g[idx], h[idx], r[idx], Ta, Tb, b)
+    o = np.argsort(ev_t, kind="stable")
+    et, cum = ev_t[o], np.concatenate([[0.0], np.cumsum(ev_a[o])])
+    t_dec = ts[idx]
+    D = cum[np.searchsorted(et, t_dec, side="right")] - cum[np.searchsorted(et, t_dec - W, side="right")]
+    mode = D > 0
+    T = T_ai.copy()
+    T[idx] = np.where(mode, Tb, Ta)
+    return T, mode, idx
+
+
+FALLBACK = p2.run_fallback2  # v1 모델 경로(v1·v2 개발 결과 재현). use_chunk_model()이 run_fallback3로 바꾼다
 
 
 def s_at(Sk, b):
@@ -136,6 +223,16 @@ def evaluate3(tr, led, b, Sk, W_cal, U):
     grp_r, G_r, rname, _ = p2.rule_groups(tr, b, Cva, pos_va, is1, i_fix, i_fix1, i_fix2)
     info["rule"] = rname
     T_rule = p2.online_group_T(tr, led, b, grp_r, G_r, dec, W_cal, U)
+    if Sk is None:
+        # AI(생존 모델)를 쓸 수 없는 창: AI를 쓰는 정책은 미리 정한 대체 정책이다(머리말). 비용은 정상적으로 계산한다.
+        T_rb, mode, idx_fb = FALLBACK(tr, T_rule, base, b, dec, **p2.FB)
+        te_m = TE[idx_fb]
+        fr = float(mode[te_m].mean()) if te_m.any() else math.nan
+        for name, T, frac in (("규칙-온라인+대체", T_rb, fr), ("AI생존κ-온라인+대체", base, 1.0),
+                              ("C1 AI세분규칙-온라인+대체", T_rb, fr), ("C2 AI생존κ칸별-온라인+대체", base, 1.0),
+                              ("C4 AI생존세밀κ-온라인+대체", base, 1.0), ("C3 AI→규칙대체", T_rb, 1.0)):
+            pols[name], info[name] = T, frac
+        return _costs(tr, pols, b), info
     rec = pe.survival_timeouts(Sk, b, 1.0)
     Tk = np.stack([np.minimum(rec * k, cap) for k in p2.KGRID])
     T_ai, _ = p2.online_kappa_T(tr, led, b, Tk, dec, W_cal, U)
@@ -154,16 +251,22 @@ def evaluate3(tr, led, b, Sk, W_cal, U):
     raw = {"규칙-온라인": T_rule, "AI생존κ-온라인": T_ai, "C1 AI세분규칙-온라인": T_c1, "C2 AI생존κ칸별-온라인": T_c2,
            "C4 AI생존세밀κ-온라인": T_c4}
     for name, T in raw.items():
-        T_fb, mode, idx_fb = p2.run_fallback2(tr, T, base, b, dec, **p2.FB)
+        T_fb, mode, idx_fb = FALLBACK(tr, T, base, b, dec, **p2.FB)
         pols[name + "+대체"] = T_fb
         te_m = TE[idx_fb]
         info[name + "+대체"] = float(mode[te_m].mean()) if te_m.any() else math.nan
     # C3: v1 주 AI(+대체) ↔ 규칙-온라인+대체
-    T_c3, mode, idx_fb = p2.run_fallback2(tr, pols["AI생존κ-온라인+대체"], pols["규칙-온라인+대체"], b, dec, **p2.FB)
+    T_c3, mode, idx_fb = FALLBACK(tr, pols["AI생존κ-온라인+대체"], pols["규칙-온라인+대체"], b, dec, **p2.FB)
     pols["C3 AI→규칙대체"] = T_c3
     te_m = TE[idx_fb]
     info["C3 AI→규칙대체"] = float(mode[te_m].mean()) if te_m.any() else math.nan
-    gt, ht, rt = tr.g[TE], h[TE], tr.r[TE]
+    return _costs(tr, pols, b), info
+
+
+def _costs(tr, pols, b):
+    """시험 구간 비용(재확보 + 낭비 ÷ T*)과 오라클"""
+    TE = tr.TE
+    gt, ht, rt = tr.g[TE], tr.h[TE], tr.r[TE]
     res = {}
     for name, T in pols.items():
         Tt = T[TE]
@@ -173,7 +276,7 @@ def evaluate3(tr, led, b, Sk, W_cal, U):
     orc = np.where(rt & (gt < b), np.inf, 0.0)
     ref, w = pe.parts(gt, ht, rt, orc, b)
     res["오라클"] = dict(cost=ref + w / b, refault=ref, waste=w)
-    return res, info
+    return res
 
 
 def main():
@@ -182,7 +285,10 @@ def main():
     ap.add_argument("--out", required=True)
     ap.add_argument("--config", default="exp/frozen.json")
     ap.add_argument("--tstars", default="")
+    ap.add_argument("--model", choices=["v1", "chunk"], default="v1")
     a = ap.parse_args()
+    if a.model == "chunk":
+        use_chunk_model()
     cfg = json.load(open(a.config))
     tstars = [float(x) for x in a.tstars.split(",")] if a.tstars else cfg["tstars"]
     seed = cfg["seed"]
@@ -200,19 +306,26 @@ def main():
         tr = p2.Trace2(path, cfg["feats"])
         led = p2.Ledger(tr)
         m = tr.TR
-        Sk = pe.fit_survival(tr.X[m], tr.gtr[m], tr.h[m] / tr.h[m].mean(), tr.X, seed)  # v1 within과 같은 생존 모델
+        try:
+            Sk = fit_survival3(tr.X[m], tr.gtr[m], tr.h[m] / tr.h[m].mean(), tr.X, seed)  # v1 within과 같은 생존 모델
+        except ValueError as e:
+            # 생존 모델을 학습할 수 없는 창(예: 학습 구간 조각이 아주 적어 특징 하나가 모두 결측이면 학습기가 오류를 낸다).
+            # 창을 빼지 않고 AI를 쓰는 정책을 미리 정한 대체 정책으로 계산한다(머리말, 사전 등록 v2 §2.2).
+            Sk = None
+            print(f"[{name}] AI 학습 불가(학습 조각 {int(m.sum())}개, {type(e).__name__}: {e}) → AI를 쓰는 정책은 대체 정책으로 계산", flush=True)
         te_dur = tr.t0 + tr.dur - tr.c2
         rows = []
         for b in tstars:
-            if len(np.unique((tr.gtr[tr.TR] > b).astype(int))) < 2:  # v1과 같은 건너뛰기 규칙
+            if a.model == "v1" and len(np.unique((tr.gtr[tr.TR] > b).astype(int))) < 2:  # v1 재현 경로만 v1의 건너뛰기 규칙
                 continue
             res, info = evaluate3(tr, led, b, Sk, cfg["wcal"], cfg["period"])
             b_on = res["고정-온라인"]["cost"]
             for pol, v in res.items():
-                rows.append(dict(src=SRC.get(os.path.dirname(os.path.normpath(path)), "other"), trace=name, Tstar=b, policy=pol,
+                rows.append(dict(src=SRC.get(os.path.dirname(os.path.normpath(path)), "other"), model=a.model, trace=name, Tstar=b, policy=pol,
                                  cost_MiB=v["cost"] / MiB, rel_fixon=(v["cost"] / b_on - 1) * 100 if b_on > 0 else 0.0,
                                  refault_MiB=v["refault"] / MiB, held_mean_MiB=v["waste"] / MiB / te_dur,
-                                 n_te=int(tr.TE.sum()), rule=info["rule"], base_frac=info.get(pol, "")))
+                                 n_te=int(tr.TE.sum()), rule=info["rule"], base_frac=info.get(pol, ""),
+                                 ai="ok" if Sk is not None else "none"))
         if rows:
             with open(a.out, "a", newline="") as f:
                 w = csv.DictWriter(f, fieldnames=list(rows[0]))

@@ -5,6 +5,7 @@
 
 ## 저장소 안내
 - 사전 등록: `docs/prereg-v1.md`(v1.1). 판정 코드·설정·창 목록의 지문은 `exp/sealed/SHA256SUMS.txt`에 있고 `./verify_prereg.sh`로 확인한다.
+- 사전 등록 v2: `docs/prereg-v2.md`. 지문은 `exp/sealed_v2/SHA256SUMS.txt`(`sha256sum -c`)다. v1 유체 모델의 미래 정보 점검과 v2 평가 모델은 `docs/causality-check.md`에 있다.
 - 데이터: 원본은 넣지 않았다. 주소·지문·라이선스·인용은 `DATA.md`, 받기는 `./fetch_data.sh`다.
 - 결과: `exp/res*`(재실험 v1), `exp/res2`(방법 확정 개발), `exp/sealed/res`(봉인 시험: 판정 `verdict.txt`, 실행 기록 `EXECUTION.md`). 해석은 `docs/sim-results-v1.md`, `docs/paper-design-v1.md`, `docs/sealed-results-v1.md`에 있다.
 
@@ -27,10 +28,17 @@
 | `run_sealed_parts.sh` | run_sealed.sh와 같은 명령을 묶음으로 나눠 실행(실제 봉인 시험에 쓴 판, `exp/sealed/res/EXECUTION.md`) |
 | `verify_prereg.sh` | 사전 등록 지문(코드·설정·창 목록·봉인 창, 선택: 원본) 확인 |
 | `fetch_data.sh` | 원본 트레이스 받기 + 지문 확인(`DATA.md`) |
-| `paperexp3.py` | v2 후보 정책 탐색(개발 데이터 전용): 규칙 칸×AI 세분, 칸별 κ, 규칙 대체, 고운 격자 생존 |
+| `paperexp3.py` | v2 후보 정책 평가: 규칙 칸×AI 세분, 칸별 κ, 규칙 대체, 고운 격자 생존. `--model chunk`가 v2 평가 모델(청크 분해 + 고친 장부), `--model v1`은 v1 모델 재현 |
+| `chunkslices.py` | v2 평가 모델의 청크 분해(1 MiB 올림, 청크마다 조각 하나, 인과적 위치 특징, `docs/causality-check.md`) |
+| `causality_check.py` | 미래 교란 시험: 자르는 시각 뒤 도착 크기를 섞어도 그 전 결정이 그대로인지 확인 |
 | `analyze_v2dev.py` | v2 후보 개발 평가 요약과 선택 규칙 적용 |
+| `exp/v2dev/daypool/` | 개발 데이터로 잰 '하루 전체' 판정 설계의 검정력(`run.sh`, `analyze_daypool.py`) |
 | `sealed_pool_v2.py` | v2 봉인 창 표본(v1에서 안 쓴 BurstGPT 군집, 입력만) |
-| `run_sealed_v2.sh`, `prereg_v2_analysis.py` | v2 봉인 확인 실행·판정(사전 등록 v2 승인 뒤) |
+| `sealed_pool_v2day.py` | v2 봉인 날 41개의 자격 창 전부(판정에 쓰는 405창, 입력만) |
+| `run_sealed_v2.sh`, `prereg_v2_analysis.py` | v2 봉인 확인 실행·판정(사전 등록 v2 승인 뒤). 실행 관문(정식 실행은 지문·GitHub 승인 태그 확인, 시험 설정은 봉인 폴더 사용 불가), 결과가 하나라도 빠지면 판정하지 않고 멈춤 |
+| `check_parts_v2.py` | 묶음마다 (일정 × T* × 정책 8개) 결과가 빠짐없는지 확인(빠진 묶음은 `run_sealed_v2.sh`가 다시 실행) |
+| `checks/prereg_v2_selftest.py` | 판정 계산(주 블록·기준 비용 0·AI 대체 창·H3 조건별 보고)과 판정 중단 경우 19개(누락 창·정책·T*, 잘못된 시드 등)를 답을 아는 가짜 입력으로 확인 |
+| `checks/run_guard_test.sh` | 실행 관문 22개 경우(시험 설정의 봉인 폴더 사용, 승인 태그·승인 저장소 확인)를 임시 사본과 파이썬 대역으로 확인(봉인 폴더를 읽기만 하고 일정·정책 계산은 돌지 않음) |
 | `chunkpool.cpp` | 3단계: 청크 풀 반납·재확보 실제 CPU 비용(실효 T*)과 정책 결정 재생 |
 | `export_decisions.py` | 3단계: 유체 모델 정책 결정 → 청크 풀 사건 목록 |
 | `stage3.sh`, `stage3_summary.py` | 3단계 측정 실행·요약(`docs/stage3-guide.md`) |

@@ -35,3 +35,8 @@ __pycache__/
 /exp/sealed_v2/res/parts/*.csv
 /exp/sealed_v2/res/parts/*.done
 /exp/sealed_v2/res/parts/tmp_*
+# 개발용 '하루 전체' 평가의 입력(원본에서 다시 만든다: exp/v2dev/daypool/run.sh)
+/exp/v2dev/daypool/traces/
+/exp/v2dev/daypool/sched/
+/exp/v2dev/daypool/inputs.done
+/exp/sealed_v2/day/sched/
