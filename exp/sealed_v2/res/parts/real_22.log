@@ -1,0 +1,8 @@
+[bg2_h0485] AI 학습 불가(학습 조각 16개, ValueError: window shape cannot be larger than input array shape) → AI를 쓰는 정책은 대체 정책으로 계산
+[bg2_h0485] 1s
+[bg2_h0486] 4s
+[bg2_h0487] 3s
+[bg2_h0488] 4s
+[bg2_h0490] 3s
+[bg2_h0491] 7s
+끝 (23s) → exp/sealed_v2/res/parts/tmp_real_22_1792983500.csv

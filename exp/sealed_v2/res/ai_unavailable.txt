@@ -1,0 +1,2 @@
+[bg2_h0485] AI 학습 불가(학습 조각 16개, ValueError: window shape cannot be larger than input array shape) → AI를 쓰는 정책은 대체 정책으로 계산
+[bg3_h0511] AI 학습 불가(학습 조각 41개, ValueError: window shape cannot be larger than input array shape) → AI를 쓰는 정책은 대체 정책으로 계산
