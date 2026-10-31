@@ -1,0 +1,606 @@
+대상 420창, 모드 both, 반복 3, T* 2.6, 커밋 a071c92c64, CPU [1]
+[pre fit 1/3] 조각 820340개, fit 79509.9 ms (입력 준비 4139.2 ms)
+[pre fit 2/3] 조각 820340개, fit 77199.4 ms (입력 준비 4139.2 ms)
+[pre fit 3/3] 조각 820340개, fit 76104.5 ms (입력 준비 4139.2 ms)
+[1/420] bg2_h0157 n_te=116 within ai=ok F=144.0ms I=4.46ms S=+91.09 재현=exact | pre I=8.36ms S=+91.09 (1s, 누적 4.0분)
+[2/420] bg2_h0165 n_te=3240 within ai=ok F=176.3ms I=35.51ms S=-0.19 재현=exact | pre I=71.16ms S=-2.56 (2s, 누적 4.0분)
+[3/420] bg2_h0172 n_te=3595 within ai=ok F=0.2ms I=0.24ms S=-5.28 재현=exact | pre I=78.94ms S=-3.23 (1s, 누적 4.0분)
+[4/420] bg2_h0177 n_te=2374 within ai=ok F=202.5ms I=36.64ms S=+11.65 | pre I=55.75ms S=+14.14 (2s, 누적 4.1분)
+[5/420] bg2_h0179 n_te=204 within ai=ok F=3143.7ms I=9.94ms S=+16.71 | pre I=10.58ms S=+5.69 (10s, 누적 4.2분)
+[6/420] bg2_h0180 n_te=3142 within ai=ok F=87.4ms I=22.11ms S=-0.02 | pre I=69.04ms S=+0.99 (1s, 누적 4.2분)
+[7/420] bg2_h0181 n_te=4108 within ai=ok F=179.2ms I=43.58ms S=-0.90 | pre I=91.58ms S=-0.03 (2s, 누적 4.3분)
+[8/420] bg2_h0182 n_te=5224 within ai=ok F=3051.0ms I=129.50ms S=+16.80 | pre I=124.14ms S=-22.13 (11s, 누적 4.5분)
+[9/420] bg2_h0184 n_te=6061 within ai=ok F=2636.2ms I=148.76ms S=-7.09 | pre I=140.73ms S=+19.63 (10s, 누적 4.6분)
+[10/420] bg2_h0185 n_te=3192 within ai=ok F=3167.2ms I=80.42ms S=+225.36 | pre I=76.84ms S=+269.95 (11s, 누적 4.8분)
+[11/420] bg2_h0186 n_te=5233 within ai=ok F=3630.1ms I=124.47ms S=+243.82 | pre I=124.51ms S=-42.05 (13s, 누적 5.0분)
+[12/420] bg2_h0188 n_te=9384 within ai=ok F=1855.7ms I=224.45ms S=+7.75 | pre I=213.99ms S=+169.98 (9s, 누적 5.2분)
+[13/420] bg2_h0189 n_te=6051 within ai=ok F=4702.1ms I=107.15ms S=+116.45 | pre I=136.63ms S=+153.42 (17s, 누적 5.4분)
+[14/420] bg2_h0190 n_te=2967 within ai=ok F=3935.5ms I=78.20ms S=+136.09 | pre I=70.24ms S=+70.04 (14s, 누적 5.7분)
+[15/420] bg2_h0191 n_te=4407 within ai=ok F=2902.9ms I=109.25ms S=+187.21 | pre I=101.66ms S=+116.46 (11s, 누적 5.9분)
+[16/420] bg2_h0192 n_te=5141 within ai=ok F=4901.7ms I=102.16ms S=+67.35 | pre I=119.10ms S=+170.01 (18s, 누적 6.2분)
+[17/420] bg2_h0193 n_te=4638 within ai=ok F=2570.4ms I=110.44ms S=+117.13 | pre I=112.64ms S=+2.75 (10s, 누적 6.3분)
+[18/420] bg2_h0194 n_te=12943 within ai=ok F=3895.2ms I=282.42ms S=-1.87 | pre I=295.62ms S=-2.40 (15s, 누적 6.6분)
+[19/420] bg2_h0195 n_te=5330 within ai=ok F=4838.2ms I=94.73ms S=+65.97 | pre I=121.63ms S=+73.86 (17s, 누적 6.8분)
+[20/420] bg2_h0196 n_te=3806 within ai=ok F=4287.4ms I=69.54ms S=+22.18 | pre I=87.38ms S=+18.76 (15s, 누적 7.1분)
+[21/420] bg2_h0197 n_te=5394 within ai=ok F=3987.6ms I=131.76ms S=+9.62 | pre I=123.52ms S=-6.97 (14s, 누적 7.3분)
+[22/420] bg2_h0198 n_te=5607 within ai=ok F=3361.5ms I=138.10ms S=+72.55 | pre I=129.30ms S=+41.26 (12s, 누적 7.5분)
+[23/420] bg2_h0199 n_te=4275 within ai=ok F=4963.7ms I=69.43ms S=+151.11 | pre I=96.69ms S=+161.54 (17s, 누적 7.8분)
+[24/420] bg2_h0200 n_te=3702 within ai=ok F=2819.4ms I=97.67ms S=+61.99 | pre I=86.85ms S=+29.39 (10s, 누적 8.0분)
+[25/420] bg2_h0201 n_te=8811 within ai=ok F=3259.8ms I=199.16ms S=-3.85 | pre I=200.06ms S=-5.11 (13s, 누적 8.2분)
+[26/420] bg2_h0202 n_te=3221 within ai=ok F=5508.4ms I=67.90ms S=+144.88 | pre I=79.82ms S=+113.32 (19s, 누적 8.5분)
+[27/420] bg2_h0204 n_te=10337 within ai=ok F=880.8ms I=208.97ms S=-2.30 | pre I=235.42ms S=-9.15 (6s, 누적 8.6분)
+[28/420] bg2_h0205 n_te=10479 within ai=ok F=5452.5ms I=197.29ms S=+256.70 | pre I=239.56ms S=+242.24 (21s, 누적 9.0분)
+[29/420] bg2_h0207 n_te=1435 within ai=ok F=3556.5ms I=40.71ms S=-9.67 | pre I=37.81ms S=+31.43 (12s, 누적 9.2분)
+[30/420] bg2_h0208 n_te=10122 within ai=ok F=4677.2ms I=222.28ms S=+346.20 | pre I=233.11ms S=+241.17 (18s, 누적 9.5분)
+[31/420] bg2_h0209 n_te=6419 within ai=ok F=5126.5ms I=118.48ms S=+124.92 | pre I=145.87ms S=+162.25 (19s, 누적 9.8분)
+[32/420] bg2_h0210 n_te=4336 within ai=ok F=4456.7ms I=89.68ms S=-2.66 | pre I=97.93ms S=+6.20 (16s, 누적 10.0분)
+[33/420] bg2_h0211 n_te=8502 within ai=ok F=3989.8ms I=201.93ms S=+87.08 | pre I=196.66ms S=-24.48 (15s, 누적 10.3분)
+[34/420] bg2_h0212 n_te=2105 within ai=ok F=4033.2ms I=55.90ms S=+98.04 | pre I=55.72ms S=+108.04 (14s, 누적 10.5분)
+[35/420] bg2_h0213 n_te=8668 within ai=ok F=3856.7ms I=207.97ms S=+79.15 | pre I=198.07ms S=-4.98 (14s, 누적 10.7분)
+[36/420] bg2_h0214 n_te=3980 within ai=ok F=4390.4ms I=87.97ms S=+5.61 | pre I=93.04ms S=+16.80 (15s, 누적 11.0분)
+[37/420] bg2_h0215 n_te=3615 within ai=ok F=2594.9ms I=100.15ms S=+102.38 | pre I=87.10ms S=+4.07 (9s, 누적 11.2분)
+[38/420] bg2_h0457 n_te=1521 within ai=ok F=2658.0ms I=43.57ms S=-2.92 | pre I=43.65ms S=-8.36 (9s, 누적 11.3분)
+[39/420] bg2_h0458 n_te=7154 within ai=ok F=3694.5ms I=181.91ms S=+113.53 | pre I=174.75ms S=-6.42 (14s, 누적 11.5분)
+[40/420] bg2_h0459 n_te=2258 within ai=ok F=4210.4ms I=42.95ms S=+0.00 | pre I=56.22ms S=-0.37 (15s, 누적 11.8분)
+[41/420] bg2_h0460 n_te=8429 within ai=ok F=4267.2ms I=207.83ms S=+106.98 | pre I=205.27ms S=-2.84 (16s, 누적 12.0분)
+[42/420] bg2_h0461 n_te=2349 within ai=ok F=3056.4ms I=76.75ms S=-7.53 | pre I=60.98ms S=+55.95 (11s, 누적 12.2분)
+[43/420] bg2_h0462 n_te=2619 within ai=ok F=544.5ms I=58.64ms S=+2.69 | pre I=63.61ms S=+3.58 (3s, 누적 12.3분)
+[44/420] bg2_h0463 n_te=3327 within ai=ok F=373.5ms I=69.42ms S=+334.95 | pre I=89.17ms S=-2.20 (3s, 누적 12.3분)
+[45/420] bg2_h0464 n_te=5686 within ai=ok F=4209.3ms I=123.86ms S=+66.51 | pre I=131.22ms S=-0.93 (19s, 누적 12.6분)
+[46/420] bg2_h0465 n_te=5868 within ai=ok F=3456.9ms I=146.74ms S=+137.62 | pre I=132.64ms S=-8.64 (13s, 누적 12.9분)
+[47/420] bg2_h0466 n_te=3003 within ai=ok F=32.5ms I=11.65ms S=+0.22 | pre I=67.10ms S=-1.00 (1s, 누적 12.9분)
+[48/420] bg2_h0467 n_te=13476 within ai=ok F=5023.1ms I=270.71ms S=+227.16 | pre I=322.16ms S=+104.00 (20s, 누적 13.2분)
+[49/420] bg2_h0468 n_te=3732 within ai=ok F=4373.9ms I=76.79ms S=-0.41 | pre I=88.80ms S=-5.18 (15s, 누적 13.5분)
+[50/420] bg2_h0469 n_te=2612 within ai=ok F=4312.7ms I=63.40ms S=+22.44 | pre I=70.03ms S=-1.81 (15s, 누적 13.7분)
+[51/420] bg2_h0470 n_te=5069 within ai=ok F=4032.7ms I=136.10ms S=+30.59 | pre I=138.11ms S=-22.24 (15s, 누적 14.0분)
+[52/420] bg2_h0471 n_te=5205 within ai=ok F=3645.3ms I=134.37ms S=+95.16 | pre I=130.24ms S=+57.57 (13s, 누적 14.2분)
+[53/420] bg2_h0472 n_te=2319 within ai=ok F=4562.8ms I=52.18ms S=+21.91 | pre I=63.21ms S=+6.73 (17s, 누적 14.5분)
+[54/420] bg2_h0473 n_te=4024 within ai=ok F=2391.5ms I=111.39ms S=+63.63 | pre I=109.60ms S=+63.18 (9s, 누적 14.6분)
+[55/420] bg2_h0474 n_te=8379 within ai=ok F=4154.4ms I=231.94ms S=+38.85 | pre I=220.10ms S=-6.19 (16s, 누적 14.9분)
+[56/420] bg2_h0475 n_te=9910 within ai=ok F=4841.4ms I=214.57ms S=+198.19 | pre I=297.42ms S=-7.50 (19s, 누적 15.2분)
+[57/420] bg2_h0476 n_te=14126 within ai=ok F=5647.9ms I=365.79ms S=-2.83 | pre I=437.92ms S=-9.29 (24s, 누적 15.6분)
+[58/420] bg2_h0477 n_te=9180 within ai=ok F=7531.0ms I=214.48ms S=+111.72 | pre I=295.92ms S=+114.14 (28s, 누적 16.1분)
+[59/420] bg2_h0478 n_te=2360 within ai=ok F=4824.8ms I=84.24ms S=+49.79 | pre I=69.41ms S=-1.41 (17s, 누적 16.3분)
+[60/420] bg2_h0479 n_te=11162 within ai=ok F=5419.6ms I=320.55ms S=-3.92 | pre I=356.09ms S=+9.29 (21s, 누적 16.7분)
+[61/420] bg2_h0528 n_te=4411 within ai=ok F=2831.7ms I=111.44ms S=-4.20 | pre I=116.67ms S=-16.68 (11s, 누적 16.9분)
+[62/420] bg2_h0529 n_te=3921 within ai=ok F=3671.1ms I=105.58ms S=+257.41 | pre I=103.73ms S=+46.14 (13s, 누적 17.1분)
+[63/420] bg2_h0530 n_te=2344 within ai=ok F=4248.4ms I=58.64ms S=-4.09 | pre I=65.78ms S=+55.60 (14s, 누적 17.3분)
+[64/420] bg2_h0531 n_te=3075 within ai=ok F=3105.1ms I=92.19ms S=+4.88 | pre I=82.41ms S=-1.09 (11s, 누적 17.5분)
+[65/420] bg2_h0532 n_te=3051 within ai=ok F=4056.4ms I=83.46ms S=+41.47 | pre I=78.95ms S=-14.53 (14s, 누적 17.7분)
+[66/420] bg2_h0533 n_te=1184 within ai=ok F=1005.9ms I=26.63ms S=-1.27 | pre I=33.77ms S=-0.15 (4s, 누적 17.8분)
+[67/420] bg2_h0536 n_te=1346 within ai=ok F=1178.7ms I=33.52ms S=-1.44 | pre I=38.49ms S=-1.34 (4s, 누적 17.9분)
+[68/420] bg2_h0537 n_te=6847 within ai=ok F=954.6ms I=139.37ms S=+80.40 | pre I=161.38ms S=+7.83 (5s, 누적 18.0분)
+[69/420] bg2_h0538 n_te=4752 within ai=ok F=3331.1ms I=130.84ms S=+8.80 | pre I=132.90ms S=-5.45 (13s, 누적 18.2분)
+[70/420] bg2_h0539 n_te=4666 within ai=ok F=3951.8ms I=146.63ms S=+184.72 | pre I=138.92ms S=-1.04 (15s, 누적 18.4분)
+[71/420] bg2_h0540 n_te=40 within ai=ok F=2735.3ms I=8.12ms S=-5.41 | pre I=8.23ms S=+14.19 (9s, 누적 18.6분)
+[72/420] bg2_h0541 n_te=2665 within ai=ok F=229.0ms I=53.77ms S=-1.32 | pre I=72.95ms S=-1.19 (2s, 누적 18.6분)
+[73/420] bg2_h0542 n_te=3440 within ai=ok F=2796.4ms I=92.92ms S=-9.87 | pre I=102.49ms S=-44.98 (11s, 누적 18.8분)
+[74/420] bg2_h0543 n_te=3305 within ai=ok F=3913.3ms I=83.62ms S=+82.34 | pre I=76.02ms S=-0.26 (17s, 누적 19.1분)
+[75/420] bg2_h0546 n_te=1268 within ai=ok F=1084.5ms I=30.61ms S=+86.54 | pre I=34.52ms S=+66.50 (4s, 누적 19.1분)
+[76/420] bg2_h0549 n_te=2705 within ai=ok F=2984.6ms I=68.39ms S=+0.00 | pre I=62.80ms S=-4.25 (10s, 누적 19.3분)
+[77/420] bg2_h0550 n_te=1195 within ai=ok F=1792.3ms I=35.17ms S=-0.92 | pre I=33.44ms S=-1.08 (6s, 누적 19.4분)
+[78/420] bg2_h0554 n_te=1331 within ai=ok F=1133.8ms I=19.45ms S=-1.35 | pre I=35.56ms S=+4.59 (4s, 누적 19.5분)
+[79/420] bg2_h0557 n_te=1405 within ai=ok F=940.2ms I=38.09ms S=-0.96 | pre I=37.53ms S=-1.90 (4s, 누적 19.5분)
+[80/420] bg2_h0560 n_te=1179 within ai=ok F=1747.0ms I=26.81ms S=-5.36 | pre I=29.54ms S=-0.80 (6s, 누적 19.6분)
+[81/420] bg2_h0561 n_te=1386 within ai=ok F=1561.4ms I=35.69ms S=+104.05 | pre I=38.94ms S=+61.63 (6s, 누적 19.7분)
+[82/420] bg2_h0564 n_te=3079 within ai=ok F=556.0ms I=73.14ms S=-8.70 | pre I=76.41ms S=+3.93 (3s, 누적 19.8분)
+[83/420] bg2_h0566 n_te=1959 within ai=ok F=962.3ms I=45.08ms S=-2.91 | pre I=49.42ms S=-18.67 (4s, 누적 19.9분)
+[84/420] bg2_h0567 n_te=1175 within ai=ok F=1969.1ms I=32.77ms S=+0.94 | pre I=33.20ms S=+24.60 (7s, 누적 20.0분)
+[85/420] bg2_h0573 n_te=3417 within ai=ok F=290.1ms I=44.71ms S=-1.87 | pre I=78.70ms S=-2.71 (2s, 누적 20.0분)
+[86/420] bg2_h0575 n_te=6501 within ai=ok F=307.2ms I=91.62ms S=-5.17 | pre I=153.65ms S=-5.63 (3s, 누적 20.0분)
+[87/420] bg2_h0576 n_te=6272 within ai=ok F=3202.4ms I=163.75ms S=+26.56 | pre I=149.99ms S=-23.54 (12s, 누적 20.2분)
+[88/420] bg2_h0579 n_te=2570 within ai=ok F=99.1ms I=31.79ms S=-0.94 | pre I=56.86ms S=-1.13 (1s, 누적 20.3분)
+[89/420] bg2_h0580 n_te=2579 within ai=ok F=2526.0ms I=67.58ms S=+41.67 | pre I=64.79ms S=+3.96 (9s, 누적 20.4분)
+[90/420] bg2_h0581 n_te=2495 within ai=ok F=2090.1ms I=74.29ms S=+14.64 | pre I=61.92ms S=-3.40 (8s, 누적 20.5분)
+[91/420] bg2_h0582 n_te=1881 within ai=ok F=2047.6ms I=50.79ms S=+19.82 | pre I=47.89ms S=+10.38 (7s, 누적 20.7분)
+[92/420] bg2_h0583 n_te=2559 within ai=ok F=1774.5ms I=60.33ms S=-1.44 | pre I=63.56ms S=-2.71 (7s, 누적 20.8분)
+[93/420] bg2_h0585 n_te=1969 within ai=ok F=54.7ms I=14.24ms S=-0.01 | pre I=52.20ms S=+20.74 (1s, 누적 20.8분)
+[94/420] bg2_h0587 n_te=835 within ai=ok F=2492.5ms I=25.59ms S=+42.37 | pre I=24.30ms S=+18.40 (8s, 누적 20.9분)
+[95/420] bg2_h0588 n_te=3142 within ai=ok F=2311.9ms I=68.28ms S=-0.86 | pre I=75.20ms S=-5.38 (8s, 누적 21.1분)
+[96/420] bg2_h0589 n_te=2325 within ai=ok F=1870.8ms I=56.50ms S=+84.61 | pre I=62.27ms S=+58.35 (7s, 누적 21.2분)
+[97/420] bg2_h0590 n_te=3734 within ai=ok F=4033.1ms I=87.32ms S=+41.57 | pre I=90.36ms S=-0.93 (14s, 누적 21.4분)
+[98/420] bg2_h0591 n_te=1883 within ai=ok F=2790.2ms I=53.69ms S=-16.96 | pre I=51.39ms S=-0.86 (10s, 누적 21.6분)
+[99/420] bg2_h0592 n_te=4831 within ai=ok F=3027.4ms I=120.10ms S=+70.95 | pre I=120.17ms S=+18.92 (11s, 누적 21.8분)
+[100/420] bg2_h0593 n_te=3758 within ai=ok F=3427.4ms I=97.04ms S=+147.20 | pre I=92.17ms S=+6.73 (12s, 누적 22.0분)
+[101/420] bg2_h0594 n_te=3182 within ai=ok F=2768.8ms I=86.01ms S=+145.15 | pre I=81.48ms S=-15.51 (10s, 누적 22.1분)
+[102/420] bg2_h0595 n_te=2933 within ai=ok F=3436.0ms I=83.08ms S=+44.48 | pre I=76.17ms S=+15.89 (12s, 누적 22.3분)
+[103/420] bg2_h0598 n_te=3903 within ai=ok F=2594.3ms I=107.14ms S=+84.75 | pre I=96.09ms S=+17.06 (10s, 누적 22.5분)
+[104/420] bg2_h0624 n_te=5819 within ai=ok F=5160.5ms I=112.53ms S=-27.65 | pre I=143.11ms S=+77.98 (18s, 누적 22.8분)
+[105/420] bg2_h0626 n_te=44 within ai=ok F=1895.8ms I=6.62ms S=+24.82 | pre I=6.96ms S=+27.20 (6s, 누적 22.9분)
+[106/420] bg2_h0627 n_te=4505 within ai=ok F=1625.2ms I=95.25ms S=+23.61 | pre I=104.38ms S=+10.51 (7s, 누적 23.0분)
+[107/420] bg2_h0628 n_te=1162 within ai=ok F=1363.4ms I=24.57ms S=+9.30 | pre I=29.54ms S=-0.09 (5s, 누적 23.1분)
+[108/420] bg2_h0629 n_te=3310 within ai=none F=2.0ms I=0.00ms S=+0.00 | pre I=73.61ms S=-2.91 (1s, 누적 23.1분)
+[109/420] bg2_h0630 n_te=803 within ai=ok F=3104.4ms I=22.08ms S=+16.04 | pre I=24.46ms S=-1.56 (10s, 누적 23.3분)
+[110/420] bg2_h0631 n_te=3369 within ai=ok F=1459.2ms I=81.81ms S=+35.58 | pre I=85.98ms S=+34.46 (6s, 누적 23.4분)
+[111/420] bg2_h0632 n_te=4143 within ai=ok F=2298.1ms I=94.42ms S=+26.38 | pre I=103.49ms S=-0.78 (9s, 누적 23.5분)
+[112/420] bg2_h0634 n_te=9251 within ai=ok F=253.5ms I=148.79ms S=+47.96 | pre I=209.10ms S=-5.20 (3s, 누적 23.6분)
+[113/420] bg2_h0635 n_te=132 within ai=ok F=5355.4ms I=8.13ms S=+1.94 | pre I=9.38ms S=+24.40 (20s, 누적 23.9분)
+[114/420] bg2_h0636 n_te=9048 within ai=ok F=2822.5ms I=222.31ms S=+0.46 | pre I=247.83ms S=+0.46 (22s, 누적 24.3분)
+[115/420] bg2_h0637 n_te=9673 within ai=ok F=4987.1ms I=188.76ms S=+137.10 | pre I=263.05ms S=-1.75 (19s, 누적 24.6분)
+[116/420] bg2_h0638 n_te=11936 within ai=ok F=5969.9ms I=267.66ms S=+308.84 | pre I=295.10ms S=+302.46 (29s, 누적 25.1분)
+[117/420] bg2_h0639 n_te=5086 within ai=ok F=5085.6ms I=112.95ms S=+144.90 | pre I=123.35ms S=+335.93 (18s, 누적 25.4분)
+[118/420] bg2_h0640 n_te=9543 within ai=ok F=4518.7ms I=240.80ms S=+352.53 | pre I=242.18ms S=+11.14 (17s, 누적 25.7분)
+[119/420] bg2_h0641 n_te=11244 within ai=ok F=6139.4ms I=233.65ms S=+434.97 | pre I=276.84ms S=+235.79 (23s, 누적 26.1분)
+[120/420] bg2_h0642 n_te=6059 within ai=ok F=4945.9ms I=123.43ms S=+263.27 | pre I=150.72ms S=+203.48 (18s, 누적 26.4분)
+[121/420] bg2_h0643 n_te=5700 within ai=ok F=4546.9ms I=123.59ms S=+325.23 | pre I=142.54ms S=+97.52 (17s, 누적 26.6분)
+[122/420] bg2_h0644 n_te=8816 within ai=ok F=4146.8ms I=210.24ms S=+29.45 | pre I=258.92ms S=+72.22 (18s, 누적 26.9분)
+[123/420] bg2_h0645 n_te=9128 within ai=ok F=6168.1ms I=208.50ms S=+59.84 | pre I=226.83ms S=-5.58 (23s, 누적 27.3분)
+[124/420] bg2_h0646 n_te=7046 within ai=ok F=4721.8ms I=149.45ms S=+281.78 | pre I=175.73ms S=+164.66 (18s, 누적 27.6분)
+[125/420] bg2_h0647 n_te=8339 within ai=ok F=4566.1ms I=179.95ms S=+271.74 | pre I=207.80ms S=+96.07 (17s, 누적 27.9분)
+[126/420] bg2_h0720 n_te=6269 within ai=ok F=3300.6ms I=177.50ms S=+61.29 | pre I=150.11ms S=+0.06 (12s, 누적 28.1분)
+[127/420] bg2_h0723 n_te=2570 within ai=ok F=100.0ms I=33.88ms S=+0.00 | pre I=58.39ms S=+0.00 (1s, 누적 28.1분)
+[128/420] bg2_h0724 n_te=2582 within ai=ok F=2484.5ms I=68.77ms S=+3.42 | pre I=64.18ms S=-0.12 (9s, 누적 28.3분)
+[129/420] bg2_h0725 n_te=2493 within ai=ok F=2088.2ms I=68.80ms S=+0.37 | pre I=62.80ms S=-0.06 (8s, 누적 28.4분)
+[130/420] bg2_h0726 n_te=1881 within ai=ok F=2039.6ms I=49.70ms S=+31.35 | pre I=49.39ms S=+0.86 (7s, 누적 28.5분)
+[131/420] bg2_h0727 n_te=2559 within ai=ok F=1812.1ms I=60.13ms S=-1.32 | pre I=60.86ms S=-0.27 (7s, 누적 28.6분)
+[132/420] bg2_h0729 n_te=1966 within ai=ok F=55.6ms I=15.31ms S=-1.89 | pre I=55.46ms S=+90.49 (1s, 누적 28.7분)
+[133/420] bg2_h0731 n_te=835 within ai=ok F=2522.5ms I=27.35ms S=+78.40 | pre I=23.77ms S=+48.68 (9s, 누적 28.8분)
+[134/420] bg2_h0732 n_te=3142 within ai=ok F=2276.6ms I=70.81ms S=+0.00 | pre I=73.78ms S=-2.88 (8s, 누적 28.9분)
+[135/420] bg2_h0733 n_te=2325 within ai=ok F=1892.1ms I=57.09ms S=+80.34 | pre I=59.94ms S=+71.10 (7s, 누적 29.1분)
+[136/420] bg2_h0734 n_te=3737 within ai=ok F=4033.2ms I=92.29ms S=+78.45 | pre I=88.88ms S=-1.46 (14s, 누적 29.3분)
+[137/420] bg2_h0735 n_te=1886 within ai=ok F=2603.9ms I=51.64ms S=-3.55 | pre I=52.06ms S=-0.46 (9s, 누적 29.4분)
+[138/420] bg2_h0736 n_te=4831 within ai=ok F=2916.5ms I=120.43ms S=+185.13 | pre I=120.12ms S=+59.41 (11s, 누적 29.6분)
+[139/420] bg2_h0737 n_te=3760 within ai=ok F=3839.2ms I=98.61ms S=+115.44 | pre I=93.83ms S=-7.58 (13s, 누적 29.8분)
+[140/420] bg2_h0738 n_te=3184 within ai=ok F=2845.2ms I=85.85ms S=+131.47 | pre I=84.24ms S=-8.27 (10s, 누적 30.0분)
+[141/420] bg2_h0739 n_te=2939 within ai=ok F=3411.6ms I=76.95ms S=+39.01 | pre I=76.42ms S=+0.57 (12s, 누적 30.2분)
+[142/420] bg2_h0742 n_te=3898 within ai=ok F=2454.5ms I=103.25ms S=+44.95 | pre I=103.17ms S=-10.23 (9s, 누적 30.4분)
+[143/420] bg2_h1276 n_te=3348 within ai=ok F=32.9ms I=2.80ms S=-2.98 | pre I=80.63ms S=-2.12 (1s, 누적 30.4분)
+[144/420] bg2_h1278 n_te=6 within ai=ok F=4006.8ms I=5.80ms S=+2.25 | pre I=5.88ms S=+2.24 (13s, 누적 30.6분)
+[145/420] bg2_h1284 n_te=3498 within ai=ok F=3778.8ms I=98.54ms S=+629.47 | pre I=87.33ms S=+37.04 (13s, 누적 30.8분)
+[146/420] bg2_h1286 n_te=322 within ai=ok F=236.2ms I=8.80ms S=-4.30 | pre I=13.82ms S=+0.58 (2s, 누적 30.8분)
+[147/420] bg2_h1291 n_te=1751 within ai=ok F=3712.0ms I=39.80ms S=+23.03 | pre I=41.46ms S=+18.61 (13s, 누적 31.0분)
+[148/420] bg2_h1298 n_te=6 within ai=ok F=442.2ms I=5.28ms S=+1.07 | pre I=5.78ms S=+1.16 (2s, 누적 31.1분)
+[149/420] bg2_h1300 n_te=3371 within ai=ok F=0.2ms I=0.24ms S=-1.99 | pre I=77.29ms S=-2.00 (1s, 누적 31.1분)
+[150/420] bg2_h1306 n_te=134 within ai=ok F=124.6ms I=3.37ms S=+4.36 | pre I=9.03ms S=+0.81 (1s, 누적 31.1분)
+[151/420] bg2_h1311 n_te=3057 within ai=ok F=155.1ms I=27.96ms S=+13.08 | pre I=73.82ms S=+12.75 (1s, 누적 31.1분)
+[152/420] bg2_h1316 n_te=247 within ai=ok F=107.9ms I=4.96ms S=+14.55 | pre I=11.21ms S=+14.53 (1s, 누적 31.1분)
+[153/420] bg2_h1395 n_te=5206 within ai=ok F=101.2ms I=54.68ms S=+3.80 | pre I=118.17ms S=+3.79 (2s, 누적 31.2분)
+[154/420] bg2_h1396 n_te=312 within ai=ok F=1016.1ms I=10.52ms S=+34.75 | pre I=12.94ms S=+50.99 (4s, 누적 31.2분)
+[155/420] bg2_h1399 n_te=60 within ai=ok F=3292.0ms I=6.77ms S=+47.18 | pre I=6.92ms S=+33.96 (11s, 누적 31.4분)
+[156/420] bg2_h1405 n_te=349 within ai=ok F=163.1ms I=6.20ms S=+20.02 | pre I=14.00ms S=+20.05 (1s, 누적 31.4분)
+[157/420] bg2_h1408 n_te=766 within ai=ok F=1548.0ms I=22.18ms S=+6.15 | pre I=25.69ms S=+3.99 (5s, 누적 31.5분)
+[158/420] bg2_h1412 n_te=312 within ai=ok F=3741.1ms I=13.96ms S=-0.10 | pre I=14.47ms S=+0.09 (12s, 누적 31.7분)
+[159/420] bg2_h1413 n_te=1597 within ai=ok F=1934.5ms I=35.49ms S=+4.37 | pre I=43.67ms S=-1.45 (7s, 누적 31.8분)
+[160/420] bg3_h0012 n_te=2209 within ai=ok F=153.3ms I=35.88ms S=-2.90 | pre I=55.03ms S=-2.90 (1s, 누적 31.9분)
+[161/420] bg3_h0013 n_te=2921 within ai=ok F=3835.4ms I=83.93ms S=-3.87 | pre I=75.83ms S=-0.01 (13s, 누적 32.1분)
+[162/420] bg3_h0014 n_te=94 within ai=ok F=3299.3ms I=8.65ms S=+8.68 | pre I=8.73ms S=-3.23 (11s, 누적 32.3분)
+[163/420] bg3_h0016 n_te=1551 within ai=ok F=1309.2ms I=38.69ms S=+13.74 | pre I=40.20ms S=+43.16 (5s, 누적 32.3분)
+[164/420] bg3_h0089 n_te=4065 within ai=ok F=405.6ms I=91.85ms S=+3.36 | pre I=94.18ms S=+2.97 (3s, 누적 32.4분)
+[165/420] bg3_h0090 n_te=3657 within ai=ok F=3194.1ms I=107.14ms S=-2.74 | pre I=90.04ms S=-0.67 (11s, 누적 32.6분)
+[166/420] bg3_h0091 n_te=3275 within ai=ok F=3931.9ms I=88.23ms S=-3.88 | pre I=86.18ms S=-1.65 (14s, 누적 32.8분)
+[167/420] bg3_h0092 n_te=1847 within ai=ok F=2511.8ms I=63.77ms S=-1.85 | pre I=48.87ms S=-3.78 (9s, 누적 33.0분)
+[168/420] bg3_h0131 n_te=4302 within ai=ok F=193.4ms I=51.21ms S=-6.00 | pre I=103.72ms S=-6.14 (2s, 누적 33.0분)
+[169/420] bg3_h0132 n_te=2117 within ai=ok F=3646.8ms I=65.22ms S=-2.13 | pre I=57.42ms S=-4.77 (12s, 누적 33.2분)
+[170/420] bg3_h0133 n_te=5326 within ai=ok F=3620.4ms I=138.42ms S=-17.93 | pre I=131.91ms S=+63.50 (13s, 누적 33.4분)
+[171/420] bg3_h0143 n_te=2551 within ai=ok F=3270.9ms I=80.04ms S=-1.31 | pre I=64.38ms S=-3.32 (11s, 누적 33.6분)
+[172/420] bg3_h0367 n_te=1861 within ai=ok F=2291.0ms I=53.10ms S=-9.06 | pre I=52.76ms S=+146.09 (8s, 누적 33.7분)
+[173/420] bg3_h0474 n_te=7447 within ai=ok F=83.5ms I=75.79ms S=-2.95 | pre I=176.70ms S=-2.96 (2s, 누적 33.8분)
+[174/420] bg3_h0475 n_te=8102 within ai=ok F=5044.6ms I=170.55ms S=-41.93 | pre I=200.49ms S=-7.64 (19s, 누적 34.1분)
+[175/420] bg3_h0476 n_te=803 within ai=ok F=4986.5ms I=25.64ms S=-0.01 | pre I=23.87ms S=-4.85 (16s, 누적 34.3분)
+[176/420] bg3_h0477 n_te=637 within ai=ok F=1426.5ms I=19.96ms S=-0.58 | pre I=25.89ms S=-0.00 (5s, 누적 34.4분)
+[177/420] bg3_h0601 n_te=2177 within ai=ok F=1757.7ms I=54.86ms S=+10.88 | pre I=59.70ms S=+37.54 (7s, 누적 34.5분)
+[178/420] bg3_h0602 n_te=4273 within ai=ok F=3006.3ms I=122.56ms S=+45.76 | pre I=110.27ms S=+20.69 (11s, 누적 34.7분)
+[179/420] bg3_h0603 n_te=5157 within ai=ok F=4022.6ms I=141.86ms S=+71.29 | pre I=124.81ms S=-2.68 (14s, 누적 35.0분)
+[180/420] bg3_h0604 n_te=6993 within ai=ok F=4217.6ms I=141.63ms S=+80.61 | pre I=182.87ms S=-1.14 (15s, 누적 35.2분)
+[181/420] bg3_h0605 n_te=9426 within ai=ok F=4696.4ms I=181.20ms S=+79.09 | pre I=234.21ms S=-23.05 (18s, 누적 35.5분)
+[182/420] bg3_h0606 n_te=10539 within ai=ok F=5327.9ms I=227.30ms S=+198.96 | pre I=259.78ms S=+17.28 (20s, 누적 35.8분)
+[183/420] bg3_h0607 n_te=9018 within ai=ok F=17005.6ms I=181.65ms S=-5.57 | pre I=208.75ms S=-3.93 (59s, 누적 36.8분)
+[184/420] bg3_h0608 n_te=12810 within ai=ok F=5530.9ms I=220.84ms S=+204.89 | pre I=309.84ms S=+109.24 (22s, 누적 37.2분)
+[185/420] bg3_h0609 n_te=188 within ai=ok F=5346.9ms I=7.90ms S=+2.41 | pre I=10.56ms S=-4.61 (18s, 누적 37.5분)
+[186/420] bg3_h0613 n_te=3167 within ai=ok F=3423.2ms I=92.04ms S=+3.15 | pre I=87.51ms S=-9.34 (12s, 누적 37.7분)
+[187/420] bg3_h0614 n_te=3795 within ai=ok F=3587.3ms I=106.63ms S=+50.30 | pre I=103.04ms S=+0.00 (13s, 누적 37.9분)
+[188/420] bg3_h0615 n_te=3385 within ai=ok F=3344.6ms I=98.92ms S=+3.00 | pre I=90.84ms S=-0.68 (12s, 누적 38.1분)
+[189/420] bg3_h0616 n_te=16612 within ai=ok F=5483.7ms I=394.51ms S=-44.71 | pre I=429.71ms S=-7.17 (22s, 누적 38.5분)
+[190/420] bg3_h0617 n_te=10434 within ai=ok F=6945.5ms I=221.76ms S=-6.87 | pre I=267.62ms S=-5.84 (26s, 누적 38.9분)
+[191/420] bg3_h0618 n_te=2837 within ai=ok F=4938.5ms I=81.35ms S=-4.29 | pre I=74.26ms S=+2.61 (16s, 누적 39.2분)
+[192/420] bg3_h0619 n_te=2910 within ai=ok F=2874.6ms I=89.53ms S=-21.25 | pre I=75.77ms S=-0.70 (10s, 누적 39.3분)
+[193/420] bg3_h0620 n_te=2920 within ai=ok F=3321.7ms I=88.19ms S=+25.47 | pre I=186.06ms S=-1.11 (18s, 누적 39.6분)
+[194/420] bg3_h0621 n_te=2872 within ai=ok F=6372.0ms I=179.64ms S=-20.80 | pre I=159.58ms S=-1.97 (23s, 누적 40.0분)
+[195/420] bg3_h0622 n_te=782 within ai=ok F=3853.9ms I=28.87ms S=-13.35 | pre I=27.83ms S=-2.12 (17s, 누적 40.3분)
+[196/420] bg3_h0623 n_te=2243 within ai=ok F=2782.5ms I=75.82ms S=-1.41 | pre I=65.21ms S=-2.10 (11s, 누적 40.5분)
+[197/420] bg3_h0672 n_te=1801 within ai=ok F=2762.4ms I=61.04ms S=-3.88 | pre I=50.74ms S=-3.53 (10s, 누적 40.6분)
+[198/420] bg3_h0673 n_te=1689 within ai=ok F=2614.5ms I=58.71ms S=-5.88 | pre I=47.16ms S=-1.38 (9s, 누적 40.8분)
+[199/420] bg3_h0674 n_te=1821 within ai=ok F=2565.6ms I=68.07ms S=-9.06 | pre I=52.63ms S=-12.28 (10s, 누적 41.0분)
+[200/420] bg3_h0675 n_te=1742 within ai=ok F=2582.6ms I=59.84ms S=-4.02 | pre I=47.15ms S=-1.39 (9s, 누적 41.1분)
+[201/420] bg3_h0676 n_te=1864 within ai=ok F=2581.4ms I=66.36ms S=-6.61 | pre I=53.55ms S=-3.26 (9s, 누적 41.3분)
+[202/420] bg3_h0677 n_te=1669 within ai=ok F=3208.4ms I=65.02ms S=-11.68 | pre I=49.75ms S=-0.81 (11s, 누적 41.4분)
+[203/420] bg3_h0678 n_te=1588 within ai=ok F=2578.2ms I=57.59ms S=-6.83 | pre I=46.31ms S=-3.26 (9s, 누적 41.6분)
+[204/420] bg3_h0679 n_te=611 within ai=ok F=3000.0ms I=30.28ms S=-6.15 | pre I=22.06ms S=-0.52 (11s, 누적 41.8분)
+[205/420] bg3_h0680 n_te=1847 within ai=ok F=2609.0ms I=62.82ms S=+10.90 | pre I=54.43ms S=-1.16 (9s, 누적 41.9분)
+[206/420] bg3_h0681 n_te=1399 within ai=ok F=2601.8ms I=46.56ms S=+25.76 | pre I=43.47ms S=-4.14 (9s, 누적 42.1분)
+[207/420] bg3_h0682 n_te=1979 within ai=ok F=2291.0ms I=66.32ms S=-19.92 | pre I=61.68ms S=-8.13 (8s, 누적 42.2분)
+[208/420] bg3_h0683 n_te=1665 within ai=ok F=2689.3ms I=56.49ms S=-2.37 | pre I=48.51ms S=-4.70 (10s, 누적 42.4분)
+[209/420] bg3_h0684 n_te=1771 within ai=ok F=2601.0ms I=60.78ms S=-3.59 | pre I=51.84ms S=-13.48 (10s, 누적 42.5분)
+[210/420] bg3_h0685 n_te=1826 within ai=ok F=2619.1ms I=63.72ms S=+5.35 | pre I=52.86ms S=-2.37 (10s, 누적 42.7분)
+[211/420] bg3_h0686 n_te=2188 within ai=ok F=3069.0ms I=66.84ms S=-13.01 | pre I=63.48ms S=-8.35 (11s, 누적 42.9분)
+[212/420] bg3_h0687 n_te=1792 within ai=ok F=4377.4ms I=61.32ms S=-10.60 | pre I=52.34ms S=-0.92 (15s, 누적 43.1분)
+[213/420] bg3_h0688 n_te=1622 within ai=ok F=2705.6ms I=56.90ms S=-17.00 | pre I=50.27ms S=-4.65 (10s, 누적 43.3분)
+[214/420] bg3_h0689 n_te=1832 within ai=ok F=2900.9ms I=62.96ms S=+26.06 | pre I=50.75ms S=+6.11 (10s, 누적 43.4분)
+[215/420] bg3_h0690 n_te=1710 within ai=ok F=2915.4ms I=63.58ms S=-8.31 | pre I=55.33ms S=-4.31 (10s, 누적 43.6분)
+[216/420] bg3_h0691 n_te=1132 within ai=ok F=2504.9ms I=42.89ms S=+2.01 | pre I=34.86ms S=-0.44 (9s, 누적 43.8분)
+[217/420] bg3_h0692 n_te=2666 within ai=ok F=3155.0ms I=75.77ms S=-21.81 | pre I=70.72ms S=+3.19 (11s, 누적 44.0분)
+[218/420] bg3_h0693 n_te=1974 within ai=ok F=2631.9ms I=67.19ms S=+41.11 | pre I=63.54ms S=+4.33 (9s, 누적 44.1분)
+[219/420] bg3_h0694 n_te=1728 within ai=ok F=2631.5ms I=60.41ms S=-11.40 | pre I=50.62ms S=-6.05 (9s, 누적 44.3분)
+[220/420] bg3_h0695 n_te=1751 within ai=ok F=2572.2ms I=60.32ms S=+3.66 | pre I=48.50ms S=-1.88 (9s, 누적 44.4분)
+[221/420] bg3_h0951 n_te=6200 within ai=ok F=828.5ms I=126.87ms S=+0.63 | pre I=144.68ms S=-0.27 (4s, 누적 44.5분)
+[222/420] bg3_h0952 n_te=172 within ai=ok F=5630.1ms I=9.79ms S=-1.95 | pre I=10.59ms S=-1.83 (18s, 누적 44.8분)
+[223/420] bg3_h0973 n_te=5197 within ai=ok F=22.2ms I=2.45ms S=-2.14 | pre I=117.46ms S=+5.90 (1s, 누적 44.8분)
+[224/420] bg3_h0976 n_te=3451 within ai=ok F=119.4ms I=37.58ms S=+20.07 | pre I=82.28ms S=+20.07 (2s, 누적 44.8분)
+[225/420] bg3_h1032 n_te=1767 within ai=ok F=3687.9ms I=53.40ms S=-13.41 | pre I=48.59ms S=-3.78 (12s, 누적 45.0분)
+[226/420] bg3_h1033 n_te=1596 within ai=ok F=2502.4ms I=50.48ms S=-1.51 | pre I=43.38ms S=-3.15 (9s, 누적 45.2분)
+[227/420] bg3_h1034 n_te=964 within ai=ok F=2416.9ms I=32.54ms S=+18.46 | pre I=29.05ms S=+8.84 (8s, 누적 45.3분)
+[228/420] bg3_h1035 n_te=562 within ai=ok F=1435.2ms I=23.09ms S=-5.21 | pre I=21.10ms S=+3.30 (5s, 누적 45.4분)
+[229/420] bg3_h1040 n_te=2505 within ai=ok F=377.3ms I=47.17ms S=+0.65 | pre I=61.03ms S=+0.71 (2s, 누적 45.4분)
+[230/420] bg3_h1041 n_te=8000 within ai=ok F=4440.7ms I=147.15ms S=+83.58 | pre I=193.47ms S=-26.17 (17s, 누적 45.7분)
+[231/420] bg3_h1042 n_te=5049 within ai=ok F=3931.2ms I=121.81ms S=+518.04 | pre I=118.43ms S=+557.71 (14s, 누적 45.9분)
+[232/420] bg3_h1043 n_te=2400 within ai=ok F=5177.7ms I=67.01ms S=-3.59 | pre I=61.56ms S=-2.56 (17s, 누적 46.2분)
+[233/420] bg3_h1045 n_te=3958 within ai=ok F=743.6ms I=70.87ms S=-38.48 | pre I=88.62ms S=+278.73 (4s, 누적 46.3분)
+[234/420] bg3_h1046 n_te=5763 within ai=ok F=5067.8ms I=140.16ms S=+46.77 | pre I=138.95ms S=+7.45 (18s, 누적 46.6분)
+[235/420] bg3_h1047 n_te=8048 within ai=ok F=5765.2ms I=204.66ms S=-38.15 | pre I=218.82ms S=-0.44 (21s, 누적 46.9분)
+[236/420] bg3_h1048 n_te=9155 within ai=ok F=5773.2ms I=222.41ms S=-35.36 | pre I=217.70ms S=-16.82 (21s, 누적 47.3분)
+[237/420] bg3_h1049 n_te=10010 within ai=ok F=6016.5ms I=233.07ms S=+208.23 | pre I=255.14ms S=+42.40 (23s, 누적 47.7분)
+[238/420] bg3_h1050 n_te=12523 within ai=ok F=6571.4ms I=286.97ms S=-28.91 | pre I=301.28ms S=-56.50 (26s, 누적 48.1분)
+[239/420] bg3_h1051 n_te=11913 within ai=ok F=6477.9ms I=292.72ms S=+239.35 | pre I=300.04ms S=-75.04 (25s, 누적 48.5분)
+[240/420] bg3_h1052 n_te=11655 within ai=ok F=7474.4ms I=275.23ms S=+346.39 | pre I=290.86ms S=+25.00 (29s, 누적 49.0분)
+[241/420] bg3_h1053 n_te=12593 within ai=ok F=7087.8ms I=303.43ms S=+209.36 | pre I=331.72ms S=+156.27 (27s, 누적 49.4분)
+[242/420] bg3_h1054 n_te=14870 within ai=ok F=8452.9ms I=352.86ms S=+110.85 | pre I=439.90ms S=-45.45 (35s, 누적 50.0분)
+[243/420] bg3_h1055 n_te=14001 within ai=ok F=8915.6ms I=394.78ms S=+93.60 | pre I=742.64ms S=-25.73 (54s, 누적 50.9분)
+[244/420] bg3_h1056 n_te=15662 within ai=ok F=7518.0ms I=357.45ms S=+294.38 | pre I=378.11ms S=+28.33 (33s, 누적 51.5분)
+[245/420] bg3_h1057 n_te=13161 within ai=ok F=6721.1ms I=333.22ms S=+161.00 | pre I=320.95ms S=+49.45 (30s, 누적 52.0분)
+[246/420] bg3_h1058 n_te=14563 within ai=ok F=6001.0ms I=369.67ms S=+211.00 | pre I=348.28ms S=-4.91 (24s, 누적 52.4분)
+[247/420] bg3_h1059 n_te=15898 within ai=ok F=8392.2ms I=404.72ms S=+22.34 | pre I=401.27ms S=+128.70 (35s, 누적 53.0분)
+[248/420] bg3_h1060 n_te=14798 within ai=ok F=8413.6ms I=328.36ms S=+164.65 | pre I=349.35ms S=+48.54 (32s, 누적 53.5분)
+[249/420] bg3_h1061 n_te=14625 within ai=ok F=7418.5ms I=303.72ms S=+187.53 | pre I=341.38ms S=+38.61 (28s, 누적 54.0분)
+[250/420] bg3_h1062 n_te=2931 within ai=ok F=5947.6ms I=66.37ms S=-47.69 | pre I=65.88ms S=-12.28 (20s, 누적 54.3분)
+[251/420] bg3_h1065 n_te=2833 within ai=ok F=3676.0ms I=75.57ms S=-70.59 | pre I=66.48ms S=+44.21 (12s, 누적 54.5분)
+[252/420] bg3_h1070 n_te=4907 within ai=ok F=3355.6ms I=123.10ms S=-17.39 | pre I=122.66ms S=-2.01 (12s, 누적 54.7분)
+[253/420] bg3_h1071 n_te=3611 within ai=ok F=4080.4ms I=79.36ms S=-6.76 | pre I=80.41ms S=-12.33 (14s, 누적 54.9분)
+[254/420] bg3_h1074 n_te=2703 within ai=ok F=2754.0ms I=63.76ms S=-6.35 | pre I=67.80ms S=+139.14 (10s, 누적 55.1분)
+[255/420] bg3_h1075 n_te=2982 within ai=ok F=2623.1ms I=74.58ms S=-59.59 | pre I=69.48ms S=-1.22 (9s, 누적 55.3분)
+[256/420] bg3_h1076 n_te=3421 within ai=ok F=2674.6ms I=83.82ms S=+138.41 | pre I=81.98ms S=+238.23 (10s, 누적 55.4분)
+[257/420] bg3_h1077 n_te=2641 within ai=ok F=2520.6ms I=64.36ms S=-8.95 | pre I=62.13ms S=-4.31 (9s, 누적 55.6분)
+[258/420] bg3_h1078 n_te=2092 within ai=ok F=2342.3ms I=51.72ms S=-1.57 | pre I=50.06ms S=-0.55 (8s, 누적 55.7분)
+[259/420] bg3_h1079 n_te=1055 within ai=ok F=2578.3ms I=29.28ms S=-8.37 | pre I=29.23ms S=-0.19 (9s, 누적 55.9분)
+[260/420] bg3_h1104 n_te=5930 within ai=ok F=6079.5ms I=125.20ms S=+134.38 | pre I=142.44ms S=+36.72 (21s, 누적 56.2분)
+[261/420] bg3_h1105 n_te=5721 within ai=ok F=5820.3ms I=136.54ms S=+82.76 | pre I=139.15ms S=-8.47 (20s, 누적 56.6분)
+[262/420] bg3_h1106 n_te=5572 within ai=ok F=5881.8ms I=112.27ms S=+80.81 | pre I=145.48ms S=-2.98 (21s, 누적 56.9분)
+[263/420] bg3_h1107 n_te=16136 within ai=ok F=3969.8ms I=386.90ms S=+160.03 | pre I=384.49ms S=-1.01 (16s, 누적 57.2분)
+[264/420] bg3_h1108 n_te=19456 within ai=ok F=8373.2ms I=379.25ms S=+257.68 | pre I=456.77ms S=+282.00 (31s, 누적 57.7분)
+[265/420] bg3_h1109 n_te=5805 within ai=ok F=5462.3ms I=125.09ms S=+47.95 | pre I=140.93ms S=-3.83 (20s, 누적 58.0분)
+[266/420] bg3_h1110 n_te=18490 within ai=ok F=5708.4ms I=351.73ms S=+250.95 | pre I=434.95ms S=-1.65 (22s, 누적 58.4분)
+[267/420] bg3_h1111 n_te=24811 within ai=ok F=6491.6ms I=554.95ms S=+144.95 | pre I=576.68ms S=-12.52 (28s, 누적 58.9분)
+[268/420] bg3_h1112 n_te=17778 within ai=ok F=7674.4ms I=317.78ms S=+132.88 | pre I=413.36ms S=+133.67 (30s, 누적 59.4분)
+[269/420] bg3_h1113 n_te=9692 within ai=ok F=7296.0ms I=196.77ms S=+157.08 | pre I=233.29ms S=+101.90 (27s, 누적 59.8분)
+[270/420] bg3_h1114 n_te=9401 within ai=ok F=6006.9ms I=195.92ms S=+130.01 | pre I=225.21ms S=-19.00 (22s, 누적 60.2분)
+[271/420] bg3_h1115 n_te=9642 within ai=ok F=5660.5ms I=200.73ms S=+138.22 | pre I=226.82ms S=+26.57 (21s, 누적 60.5분)
+[272/420] bg3_h1116 n_te=11215 within ai=ok F=6051.8ms I=240.85ms S=+155.97 | pre I=276.14ms S=-3.94 재현=MISMATCH (22s, 누적 60.9분)
+[273/420] bg3_h1118 n_te=2692 within ai=ok F=3215.0ms I=70.70ms S=-25.38 | pre I=71.88ms S=-6.20 (11s, 누적 61.1분)
+[274/420] bg3_h1119 n_te=2114 within ai=ok F=3623.7ms I=57.62ms S=-2.09 | pre I=55.24ms S=-11.14 (12s, 누적 61.3분)
+[275/420] bg3_h1120 n_te=2033 within ai=ok F=2140.3ms I=50.79ms S=-5.06 | pre I=52.93ms S=+9.91 (7s, 누적 61.4분)
+[276/420] bg3_h1121 n_te=666 within ai=ok F=2433.1ms I=22.95ms S=+31.31 | pre I=22.94ms S=+5.60 (8s, 누적 61.5분)
+[277/420] bg3_h1152 n_te=1140 within ai=ok F=2042.5ms I=39.82ms S=+45.79 | pre I=34.97ms S=-1.85 (7s, 누적 61.7분)
+[278/420] bg3_h1153 n_te=1219 within ai=ok F=2423.1ms I=46.05ms S=-3.35 | pre I=38.34ms S=-1.60 (8s, 누적 61.8분)
+[279/420] bg3_h1154 n_te=907 within ai=ok F=1551.0ms I=36.09ms S=+23.28 | pre I=29.13ms S=-2.82 (5s, 누적 61.9분)
+[280/420] bg3_h1155 n_te=1139 within ai=ok F=1743.9ms I=45.24ms S=+31.92 | pre I=34.15ms S=-3.69 (6s, 누적 62.0분)
+[281/420] bg3_h1157 n_te=645 within ai=ok F=1602.4ms I=28.06ms S=-4.83 | pre I=23.19ms S=-1.98 (6s, 누적 62.1분)
+[282/420] bg3_h1158 n_te=876 within ai=ok F=1074.4ms I=33.92ms S=+24.83 | pre I=28.13ms S=-0.43 (4s, 누적 62.1분)
+[283/420] bg3_h1159 n_te=587 within ai=ok F=2284.2ms I=25.38ms S=-4.01 | pre I=21.87ms S=-3.39 (8s, 누적 62.3분)
+[284/420] bg3_h1160 n_te=1216 within ai=ok F=1653.4ms I=46.55ms S=-6.19 | pre I=36.40ms S=+0.01 (6s, 누적 62.4분)
+[285/420] bg3_h1161 n_te=1042 within ai=ok F=2490.1ms I=40.71ms S=+13.52 | pre I=33.46ms S=-1.14 (8s, 누적 62.5분)
+[286/420] bg3_h1162 n_te=888 within ai=ok F=2400.5ms I=34.25ms S=-8.14 | pre I=28.52ms S=-2.84 (8s, 누적 62.6분)
+[287/420] bg3_h1163 n_te=960 within ai=ok F=2358.2ms I=34.58ms S=-7.44 | pre I=30.19ms S=-0.00 (8s, 누적 62.8분)
+[288/420] bg3_h1164 n_te=2325 within ai=ok F=271.1ms I=35.74ms S=-1.33 | pre I=59.90ms S=-0.97 (2s, 누적 62.8분)
+[289/420] bg3_h1165 n_te=1274 within ai=ok F=3049.5ms I=34.46ms S=-4.24 | pre I=34.24ms S=-3.51 (10s, 누적 63.0분)
+[290/420] bg3_h1166 n_te=2342 within ai=ok F=3553.3ms I=69.00ms S=-13.40 | pre I=62.73ms S=-4.49 (12s, 누적 63.2분)
+[291/420] bg3_h1167 n_te=2417 within ai=ok F=3085.6ms I=63.12ms S=-8.31 | pre I=59.25ms S=-4.58 (10s, 누적 63.3분)
+[292/420] bg3_h1168 n_te=1466 within ai=ok F=3124.1ms I=42.46ms S=+12.32 | pre I=43.87ms S=-4.27 (10s, 누적 63.5분)
+[293/420] bg3_h1169 n_te=1296 within ai=ok F=2358.0ms I=47.60ms S=+23.33 | pre I=39.67ms S=-2.00 (8s, 누적 63.7분)
+[294/420] bg3_h1170 n_te=1375 within ai=ok F=2435.6ms I=48.47ms S=+52.90 | pre I=41.43ms S=-13.51 (8s, 누적 63.8분)
+[295/420] bg3_h1171 n_te=830 within ai=ok F=2470.9ms I=32.49ms S=+0.09 | pre I=27.87ms S=-1.38 (8s, 누적 63.9분)
+[296/420] bg3_h1191 n_te=2467 within ai=ok F=875.5ms I=45.36ms S=-3.03 | pre I=62.67ms S=-2.94 (4s, 누적 64.0분)
+[297/420] bg3_h1192 n_te=1328 within ai=ok F=2559.3ms I=48.22ms S=+38.18 | pre I=39.95ms S=-0.81 (9s, 누적 64.1분)
+[298/420] bg3_h1193 n_te=4954 within ai=ok F=3760.1ms I=132.59ms S=+38.28 | pre I=124.70ms S=+17.74 (14s, 누적 64.4분)
+[299/420] bg3_h1194 n_te=5034 within ai=ok F=3504.7ms I=122.78ms S=+7.10 | pre I=122.34ms S=-13.54 (13s, 누적 64.6분)
+[300/420] bg3_h1195 n_te=301 within ai=ok F=2755.1ms I=15.29ms S=+10.21 | pre I=14.43ms S=-1.47 (9s, 누적 64.7분)
+[301/420] bg3_h1198 n_te=2093 within ai=ok F=3881.8ms I=58.67ms S=-4.12 | pre I=56.56ms S=-9.18 (13s, 누적 64.9분)
+[302/420] bg3_h1199 n_te=3953 within ai=ok F=3932.0ms I=107.30ms S=+96.88 | pre I=100.86ms S=-2.82 (14s, 누적 65.2분)
+[303/420] bg3_h1248 n_te=1018 within ai=ok F=2379.2ms I=39.74ms S=-1.48 | pre I=32.22ms S=-0.31 (8s, 누적 65.3분)
+[304/420] bg3_h1249 n_te=1179 within ai=ok F=2344.5ms I=44.23ms S=-3.94 | pre I=35.15ms S=-1.00 (8s, 누적 65.4분)
+[305/420] bg3_h1250 n_te=2756 within ai=ok F=3099.7ms I=77.69ms S=+30.00 | pre I=69.05ms S=+57.15 (11s, 누적 65.6분)
+[306/420] bg3_h1251 n_te=2934 within ai=ok F=3238.7ms I=82.64ms S=-16.33 | pre I=73.47ms S=-3.80 (11s, 누적 65.8분)
+[307/420] bg3_h1252 n_te=2970 within ai=ok F=3185.6ms I=82.50ms S=+31.07 | pre I=75.60ms S=-4.83 (11s, 누적 66.0분)
+[308/420] bg3_h1253 n_te=2451 within ai=ok F=3276.1ms I=69.07ms S=+14.63 | pre I=61.66ms S=-2.25 (11s, 누적 66.2분)
+[309/420] bg3_h1254 n_te=2809 within ai=ok F=3126.1ms I=78.43ms S=+2.42 | pre I=70.34ms S=-1.08 (11s, 누적 66.4분)
+[310/420] bg3_h1255 n_te=2919 within ai=ok F=3202.9ms I=80.20ms S=-17.45 | pre I=72.60ms S=+0.48 (11s, 누적 66.5분)
+[311/420] bg3_h1256 n_te=2468 within ai=ok F=3237.3ms I=69.71ms S=-24.79 | pre I=62.66ms S=-0.04 (11s, 누적 66.7분)
+[312/420] bg3_h1257 n_te=3222 within ai=ok F=3217.6ms I=88.97ms S=-16.72 | pre I=83.00ms S=+32.47 (11s, 누적 66.9분)
+[313/420] bg3_h1258 n_te=2793 within ai=ok F=3340.9ms I=77.44ms S=+5.01 | pre I=72.08ms S=+13.26 (12s, 누적 67.1분)
+[314/420] bg3_h1259 n_te=1813 within ai=ok F=3138.5ms I=60.57ms S=+40.91 | pre I=54.61ms S=-6.10 (11s, 누적 67.3분)
+[315/420] bg3_h1260 n_te=2130 within ai=ok F=2962.3ms I=68.57ms S=-14.62 | pre I=68.71ms S=-1.00 (10s, 누적 67.5분)
+[316/420] bg3_h1261 n_te=1149 within ai=ok F=3225.6ms I=40.15ms S=-11.78 | pre I=35.33ms S=-0.21 (11s, 누적 67.6분)
+[317/420] bg3_h1262 n_te=1117 within ai=ok F=2773.3ms I=42.55ms S=+36.77 | pre I=34.50ms S=-8.26 (9s, 누적 67.8분)
+[318/420] bg3_h1263 n_te=1030 within ai=ok F=2775.6ms I=39.29ms S=+28.54 | pre I=31.76ms S=-2.71 (9s, 누적 68.0분)
+[319/420] bg3_h1264 n_te=7301 within ai=ok F=4046.2ms I=175.77ms S=+0.95 | pre I=193.06ms S=-5.84 (15s, 누적 68.2분)
+[320/420] bg3_h1265 n_te=6370 within ai=ok F=4518.5ms I=129.22ms S=+24.12 | pre I=156.11ms S=-2.83 (17s, 누적 68.5분)
+[321/420] bg3_h1266 n_te=2314 within ai=ok F=3009.2ms I=77.06ms S=-0.79 | pre I=75.84ms S=-7.32 (11s, 누적 68.7분)
+[322/420] bg3_h1267 n_te=2255 within ai=ok F=3131.8ms I=65.60ms S=+66.86 | pre I=61.84ms S=-2.26 (12s, 누적 68.9분)
+[323/420] bg3_h1268 n_te=2278 within ai=ok F=2583.5ms I=61.98ms S=-19.19 | pre I=60.74ms S=-16.28 (9s, 누적 69.0분)
+[324/420] bg3_h1269 n_te=1141 within ai=ok F=2325.9ms I=43.83ms S=+26.79 | pre I=35.30ms S=-3.40 (8s, 누적 69.1분)
+[325/420] bg3_h1270 n_te=2563 within ai=ok F=2353.5ms I=69.52ms S=-4.92 | pre I=66.38ms S=-1.58 (8s, 누적 69.3분)
+[326/420] bg3_h1271 n_te=1078 within ai=ok F=2334.7ms I=40.34ms S=-4.65 | pre I=33.02ms S=-1.25 (8s, 누적 69.4분)
+[327/420] bg3_h1320 n_te=3417 within ai=ok F=3346.7ms I=94.90ms S=+37.75 | pre I=98.57ms S=-0.35 (12s, 누적 69.6분)
+[328/420] bg3_h1321 n_te=6387 within ai=ok F=3022.9ms I=150.85ms S=-13.20 | pre I=157.51ms S=-6.55 (12s, 누적 69.8분)
+[329/420] bg3_h1322 n_te=3580 within ai=ok F=3911.7ms I=104.92ms S=+57.97 | pre I=90.52ms S=-8.56 (14s, 누적 70.0분)
+[330/420] bg3_h1323 n_te=4593 within ai=ok F=3579.4ms I=113.76ms S=+4.23 | pre I=108.64ms S=-3.37 (13s, 누적 70.3분)
+[331/420] bg3_h1324 n_te=2567 within ai=ok F=1357.2ms I=74.31ms S=+63.11 | pre I=62.73ms S=+32.31 (5s, 누적 70.3분)
+[332/420] bg3_h1325 n_te=64 within ai=ok F=1392.4ms I=6.82ms S=+0.38 | pre I=7.39ms S=-1.91 (5s, 누적 70.4분)
+[333/420] bg3_h1449 n_te=3431 within ai=ok F=149.9ms I=45.14ms S=-3.50 | pre I=84.84ms S=-6.74 (1s, 누적 70.5분)
+[334/420] bg3_h1451 n_te=2142 within ai=ok F=234.8ms I=43.12ms S=-2.52 | pre I=51.29ms S=-1.63 (2s, 누적 70.5분)
+[335/420] bg3_h1452 n_te=4496 within ai=ok F=2331.7ms I=94.18ms S=-7.14 | pre I=108.02ms S=+43.06 (9s, 누적 70.6분)
+[336/420] bg3_h1453 n_te=19185 within ai=ok F=4466.8ms I=368.41ms S=-6.37 | pre I=476.93ms S=-5.81 (20s, 누적 71.0분)
+[337/420] bg3_h1454 n_te=16592 within ai=ok F=7295.4ms I=290.48ms S=+259.50 | pre I=394.08ms S=+240.06 (29s, 누적 71.4분)
+[338/420] bg3_h1455 n_te=9049 within ai=ok F=6519.6ms I=185.29ms S=+126.23 | pre I=209.45ms S=+153.01 (23s, 누적 71.8분)
+[339/420] bg3_h1456 n_te=8777 within ai=ok F=4977.1ms I=187.43ms S=+226.57 | pre I=204.09ms S=+127.32 (19s, 누적 72.1분)
+[340/420] bg3_h1458 n_te=1062 within ai=ok F=1635.9ms I=34.53ms S=-4.71 | pre I=32.78ms S=+1.67 (6s, 누적 72.2분)
+[341/420] bg3_h1459 n_te=2644 within ai=ok F=3277.2ms I=74.09ms S=+52.35 | pre I=68.22ms S=-6.40 (12s, 누적 72.4분)
+[342/420] bg3_h1460 n_te=4708 within ai=ok F=2669.7ms I=113.15ms S=+67.37 | pre I=114.53ms S=-12.72 (10s, 누적 72.6분)
+[343/420] bg3_h1461 n_te=2428 within ai=ok F=4106.2ms I=56.36ms S=+62.49 | pre I=65.95ms S=+86.76 (14s, 누적 72.8분)
+[344/420] bg3_h1462 n_te=1169 within ai=ok F=3997.1ms I=30.88ms S=-1.07 | pre I=33.12ms S=-1.59 (13s, 누적 73.0분)
+[345/420] bg3_h1699 n_te=696 within ai=ok F=2613.0ms I=21.40ms S=-2.35 | pre I=21.32ms S=+3.07 (9s, 누적 73.2분)
+[346/420] bg3_h1882 n_te=3577 within ai=ok F=564.6ms I=49.17ms S=-1.98 | pre I=80.62ms S=-1.80 (3s, 누적 73.2분)
+[347/420] bg3_h1888 n_te=943 within ai=ok F=1029.8ms I=22.88ms S=-17.49 | pre I=26.41ms S=-15.42 (4s, 누적 73.3분)
+[348/420] bg3_h2007 n_te=7405 within ai=ok F=4186.6ms I=176.08ms S=+201.29 | pre I=174.00ms S=+166.21 (16s, 누적 73.6분)
+[349/420] bg3_h2008 n_te=4920 within ai=ok F=4485.4ms I=99.01ms S=+42.34 | pre I=106.96ms S=+50.70 (16s, 누적 73.8분)
+[350/420] bg3_h2009 n_te=6190 within ai=ok F=4259.5ms I=145.61ms S=-6.85 | pre I=141.67ms S=-1.12 (15s, 누적 74.1분)
+[351/420] bg3_h2010 n_te=7650 within ai=ok F=3972.9ms I=171.76ms S=+419.36 | pre I=172.11ms S=+461.71 (15s, 누적 74.3분)
+[352/420] bg3_h2011 n_te=4061 within ai=ok F=4874.2ms I=83.05ms S=-8.13 | pre I=88.50ms S=-6.91 (17s, 누적 74.6분)
+[353/420] bg3_h2012 n_te=4704 within ai=ok F=4008.3ms I=106.45ms S=+54.86 | pre I=104.99ms S=-19.41 (15s, 누적 74.9분)
+[354/420] bg3_h2013 n_te=2821 within ai=ok F=4081.8ms I=67.71ms S=-31.82 | pre I=68.97ms S=-3.56 (14s, 누적 75.1분)
+[355/420] bg3_h2014 n_te=1811 within ai=ok F=2527.8ms I=53.49ms S=-1.41 | pre I=48.56ms S=-1.34 (9s, 누적 75.2분)
+[356/420] bg3_h2015 n_te=3582 within ai=ok F=3496.5ms I=90.02ms S=+107.21 | pre I=82.39ms S=-0.22 (12s, 누적 75.5분)
+[357/420] bg3_h2160 n_te=4262 within ai=ok F=3812.7ms I=108.18ms S=-3.00 | pre I=99.85ms S=-8.51 (13s, 누적 75.7분)
+[358/420] bg3_h2172 n_te=4430 within ai=ok F=332.6ms I=51.87ms S=-7.06 | pre I=98.36ms S=-0.68 (2s, 누적 75.7분)
+[359/420] bg3_h2173 n_te=4609 within ai=ok F=2852.4ms I=116.14ms S=+109.74 | pre I=107.56ms S=-0.40 (11s, 누적 75.9분)
+[360/420] bg3_h2175 n_te=4566 within ai=ok F=779.9ms I=62.77ms S=-1.52 | pre I=111.46ms S=-1.41 (4s, 누적 76.0분)
+[361/420] bg3_h2176 n_te=21865 within ai=ok F=3879.5ms I=462.51ms S=-15.97 | pre I=520.24ms S=+447.33 (18s, 누적 76.3분)
+[362/420] bg3_h2177 n_te=11927 within ai=ok F=6119.2ms I=216.49ms S=+287.46 | pre I=278.80ms S=+342.93 (23s, 누적 76.6분)
+[363/420] bg3_h2178 n_te=8889 within ai=ok F=6472.1ms I=187.13ms S=+2.44 | pre I=199.04ms S=+58.35 (23s, 누적 77.0분)
+[364/420] bg3_h2179 n_te=5707 within ai=ok F=4637.3ms I=133.82ms S=+37.63 | pre I=131.49ms S=+30.85 (17s, 누적 77.3분)
+[365/420] bg3_h2180 n_te=5688 within ai=ok F=4101.2ms I=137.36ms S=+99.01 | pre I=140.01ms S=+1.22 (15s, 누적 77.6분)
+[366/420] bg3_h2182 n_te=2536 within ai=ok F=2253.1ms I=54.47ms S=-0.70 | pre I=60.37ms S=-3.51 (8s, 누적 77.7분)
+[367/420] bg3_h2183 n_te=16876 within ai=ok F=3780.6ms I=362.72ms S=-3.88 | pre I=377.67ms S=+79.36 (17s, 누적 78.0분)
+[368/420] bg3_h2276 n_te=17132 within ai=ok F=270.0ms I=151.88ms S=+0.00 | pre I=376.67ms S=+0.00 (5s, 누적 78.1분)
+[369/420] bg3_h2277 n_te=15383 within ai=ok F=8504.7ms I=306.88ms S=+165.72 | pre I=350.00ms S=+327.40 (32s, 누적 78.6분)
+[370/420] bg3_h2278 n_te=9401 within ai=ok F=5999.4ms I=179.77ms S=-6.26 | pre I=228.61ms S=+36.61 (24s, 누적 79.0분)
+[371/420] bg3_h2279 n_te=11265 within ai=ok F=4919.3ms I=200.95ms S=+99.60 | pre I=301.51ms S=-7.49 (20s, 누적 79.3분)
+[372/420] bg3_h2353 n_te=3536 within ai=ok F=2431.2ms I=78.70ms S=+17.71 | pre I=79.28ms S=+166.16 (9s, 누적 79.5분)
+[373/420] bg3_h2362 n_te=5984 within ai=ok F=3823.4ms I=142.80ms S=+79.93 | pre I=147.16ms S=+110.43 (14s, 누적 79.7분)
+[374/420] bg3_h2363 n_te=5620 within ai=ok F=4439.3ms I=132.70ms S=+47.37 | pre I=124.74ms S=+34.73 (16s, 누적 80.0분)
+[375/420] bg3_h2364 n_te=4636 within ai=ok F=4024.0ms I=116.94ms S=+172.65 | pre I=121.57ms S=+100.03 (16s, 누적 80.2분)
+[376/420] bg3_h2365 n_te=6316 within ai=ok F=4837.2ms I=177.47ms S=+365.17 | pre I=173.67ms S=+320.55 (19s, 누적 80.6분)
+[377/420] bg3_h2366 n_te=2695 within ai=ok F=4956.2ms I=56.65ms S=-9.87 | pre I=127.89ms S=+4.83 (32s, 누적 81.1분)
+[378/420] bg3_h2368 n_te=9393 within ai=ok F=5700.8ms I=225.34ms S=+34.65 | pre I=380.98ms S=-8.92 (24s, 누적 81.5분)
+[379/420] bg3_h2369 n_te=9225 within ai=ok F=6148.7ms I=201.71ms S=+73.47 | pre I=213.44ms S=+59.01 (27s, 누적 81.9분)
+[380/420] bg3_h2370 n_te=8760 within ai=ok F=5388.8ms I=187.49ms S=+210.01 | pre I=193.63ms S=+79.00 (20s, 누적 82.3분)
+[381/420] bg3_h2371 n_te=16385 within ai=ok F=5298.7ms I=350.73ms S=+352.76 | pre I=379.18ms S=+406.28 (22s, 누적 82.6분)
+[382/420] bg3_h2372 n_te=15355 within ai=ok F=6814.1ms I=324.70ms S=+440.46 | pre I=344.97ms S=+440.98 (26s, 누적 83.1분)
+[383/420] bg3_h2373 n_te=2217 within ai=ok F=6659.6ms I=46.55ms S=-5.36 | pre I=50.53ms S=-8.45 (22s, 누적 83.5분)
+[384/420] bg3_h2374 n_te=1999 within ai=ok F=986.2ms I=39.58ms S=+26.57 | pre I=50.37ms S=+24.13 (4s, 누적 83.5분)
+[385/420] bg3_h2375 n_te=8125 within ai=ok F=569.8ms I=109.19ms S=-2.07 | pre I=174.34ms S=-2.89 (4s, 누적 83.6분)
+[386/420] bg3_h2376 n_te=9054 within ai=ok F=5866.8ms I=187.80ms S=+0.00 | pre I=195.37ms S=-18.52 (21s, 누적 83.9분)
+[387/420] bg3_h2377 n_te=516 within ai=ok F=1706.1ms I=16.66ms S=-3.86 | pre I=18.62ms S=-4.63 (6s, 누적 84.0분)
+[388/420] bg3_h2380 n_te=643 within ai=ok F=758.2ms I=17.75ms S=+18.09 | pre I=21.30ms S=-0.91 (3s, 누적 84.1분)
+[389/420] bg3_h2389 n_te=13827 within ai=ok F=1216.6ms I=261.37ms S=+0.19 | pre I=301.28ms S=+154.19 (7s, 누적 84.2분)
+[390/420] bg3_h2390 n_te=13113 within ai=ok F=6058.9ms I=272.65ms S=+243.52 | pre I=274.31ms S=+185.85 (23s, 누적 84.6분)
+[391/420] bg3_h2391 n_te=9825 within ai=ok F=5289.0ms I=193.92ms S=+0.00 | pre I=209.69ms S=+0.00 (20s, 누적 84.9분)
+[392/420] bg3_h2392 n_te=9974 within ai=ok F=5247.3ms I=219.71ms S=-0.39 | pre I=214.08ms S=-2.64 (19s, 누적 85.2분)
+[393/420] bg3_h2393 n_te=9261 within ai=ok F=5103.2ms I=194.75ms S=-5.91 | pre I=198.68ms S=-12.34 (19s, 누적 85.6분)
+[394/420] bg3_h2394 n_te=9156 within ai=ok F=4930.3ms I=200.83ms S=+42.24 | pre I=198.40ms S=+1.95 (18s, 누적 85.9분)
+[395/420] bg3_h2395 n_te=8991 within ai=ok F=4885.0ms I=196.20ms S=-11.44 | pre I=197.23ms S=-25.67 (18s, 누적 86.2분)
+[396/420] bg3_h2396 n_te=3350 within ai=ok F=4929.4ms I=68.34ms S=+16.39 | pre I=74.08ms S=+73.45 (17s, 누적 86.4분)
+[397/420] bg3_h2416 n_te=2572 within ai=ok F=2259.4ms I=63.11ms S=-3.82 | pre I=62.87ms S=-2.65 (8s, 누적 86.6분)
+[398/420] bg3_h2417 n_te=15888 within ai=ok F=7216.5ms I=301.84ms S=-36.08 | pre I=354.96ms S=-9.72 (28s, 누적 87.0분)
+[399/420] bg3_h2418 n_te=15884 within ai=ok F=6653.3ms I=329.38ms S=+28.52 | pre I=353.91ms S=-33.06 (27s, 누적 87.5분)
+[400/420] bg3_h2419 n_te=10873 within ai=ok F=5869.9ms I=230.82ms S=-34.37 | pre I=242.57ms S=-22.00 (22s, 누적 87.8분)
+[401/420] bg3_h2420 n_te=9300 within ai=ok F=5018.4ms I=193.82ms S=-5.54 | pre I=209.22ms S=-27.01 (19s, 누적 88.2분)
+[402/420] bg3_h2421 n_te=885 within ai=ok F=3805.4ms I=24.38ms S=-1.09 | pre I=24.67ms S=-0.17 (12s, 누적 88.4분)
+[403/420] bg3_h2448 n_te=6292 within ai=ok F=4594.0ms I=146.23ms S=+43.51 | pre I=138.13ms S=+55.15 (17s, 누적 88.6분)
+[404/420] bg3_h2450 n_te=2978 within ai=ok F=2446.8ms I=72.88ms S=+41.58 | pre I=68.55ms S=+11.99 (9s, 누적 88.8분)
+[405/420] bg3_h2451 n_te=2146 within ai=ok F=3338.0ms I=59.01ms S=-5.90 | pre I=52.03ms S=-1.36 (11s, 누적 89.0분)
+[406/420] bg3_h2452 n_te=2288 within ai=ok F=2474.5ms I=59.19ms S=-19.11 | pre I=55.57ms S=+33.12 (9s, 누적 89.1분)
+[407/420] bg3_h2453 n_te=2181 within ai=ok F=2837.5ms I=56.00ms S=+5.29 | pre I=55.82ms S=+50.26 (10s, 누적 89.3분)
+[408/420] bg3_h2454 n_te=2244 within ai=ok F=2772.0ms I=54.59ms S=+7.09 | pre I=53.86ms S=+8.57 (10s, 누적 89.4분)
+[409/420] bg3_h2534 n_te=7864 within ai=ok F=823.8ms I=144.64ms S=-2.98 | pre I=174.40ms S=-4.06 (5s, 누적 89.5분)
+[410/420] bg3_h2535 n_te=4222 within ai=ok F=4046.5ms I=87.25ms S=-17.16 | pre I=103.03ms S=-0.32 (14s, 누적 89.8분)
+[411/420] bg3_h2536 n_te=3393 within ai=ok F=2744.8ms I=91.10ms S=-1.48 | pre I=83.43ms S=-3.69 (10s, 누적 89.9분)
+[412/420] bg3_h2537 n_te=3363 within ai=ok F=3127.5ms I=90.17ms S=+15.37 | pre I=82.24ms S=-6.54 (11s, 누적 90.1분)
+[413/420] bg3_h2538 n_te=3411 within ai=ok F=3132.1ms I=93.88ms S=-20.89 | pre I=83.72ms S=-0.04 (11s, 누적 90.3분)
+[414/420] bg3_h2539 n_te=3668 within ai=ok F=3083.6ms I=96.47ms S=+1.19 | pre I=89.77ms S=-0.87 (11s, 누적 90.5분)
+[415/420] bg3_h2540 n_te=3933 within ai=ok F=2778.1ms I=101.01ms S=-9.31 | pre I=97.57ms S=-0.52 (10s, 누적 90.6분)
+[416/420] bg3_h2541 n_te=4218 within ai=ok F=2794.6ms I=104.15ms S=-1.70 | pre I=102.02ms S=-1.32 (10s, 누적 90.8분)
+[417/420] bg3_h2542 n_te=4261 within ai=ok F=3221.4ms I=107.40ms S=-3.21 | pre I=102.51ms S=+0.00 (11s, 누적 91.0분)
+[418/420] bg3_h2543 n_te=3942 within ai=ok F=3238.7ms I=102.31ms S=+15.94 | pre I=95.77ms S=-7.29 (11s, 누적 91.2분)
+[419/420] bg3_h2544 n_te=1007 within ai=ok F=2652.8ms I=27.92ms S=+0.00 | pre I=27.66ms S=+0.00 (9s, 누적 91.3분)
+[420/420] bg3_h2563 n_te=3553 within ai=ok F=579.6ms I=55.77ms S=-2.08 | pre I=78.97ms S=-0.75 (3s, 누적 91.4분)
+{
+  "partial_run": false,
+  "n_windows": 420,
+  "Tstar_s": 2.6,
+  "cpu_cost_unit_ns": 281800,
+  "reps": 3,
+  "repro_note": "repro_check는 다시 돌린 비용과 --res의 차이다. 다른 CPU·라이브러리에서는 argmin이 갈려 일부 창이 조금 다를 수 있다. 판정에는 within S = --res 값, pre S = 이번 실행 값을 쓴다.",
+  "fixed_online_total_units": 822197.2961655911,
+  "within": {
+    "S_total_units": 20528.308133329916,
+    "S_total_pp_of_fixed_online": 2.496761814842493,
+    "Sc_total_s": 5.78487723197237,
+    "Sc_mean_ms": 13.773517218981834,
+    "F_total_s_by_rep": [
+      1465.405247658,
+      1446.236854441,
+      1451.060984938
+    ],
+    "F_mean_ms_by_rep": [
+      3489.0601134714284,
+      3443.421082002381,
+      3454.9071069952383
+    ],
+    "Iopt_total_s_by_rep": [
+      48.295601975,
+      47.8288278,
+      47.341962808
+    ],
+    "Iopt_minus_1row_total_s_by_rep": [
+      45.509210207,
+      45.132738397,
+      44.674271293
+    ],
+    "n_te_total": 2003785,
+    "ai_unavailable": [
+      "bg2_h0629"
+    ],
+    "tau_s": {
+      "min": 501.32838975000004,
+      "median": 898.68586725,
+      "max": 900.0627380000001
+    },
+    "step1": {
+      "rule": "I = 0, 창당 평균: F ≥ 2·Sc 이면 탈락",
+      "F_mean_ms_range": [
+        3443.421082002381,
+        3489.0601134714284
+      ],
+      "threshold_2Sc_ms": 27.547034437963667,
+      "Rstar_over_tau_I0_range": [
+        250.00303315821645,
+        253.31656816481234
+      ],
+      "verdict": "탈락",
+      "reason": "F 범위 전체가 2·Sc 이상(R* 하한 ≥ 2τ)"
+    },
+    "step2": {
+      "rule": "Sc_total ≤ I_opt_total 이면 탈락",
+      "Iopt_total_s_range": [
+        47.341962808,
+        48.295601975
+      ],
+      "Sc_total_s": 5.78487723197237,
+      "verdict": "탈락",
+      "reason": "I_opt 범위 전체가 Sc 이상",
+      "reference_minus_1row_band": "above"
+    },
+    "verdict": "탈락(1단계)",
+    "ai_path_overhead_pp_for_B": 332.5318765694767,
+    "repro_check": {
+      "고정-온라인": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "규칙-온라인+대체": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "C3 AI→규칙대체": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "Sk_equal_fit_survival3": true
+    }
+  },
+  "pre": {
+    "S_pre_total_units": 11886.325629788149,
+    "S_pre_total_pp_of_fixed_online": 1.4456780246324519,
+    "S_pre_total_times_c_s": 3.3495665624743003,
+    "T_eval_s": 373368.60310175,
+    "Iopt_total_s_by_rep": [
+      51.732109668,
+      51.743581432,
+      51.917696343
+    ],
+    "Iopt_minus_1row_total_s_by_rep": [
+      48.793278324,
+      48.803556548,
+      48.972173326
+    ],
+    "F_pre_fit_s_by_rep": [
+      79.50986625,
+      77.199448012,
+      76.104530347
+    ],
+    "F_pre_input_prep_s": 4.139215289,
+    "rule_cost_check": [
+      "MISMATCH",
+      "exact"
+    ],
+    "c3_rule_mode_frac_mean": 0.5726538392977718,
+    "operating": {
+      "rule": "S_pre·c ≤ I_pre(일괄 예측 합)이면 탈락",
+      "net_s_range": [
+        -48.568129780525695,
+        -48.3825431055257
+      ],
+      "verdict": "탈락",
+      "reason": "I_pre 범위 전체가 S_pre·c 이상",
+      "reference_minus_1row_band": "above"
+    },
+    "lifecycle": {
+      "Hstar_s_fit_only": [
+        null,
+        null
+      ],
+      "Hstar_s_with_input_prep": [
+        null,
+        null
+      ],
+      "Hstar_over_T_eval_fit_only": [
+        null,
+        null
+      ],
+      "note": "분모(S_pre·c − I_pre)가 0 이하면 유한한 H*가 없다(None)"
+    },
+    "verdict": "탈락(운영 기준)",
+    "ai_path_overhead_pp_for_B": 22.32765724161585,
+    "repro_check": {
+      "fixed_online": {
+        "windows": {
+          "exact": 420,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 2.800327784986398e-16,
+        "total_rel_diff": 0.0
+      },
+      "rule": {
+        "windows": {
+          "exact": 419,
+          "float": 0,
+          "MISMATCH": 1
+        },
+        "max_rel_diff": 0.0012527745800283133,
+        "total_rel_diff": 2.5791747010487262e-06
+      }
+    },
+    "reference_sim_ai_path_s": {
+      "kappa_ai": 5.468558695,
+      "ledger_ai_fb": 0.42151616,
+      "ledger_c3_switch": 0.357829125,
+      "n_dec_total": 3313920,
+      "n_te_total": 2003785,
+      "note": "시뮬레이터의 오프라인 일괄 값(검증+시험 구간 결정 전체). 판정에 쓰지 않는다. 시험 구간 몫은 약 × n_te/n_dec"
+    }
+  },
+  "finished_at": "2026-10-31T14:29:15+0900"
+}
+A 계측 완료 → /home/dlxogjs4326/research/membench-v2sealed/exp/v2dev/cpu_a/summary.json

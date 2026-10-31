@@ -1,0 +1,181 @@
+{
+  "partial_run": false,
+  "n_windows": 420,
+  "Tstar_s": 2.6,
+  "cpu_cost_unit_ns": 281800,
+  "reps": 3,
+  "repro_note": "repro_check는 다시 돌린 비용과 --res의 차이다. 다른 CPU·라이브러리에서는 argmin이 갈려 일부 창이 조금 다를 수 있다. 판정에는 within S = --res 값, pre S = 이번 실행 값을 쓴다.",
+  "fixed_online_total_units": 822197.2961655911,
+  "within": {
+    "S_total_units": 20528.308133329916,
+    "S_total_pp_of_fixed_online": 2.496761814842493,
+    "Sc_total_s": 5.78487723197237,
+    "Sc_mean_ms": 13.773517218981834,
+    "F_total_s_by_rep": [
+      1465.405247658,
+      1446.236854441,
+      1451.060984938
+    ],
+    "F_mean_ms_by_rep": [
+      3489.0601134714284,
+      3443.421082002381,
+      3454.9071069952383
+    ],
+    "Iopt_total_s_by_rep": [
+      48.295601975,
+      47.8288278,
+      47.341962808
+    ],
+    "Iopt_minus_1row_total_s_by_rep": [
+      45.509210207,
+      45.132738397,
+      44.674271293
+    ],
+    "n_te_total": 2003785,
+    "ai_unavailable": [
+      "bg2_h0629"
+    ],
+    "tau_s": {
+      "min": 501.32838975000004,
+      "median": 898.68586725,
+      "max": 900.0627380000001
+    },
+    "step1": {
+      "rule": "I = 0, 창당 평균: F ≥ 2·Sc 이면 탈락",
+      "F_mean_ms_range": [
+        3443.421082002381,
+        3489.0601134714284
+      ],
+      "threshold_2Sc_ms": 27.547034437963667,
+      "Rstar_over_tau_I0_range": [
+        250.00303315821645,
+        253.31656816481234
+      ],
+      "verdict": "탈락",
+      "reason": "F 범위 전체가 2·Sc 이상(R* 하한 ≥ 2τ)"
+    },
+    "step2": {
+      "rule": "Sc_total ≤ I_opt_total 이면 탈락",
+      "Iopt_total_s_range": [
+        47.341962808,
+        48.295601975
+      ],
+      "Sc_total_s": 5.78487723197237,
+      "verdict": "탈락",
+      "reason": "I_opt 범위 전체가 Sc 이상",
+      "reference_minus_1row_band": "above"
+    },
+    "verdict": "탈락(1단계)",
+    "ai_path_overhead_pp_for_B": 332.5318765694767,
+    "repro_check": {
+      "고정-온라인": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "규칙-온라인+대체": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "C3 AI→규칙대체": {
+        "windows": {
+          "exact": 3,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 0.0
+      },
+      "Sk_equal_fit_survival3": true
+    }
+  },
+  "pre": {
+    "S_pre_total_units": 11886.325629788149,
+    "S_pre_total_pp_of_fixed_online": 1.4456780246324519,
+    "S_pre_total_times_c_s": 3.3495665624743003,
+    "T_eval_s": 373368.60310175,
+    "Iopt_total_s_by_rep": [
+      51.732109668,
+      51.743581432,
+      51.917696343
+    ],
+    "Iopt_minus_1row_total_s_by_rep": [
+      48.793278324,
+      48.803556548,
+      48.972173326
+    ],
+    "F_pre_fit_s_by_rep": [
+      79.50986625,
+      77.199448012,
+      76.104530347
+    ],
+    "F_pre_input_prep_s": 4.139215289,
+    "rule_cost_check": [
+      "MISMATCH",
+      "exact"
+    ],
+    "c3_rule_mode_frac_mean": 0.5726538392977718,
+    "operating": {
+      "rule": "S_pre·c ≤ I_pre(일괄 예측 합)이면 탈락",
+      "net_s_range": [
+        -48.568129780525695,
+        -48.3825431055257
+      ],
+      "verdict": "탈락",
+      "reason": "I_pre 범위 전체가 S_pre·c 이상",
+      "reference_minus_1row_band": "above"
+    },
+    "lifecycle": {
+      "Hstar_s_fit_only": [
+        null,
+        null
+      ],
+      "Hstar_s_with_input_prep": [
+        null,
+        null
+      ],
+      "Hstar_over_T_eval_fit_only": [
+        null,
+        null
+      ],
+      "note": "분모(S_pre·c − I_pre)가 0 이하면 유한한 H*가 없다(None)"
+    },
+    "verdict": "탈락(운영 기준)",
+    "ai_path_overhead_pp_for_B": 22.32765724161585,
+    "repro_check": {
+      "fixed_online": {
+        "windows": {
+          "exact": 420,
+          "float": 0,
+          "MISMATCH": 0
+        },
+        "max_rel_diff": 2.800327784986398e-16,
+        "total_rel_diff": 0.0
+      },
+      "rule": {
+        "windows": {
+          "exact": 419,
+          "float": 0,
+          "MISMATCH": 1
+        },
+        "max_rel_diff": 0.0012527745800283133,
+        "total_rel_diff": 2.5791747010487262e-06
+      }
+    },
+    "reference_sim_ai_path_s": {
+      "kappa_ai": 5.468558695,
+      "ledger_ai_fb": 0.42151616,
+      "ledger_c3_switch": 0.357829125,
+      "n_dec_total": 3313920,
+      "n_te_total": 2003785,
+      "note": "시뮬레이터의 오프라인 일괄 값(검증+시험 구간 결정 전체). 판정에 쓰지 않는다. 시험 구간 몫은 약 × n_te/n_dec"
+    }
+  },
+  "finished_at": "2026-10-31T14:29:15+0900"
+}

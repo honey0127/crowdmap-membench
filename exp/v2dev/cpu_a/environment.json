@@ -1,0 +1,86 @@
+{
+  "started_at": "2026-10-31T12:57:52+0900",
+  "argv": [
+    "measure_a_cpu.py",
+    "--targets",
+    "exp/v2dev/daypool/all.txt",
+    "--mode",
+    "both",
+    "--outdir",
+    "exp/v2dev/cpu_a"
+  ],
+  "mode": "both",
+  "reps": 3,
+  "limit": 0,
+  "check_sim": 3,
+  "Tstar_s": 2.6,
+  "cpu_cost_unit_ns": 281800,
+  "timer": "time.process_time_ns",
+  "git_head": "a071c92c64468c51771dcd83414af2793ac8cfe5",
+  "git_branch": "exp/a-cpu",
+  "git_dirty_files": [
+    "?? exp/v2dev/cpu_a.log",
+    "?? exp/v2dev/cpu_a_edge.log",
+    "?? exp/v2dev/cpu_a_smoke.log",
+    "?? exp/v2dev/cpu_a_smoke_1031_125621.log",
+    "?? exp/v2dev/cpu_a_smoke_1031_125621/",
+    "?? exp/v2dev/edge_targets.txt"
+  ],
+  "targets": {
+    "list": "exp/v2dev/daypool/all.txt",
+    "sha256": "ed738bed3a30b95ff9c4454fd50631878abc443883ee8b106bf3f06763744821",
+    "count_used": 420,
+    "first": "bg2_h0157",
+    "last": "bg3_h2563"
+  },
+  "pretrain": {
+    "list": "exp/dev_sched.txt",
+    "sha256": "a0b2f863a66604216531a92a7a896428582e22204fae00470a6bc5dae6eec2c5",
+    "count": 26
+  },
+  "res_files": {
+    "exp/v2dev/daypool/res_q1.csv": "b3084e62ae6fc4c39bfda7e4b4a4134ba17f33f04fb991a77007c9db33a45ada",
+    "exp/v2dev/daypool/res_q2.csv": "f16b2f794656a0e10b648b6d5cd7a861678b21a188f408a11e9525c0c5cb6b68",
+    "exp/v2dev/daypool/res_q3.csv": "4e31b2a284953a8631ec564c86cc9d27080c3912aefcb9c8b1658480e358dfd9"
+  },
+  "code_sha256": {
+    "paperexp.py": "78322e5c1f313cfc6cf9c636968002a55536938ffa6b0b08eb028da563e6bbc6",
+    "paperexp2.py": "a8d01f2d96b5783ba8a01de73db0f1d6be0d80926a9567b5cdca8bfa9fa87e74",
+    "paperexp3.py": "a3112dda83ac5eaaff4aca897f618ead50cca2c0bc63d3608c10adde330d4970",
+    "chunkslices.py": "ca6f09f8366b2c65f6b1282231bcaae4d5ef67c6a6492b8db7601e7f1edfb4e2",
+    "policysim.py": "ef5d24a1325dd1a7eee253f14b431eb5077dfe97ea177640adb316bb02712def",
+    "ailearn.py": "66672ec8af4e5ef8c003934b1fafe55d49dee67719b2420670e528312f84b457",
+    "measure_a_cpu.py": "8517d8c544382b2cec447daa6379865666a2fb47cd2c2be4408657e2fa5e8ed4"
+  },
+  "python": "3.12.3",
+  "numpy": "2.5.4",
+  "sklearn": "1.9.1",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "cpu_model": "Intel(R) Core(TM) Ultra 7 155H",
+  "cpu_affinity": [
+    1
+  ],
+  "env_threads": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "threadpools": [
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1
+    }
+  ]
+}
