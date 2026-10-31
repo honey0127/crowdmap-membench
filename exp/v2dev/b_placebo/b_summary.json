@@ -1,0 +1,280 @@
+{
+  "n_windows": 420,
+  "seeds": [
+    1,
+    2,
+    3,
+    4,
+    5
+  ],
+  "Tstar_s": 2.6,
+  "fixed_online_total_MiB": 822197.2961655911,
+  "rule_total_MiB": 763290.2415952614,
+  "real_C3_total_MiB": 742761.9334619312,
+  "real_AI_total_MiB": 753666.6355857736,
+  "C3_minus_rule_pp": -2.4967618148425266,
+  "decomposition_max_error_pp": 4.440892098500626e-16,
+  "real_check_vs_dev_results": {
+    "exact": 420
+  },
+  "comparisons_pp": {
+    "C3 − P_shuffle": {
+      "by_seed": [
+        -2.4913086018835977,
+        -2.491068400786312,
+        -2.4829490374153695,
+        -2.49244046822558,
+        -2.48190838496439
+      ],
+      "range": [
+        -2.49244046822558,
+        -2.48190838496439
+      ],
+      "verdict": "앞쪽 비용이 낮다"
+    },
+    "P_shuffle − P_draw": {
+      "by_seed": [
+        -0.04556556474190108,
+        -0.038063991025239226,
+        -0.037672844333699364,
+        -0.04730779187359189,
+        -0.05138347621481486
+      ],
+      "range": [
+        -0.05138347621481486,
+        -0.037672844333699364
+      ],
+      "verdict": "차이 없음(±0.5%p 안)"
+    },
+    "P_draw − P_label": {
+      "by_seed": [
+        0.02511866947706221,
+        0.04272418030551608,
+        0.011787031955476795,
+        0.02863634081742419,
+        0.028990420017822118
+      ],
+      "range": [
+        0.011787031955476795,
+        0.04272418030551608
+      ],
+      "verdict": "차이 없음(±0.5%p 안)"
+    },
+    "P_label − rule": {
+      "by_seed": [
+        0.014993682305909965,
+        -0.010353603336491483,
+        0.012073034951065324,
+        0.014350104439220699,
+        0.007539626318855926
+      ],
+      "range": [
+        -0.010353603336491483,
+        0.014993682305909965
+      ],
+      "verdict": "차이 없음(±0.5%p 안)"
+    },
+    "상호작용 (C3 − P_shuffle,C3) − (AI − P_shuffle,AI)": {
+      "by_seed": [
+        5.429431850352735,
+        5.447211222092093,
+        5.438437890809357,
+        5.44254636412349,
+        5.446171233806301
+      ],
+      "range": [
+        5.429431850352735,
+        5.447211222092093
+      ],
+      "verdict": "앞쪽 비용이 높다"
+    },
+    "참고: C3 − P_draw": {
+      "by_seed": [
+        -2.536874166625499,
+        -2.5291323918115514,
+        -2.5206218817490686,
+        -2.5397482600991714,
+        -2.5332918611792046
+      ],
+      "range": [
+        -2.5397482600991714,
+        -2.5206218817490686
+      ],
+      "verdict": "앞쪽 비용이 낮다"
+    },
+    "참고: C3 − P_label": {
+      "by_seed": [
+        -2.5117554971484366,
+        -2.4864082115060353,
+        -2.508834849793592,
+        -2.5111119192817473,
+        -2.5043014411613824
+      ],
+      "range": [
+        -2.5117554971484366,
+        -2.4864082115060353
+      ],
+      "verdict": "앞쪽 비용이 낮다"
+    },
+    "참고: AI − P_shuffle,AI": {
+      "by_seed": [
+        -7.920740452236332,
+        -7.9382796228784045,
+        -7.921386928224726,
+        -7.934986832349068,
+        -7.928079618770692
+      ],
+      "range": [
+        -7.9382796228784045,
+        -7.920740452236332
+      ],
+      "verdict": "앞쪽 비용이 낮다"
+    }
+  },
+  "diagnostics": {
+    "P_draw seed 1": {
+      "C3_total_MiB": 763620.0442670494,
+      "AI_total_MiB": 819400.7664950824,
+      "C3_rule_frac_mean": 0.738516255687405,
+      "AI_base_frac_mean": 0.9023073422604609,
+      "draw_fallback_chunks": 970,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_draw seed 2": {
+      "C3_total_MiB": 763556.3916038539,
+      "AI_total_MiB": 819264.5507857678,
+      "C3_rule_frac_mean": 0.7394689536323641,
+      "AI_base_frac_mean": 0.9043029144048538,
+      "draw_fallback_chunks": 970,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_draw seed 3": {
+      "C3_total_MiB": 763486.4184202303,
+      "AI_total_MiB": 819144.8077591659,
+      "C3_rule_frac_mean": 0.737878731571164,
+      "AI_base_frac_mean": 0.9032917172697595,
+      "draw_fallback_chunks": 970,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_draw seed 4": {
+      "C3_total_MiB": 763643.6749858792,
+      "AI_total_MiB": 819344.2023483879,
+      "C3_rule_frac_mean": 0.7411143066017826,
+      "AI_base_frac_mean": 0.9032309129841618,
+      "draw_fallback_chunks": 970,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_draw seed 5": {
+      "C3_total_MiB": 763590.5906485296,
+      "AI_total_MiB": 819229.9172641591,
+      "C3_rule_frac_mean": 0.7370802292904556,
+      "AI_base_frac_mean": 0.9055865975417275,
+      "draw_fallback_chunks": 970,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_label seed 1": {
+      "C3_total_MiB": 763413.5192457762,
+      "AI_total_MiB": 820269.5025669541,
+      "C3_rule_frac_mean": 0.7482096649961553,
+      "AI_base_frac_mean": 0.8141067811141692,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 1841.8711073209963,
+      "label_fit_failed": 0
+    },
+    "P_label seed 2": {
+      "C3_total_MiB": 763205.114548573,
+      "AI_total_MiB": 820092.2594710626,
+      "C3_rule_frac_mean": 0.7476268474358554,
+      "AI_base_frac_mean": 0.8076129853601168,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 1836.1099016989951,
+      "label_fit_failed": 0
+    },
+    "P_label seed 3": {
+      "C3_total_MiB": 763389.5057621942,
+      "AI_total_MiB": 820405.6663890912,
+      "C3_rule_frac_mean": 0.7559791740999358,
+      "AI_base_frac_mean": 0.8116238228166505,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 1842.7537981079863,
+      "label_fit_failed": 0
+    },
+    "P_label seed 4": {
+      "C3_total_MiB": 763408.2277659576,
+      "AI_total_MiB": 819950.8481643857,
+      "C3_rule_frac_mean": 0.747684086505501,
+      "AI_base_frac_mean": 0.8241814392519609,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 1836.7287156940004,
+      "label_fit_failed": 0
+    },
+    "P_label seed 5": {
+      "C3_total_MiB": 763352.232198996,
+      "AI_total_MiB": 820346.5386444516,
+      "C3_rule_frac_mean": 0.747357385669235,
+      "AI_base_frac_mean": 0.8172156047282724,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 1835.1616558550054,
+      "label_fit_failed": 0
+    },
+    "P_shuffle seed 1": {
+      "C3_total_MiB": 763245.4054257589,
+      "AI_total_MiB": 818790.749420355,
+      "C3_rule_frac_mean": 0.7317990885057224,
+      "AI_base_frac_mean": 0.8929324805435813,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_shuffle seed 2": {
+      "C3_total_MiB": 763243.4304988317,
+      "AI_total_MiB": 818934.956007144,
+      "C3_rule_frac_mean": 0.7351471922104278,
+      "AI_base_frac_mean": 0.8951774025632457,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_shuffle seed 3": {
+      "C3_total_MiB": 763176.6733127299,
+      "AI_total_MiB": 818796.0647284519,
+      "C3_rule_frac_mean": 0.7360315670303015,
+      "AI_base_frac_mean": 0.894266162798017,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_shuffle seed 4": {
+      "C3_total_MiB": 763254.7116002189,
+      "AI_total_MiB": 818907.8827724434,
+      "C3_rule_frac_mean": 0.7360270891623638,
+      "AI_base_frac_mean": 0.8903718524113927,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "P_shuffle seed 5": {
+      "C3_total_MiB": 763168.1170964155,
+      "AI_total_MiB": 818851.0918491615,
+      "C3_rule_frac_mean": 0.7364629797419459,
+      "AI_base_frac_mean": 0.8967324736494978,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 0.0,
+      "label_fit_failed": 0
+    },
+    "real": {
+      "C3_total_MiB": 742761.9334619312,
+      "AI_total_MiB": 753666.6355857736,
+      "C3_rule_frac_mean": 0.4053467741965001,
+      "AI_base_frac_mean": 0.29341219345807423,
+      "draw_fallback_chunks": 0,
+      "fit_cpu_s": 2160.6097965330036,
+      "label_fit_failed": 0
+    }
+  }
+}
