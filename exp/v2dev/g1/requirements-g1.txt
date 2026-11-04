@@ -1,0 +1,8 @@
+# G1 스크립트 실행 환경. 기존 ~/.venvs/membench-g1/에 이미 있으면 추가 설치하지 않는다.
+# 공식 실행 사전 점검이 확인하는 판(Python은 3.12.3이어야 한다. requirements로는 지정하지 않는다):
+numpy==2.5.4
+scipy==1.18.1
+scikit-learn==1.9.1
+# scikit-learn의 의존성. 판은 점검하지 않고 매니페스트에 기록만 한다:
+joblib
+threadpoolctl
