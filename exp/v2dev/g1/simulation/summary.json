@@ -1,0 +1,64 @@
+{
+  "schema": "g1-simulation/1",
+  "dev_test": false,
+  "tstar_s": 2.6,
+  "cpu_cost_unit_ns": 281800,
+  "threshold_sc_s": 1.0,
+  "n_windows": 420,
+  "candidates": {
+    "P1": {
+      "features": [
+        "사용량",
+        "수준"
+      ],
+      "table_path": "exp/v2dev/g1/tables/lookup-P1.npy",
+      "table_sha256": "a445d7baaff7236075a6094741205c9df6f89b933efd78bf1d5a8f8edf8a7ff9",
+      "S_total_units": 5265.636663133055,
+      "dR_total_MiB": -220.0,
+      "dH_total_MiB": 14262.655324145935,
+      "S_total_times_c_ns": 1483856411.6708949,
+      "S_total_times_c_s": 1.4838564116708948,
+      "threshold_sc_s": 1.0,
+      "n_windows": 420,
+      "n_te_total": 2003785,
+      "verdict": "통과",
+      "verdict_en": "PASS"
+    },
+    "P1b": {
+      "features": [
+        "높이",
+        "사용량",
+        "수준"
+      ],
+      "table_path": "exp/v2dev/g1/tables/lookup-P1b.npy",
+      "table_sha256": "b7713dbcca0358ad48d31525a7bc79484bb1abac8016fc1e684e44f1889282a5",
+      "S_total_units": 5538.893506998718,
+      "dR_total_MiB": -906.0,
+      "dH_total_MiB": 16756.7231181967,
+      "S_total_times_c_ns": 1560860190.2722387,
+      "S_total_times_c_s": 1.5608601902722388,
+      "threshold_sc_s": 1.0,
+      "n_windows": 420,
+      "n_te_total": 2003785,
+      "verdict": "통과",
+      "verdict_en": "PASS"
+    }
+  },
+  "selection": {
+    "verdict": "P1b",
+    "reason": "둘 다 통과, P1b의 S_model×c가 더 크다 (P1b=1.5609s > P1=1.4839s)",
+    "g2_candidate": "P1b"
+  },
+  "sk_none_coverage": {
+    "n_windows": 1,
+    "traces": [
+      "bg2_h0629"
+    ],
+    "n_te": 3310,
+    "n_te_total": 2003785,
+    "fraction": 0.0016518738287790357,
+    "note": "evaluate3()에서 이 창들은 Sk=None → T_rb(규칙)를 C3로 썼다. G1은 사전 학습 조회표를 항상 쓰므로 이 창들에서도 C3 경로가 작동한다. ΔR·ΔH·S_model은 G1 조회표 기반으로 계산한 값이다."
+  },
+  "manifest_sha256": "d10a4b8dcb494b5ff9305a75a218ec0986631850ac473ca06ecf4de59859b700",
+  "finished_at": "2026-11-04T18:04:35+0900"
+}

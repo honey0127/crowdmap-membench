@@ -1,0 +1,168 @@
+{
+  "schema": "g1-simulation-env/1",
+  "started_at": "2026-11-04T18:04:35+0900",
+  "eval_list": "exp/v2dev/daypool/all.txt",
+  "eval_list_sha256": "ed738bed3a30b95ff9c4454fd50631878abc443883ee8b106bf3f06763744821",
+  "n_windows": 420,
+  "runtime": {
+    "python": "3.12.3",
+    "numpy": "2.5.4",
+    "scipy": "1.18.1",
+    "sklearn": "1.9.1",
+    "joblib": "1.6.0",
+    "executable": "/home/dlxogjs4326/.venvs/membench-g1/bin/python",
+    "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+    "cpu": "Intel(R) Core(TM) Ultra 7 155H",
+    "affinity": [
+      1
+    ],
+    "thread_env": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "thread_env_before": {
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MKL_NUM_THREADS": "1",
+      "NUMEXPR_NUM_THREADS": "1"
+    },
+    "threadpools": [
+      {
+        "user_api": "openmp",
+        "internal_api": "openmp",
+        "num_threads": 1,
+        "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/scikit_learn.libs/libgomp-e985bcbb.so.1.0.0"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-f48b354e.so"
+      },
+      {
+        "user_api": "blas",
+        "internal_api": "openblas",
+        "num_threads": 1,
+        "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/scipy.libs/libscipy_openblas-5f890258.so"
+      }
+    ]
+  },
+  "git": {
+    "head": "0bcb0b8e66b23e199a98766f00013b0cd988990c",
+    "branch": "exp/a-cpu",
+    "dirty": [
+      "?? additional-analysis-plan-v4.md",
+      "?? apply_research_v4.py",
+      "?? apply_research_v4_1.py",
+      "?? current-research-brief-section1-v4.1.md",
+      "?? current-research-brief-section5-v4.1.md",
+      "?? docs/current-research-brief-section5-v4.md",
+      "?? exp/v2dev/cpu_a_edge.log",
+      "?? exp/v2dev/cpu_a_smoke.log",
+      "?? exp/v2dev/cpu_a_smoke_1031_125621.log",
+      "?? exp/v2dev/cpu_a_smoke_1031_125621/",
+      "?? exp/v2dev/edge_targets.txt",
+      "?? exp/v2dev/g1/grids/",
+      "?? exp/v2dev/g1/model-table-manifest.json",
+      "?? exp/v2dev/g1/models/",
+      "?? exp/v2dev/g1/tables/",
+      "?? exp/v2dev/g1/verify/"
+    ]
+  },
+  "provenance": {
+    "checks": [
+      {
+        "check": "selection.script_sha256",
+        "path": "g1_select_features.py",
+        "recorded": "fceddaee8e3b09e3cb4ed702872698f049195f8a6c7d520624e9ca4c45c77361",
+        "current": "fceddaee8e3b09e3cb4ed702872698f049195f8a6c7d520624e9ca4c45c77361",
+        "ok": true
+      },
+      {
+        "check": "selection.schedule_list_sha256",
+        "path": "exp/dev_sched.txt",
+        "recorded": "a0b2f863a66604216531a92a7a896428582e22204fae00470a6bc5dae6eec2c5",
+        "current": "a0b2f863a66604216531a92a7a896428582e22204fae00470a6bc5dae6eec2c5",
+        "ok": true
+      },
+      {
+        "check": "selection.config_sha256",
+        "path": "exp/frozen.json",
+        "recorded": "f0bc259ff2aae3abc9f6d716a9c12acf74409ab1fe5937d557f4579f834d023c",
+        "current": "f0bc259ff2aae3abc9f6d716a9c12acf74409ab1fe5937d557f4579f834d023c",
+        "ok": true
+      },
+      {
+        "check": "selection.code_sha256[chunkslices.py]",
+        "path": "chunkslices.py",
+        "recorded": "ca6f09f8366b2c65f6b1282231bcaae4d5ef67c6a6492b8db7601e7f1edfb4e2",
+        "current": "ca6f09f8366b2c65f6b1282231bcaae4d5ef67c6a6492b8db7601e7f1edfb4e2",
+        "ok": true
+      },
+      {
+        "check": "selection.code_sha256[paperexp.py]",
+        "path": "paperexp.py",
+        "recorded": "78322e5c1f313cfc6cf9c636968002a55536938ffa6b0b08eb028da563e6bbc6",
+        "current": "78322e5c1f313cfc6cf9c636968002a55536938ffa6b0b08eb028da563e6bbc6",
+        "ok": true
+      },
+      {
+        "check": "selection.code_sha256[paperexp2.py]",
+        "path": "paperexp2.py",
+        "recorded": "a8d01f2d96b5783ba8a01de73db0f1d6be0d80926a9567b5cdca8bfa9fa87e74",
+        "current": "a8d01f2d96b5783ba8a01de73db0f1d6be0d80926a9567b5cdca8bfa9fa87e74",
+        "ok": true
+      },
+      {
+        "check": "selection.code_sha256[paperexp3.py]",
+        "path": "paperexp3.py",
+        "recorded": "a3112dda83ac5eaaff4aca897f618ead50cca2c0bc63d3608c10adde330d4970",
+        "current": "a3112dda83ac5eaaff4aca897f618ead50cca2c0bc63d3608c10adde330d4970",
+        "ok": true
+      },
+      {
+        "check": "selection.result_csv_sha256[exp/v2dev/chunk/res_q1.csv]",
+        "path": "exp/v2dev/chunk/res_q1.csv",
+        "recorded": "72f0b1cd6642aab005a253c86e64c936dc552500465a3fa686b4d3f5d65a4d80",
+        "current": "72f0b1cd6642aab005a253c86e64c936dc552500465a3fa686b4d3f5d65a4d80",
+        "ok": true
+      },
+      {
+        "check": "selection.result_csv_sha256[exp/v2dev/chunk/res_q2.csv]",
+        "path": "exp/v2dev/chunk/res_q2.csv",
+        "recorded": "8f054320d7c82f9d0d3ca91f6fcc51e5a103d3169c5af002cb1c5358a967017d",
+        "current": "8f054320d7c82f9d0d3ca91f6fcc51e5a103d3169c5af002cb1c5358a967017d",
+        "ok": true
+      },
+      {
+        "check": "runtime_env.result_json_sha256",
+        "path": "exp/v2dev/g1/feature-selection.json",
+        "recorded": "228c435641c3887bd81b92cf46e9e60edf68618b9088dd8b1a607655bba2c57d",
+        "current": "228c435641c3887bd81b92cf46e9e60edf68618b9088dd8b1a607655bba2c57d",
+        "ok": true
+      },
+      {
+        "check": "runtime_env.script_sha256",
+        "path": "g1_select_features.py",
+        "recorded": "fceddaee8e3b09e3cb4ed702872698f049195f8a6c7d520624e9ca4c45c77361",
+        "current": "fceddaee8e3b09e3cb4ed702872698f049195f8a6c7d520624e9ca4c45c77361",
+        "ok": true
+      }
+    ],
+    "fields": {
+      "feature-selection.json:script_sha256": "$.script_sha256",
+      "feature-selection.json:schedule_list_sha256": "$.schedule_list_sha256",
+      "feature-selection.json:config_sha256": "$.config_sha256",
+      "feature-selection.json:code_sha256": "$.code_sha256",
+      "feature-selection.json:result_csv_sha256": "$.result_csv_sha256",
+      "runtime-environment.json:result_json_sha256": "$.result_json_sha256",
+      "runtime-environment.json:script_sha256": "$.script_sha256"
+    },
+    "n_checks": 11,
+    "n_ok": 11
+  },
+  "preflight_issues": [],
+  "manifest_sha256": "d10a4b8dcb494b5ff9305a75a218ec0986631850ac473ca06ecf4de59859b700"
+}
