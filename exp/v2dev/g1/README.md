@@ -1,6 +1,6 @@
 # G1 구현 소스 (검토용 전달본)
 
-계획 `docs/additional-analysis-plan-v4.md` §2.3·§2.4의 G1 단계(공통 격자 → 저차원 생존 GBDT 학습 → uint8 조회표 컴파일 → 동등성 검증)를 수행하는 스크립트 4개다.
+계획 `docs/additional-analysis-plan-v4.md` §2.3·§2.4·§3의 G1 단계(공통 격자 → 저차원 생존 GBDT 학습 → uint8 조회표 컴파일 → 동등성 검증 → 경제성 평가)를 수행하는 스크립트 5개다.
 이 묶음에는 소스만 담았다. 개발 시험의 산출물(격자·모델·표·매니페스트)과 수치는 넣지 않았다. 개발 시험 결과는 공식 G1 결과가 아니다.
 
 | 파일 | 역할 |
@@ -9,6 +9,7 @@
 | `g1_build_models.py` | 26개 개발 일정 TR로 후보별 공통 분위 격자를 만들고, 정수 코드 입력으로 매듭 10개 생존 GBDT를 학습한다 |
 | `g1_compile_tables.py` | 모든 코드 조합(P1 256², P1b 65³)을 C 순서로 평가해 uint8 조회표를 만든다 |
 | `g1_verify_tables.py` | 학습·평가 일정 중복 검사 뒤 코드화 경계 시험, 모든 코드 조합 검증, 420개 개발 창 실제 입력 검증을 하고 PASS/FAIL을 낸다 |
+| `g1_simulate.py` | P1/P1b 조회표를 C3 정책에 연결해 420개 평가 창에서 ΔR, ΔH, S_model, S_model×c를 계산하고, 통과 기준(S_model×c ≥ 1.0 s)으로 G2 후보를 선별한다 |
 
 SHA-256은 `SHA256SUMS.txt`에 있다. 기존 연구 코드(`paperexp*.py`, `chunkslices.py`, `measure_a_cpu.py`)는 고치지 않고 불러 쓴다.
 
@@ -17,7 +18,7 @@ SHA-256은 `SHA256SUMS.txt`에 있다. 기존 연구 코드(`paperexp*.py`, `chu
 ```bash
 cd ~/research/membench-v2sealed
 unzip g1_implementation_review.zip          # exp/v2dev/g1/ 아래에만 풀린다
-sha256sum -c exp/v2dev/g1/SHA256SUMS.txt     # 네 파일 모두 OK여야 한다
+sha256sum -c exp/v2dev/g1/SHA256SUMS.txt     # 다섯 파일 모두 OK여야 한다
 ```
 
 묶음에는 `feature-selection.json`·`runtime-environment.json`이 없으므로 기존 두 파일을 덮어쓰지 않는다.
@@ -40,10 +41,11 @@ $R -B exp/v2dev/g1/g1_common.py         # 점검만 한다(아무것도 쓰지 �
 $R exp/v2dev/g1/g1_build_models.py      # grids/, models/, model-table-manifest.json(build 절)
 $R exp/v2dev/g1/g1_compile_tables.py    # tables/, 매니페스트 compile 절
 $R exp/v2dev/g1/g1_verify_tables.py     # verify/actual-windows.csv, 매니페스트 verify 절, PASS/FAIL
+$R exp/v2dev/g1/g1_simulate.py          # simulation/summary.json, windows-P1.csv, windows-P1b.csv, run-environment.json
 ```
 
 - 각 스크립트는 `--help`를 지원한다. 결과가 이미 있으면 덮어쓰지 않고 멈춘다(다시 만들 때만 `--force`).
-- 이 단계는 420창 정책 비용 시뮬레이션을 하지 않는다.
+- `g1_simulate.py`는 조회표 검증이 PASS인 경우에만 공식 실행한다. 통과(S_model×c ≥ 1.0 s)한 후보를 `selection.g2_candidate`에 기록한다.
 
 ## 4. 공식 실행의 사전 조건
 
@@ -53,7 +55,7 @@ $R exp/v2dev/g1/g1_verify_tables.py     # verify/actual-windows.csv, 매니페�
 - 브랜치가 `exp/a-cpu`다.
 - `exp/v2dev/g1/feature-selection.json`과 `runtime-environment.json`이 커밋돼 있고 HEAD와 같다.
 - 연구 코드(`paperexp*.py`, `chunkslices.py`, `policysim.py`, `ailearn.py`, `measure_a_cpu.py`, `g1_select_features.py`), 계획 v4, `exp/dev_sched.txt`, `exp/v2dev/daypool/all.txt`, `exp/frozen.json`, `exp/v2dev/chunk/res_q1.csv`·`res_q2.csv`가 존재하고, Git에서 추적되며, HEAD와 같다. 파일이 없거나 미추적이거나 미커밋 변경이 있으면 `BLOCKED`다.
-- 이 묶음의 스크립트 4개가 커밋돼 있다(계획 v4: G1 실행 전 코드 지문 커밋).
+- 이 묶음의 스크립트 5개가 커밋돼 있다(계획 v4: G1 실행 전 코드 지문 커밋).
 - 특징 선택 결과의 출처 해시가 현재 파일과 같다(`check_provenance`, 세 스크립트 모두 실행 전에 확인한다).
 
   | 기록 위치 | 필드 | 대조하는 현재 파일 |

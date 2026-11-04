@@ -533,7 +533,16 @@ def test_section_d() -> None:
     else:
         fail("D: _check_main에 sys.dont_write_bytecode = True 있음", "설정 없음")
 
-    # 직접 실행 — 종료 코드 2 (BLOCKED) 또는 0이어야 한다
+    # 직접 실행 — 실행 전 g1_*.pyc 상태 기록
+    g1_dir = G.G1_DIR
+    pycache_dirs_pre = [p for p in g1_dir.rglob("__pycache__") if p.is_dir()]
+    pyc_before: dict[Path, str] = {
+        p: sha256_path(p)
+        for d in pycache_dirs_pre
+        for p in d.glob("g1_*.pyc")
+    }
+
+    # 종료 코드 2 (BLOCKED) 또는 0이어야 한다
     # 실제 환경 조건이 맞지 않을 수 있으므로 종료 코드 0 또는 2만 허용한다
     script = str(G.G1_DIR / "g1_common.py")
     result = subprocess.run(
@@ -548,18 +557,21 @@ def test_section_d() -> None:
     else:
         fail(f"D: g1_common.py 직접 실행 → 종료 코드 0 또는 2", f"실제 종료 코드={rc}\nstdout={result.stdout[:200]}\nstderr={result.stderr[:200]}")
 
-    # 불필요한 파일이 생성되지 않았는지 확인
-    # 사전 점검은 exp/v2dev/g1/_devtest/ 외부에 아무것도 쓰지 않아야 한다
-    g1_dir = G.G1_DIR
-    before_files = set(g1_dir.rglob("*"))
-    # (이미 실행 후이므로 생성된 파일이 있다면 여기서 감지된다 — before가 after가 된 셈)
-    # 대신 __pycache__ 항목만 확인
-    pycache_dirs = [p for p in g1_dir.rglob("__pycache__") if p.is_dir()]
-    new_pyc = [p for d in pycache_dirs for p in d.glob("g1_*.pyc")]
-    if not new_pyc:
-        ok("D: 직접 실행 후 g1_*.pyc 파일 생성 없음(-B 또는 dont_write_bytecode 효과)")
+    # 실행 후 g1_*.pyc 상태 비교: 신규·변경만 실패로 처리한다
+    # (이미 존재하던 pyc 파일은 이전 실행의 흔적이므로 무시한다)
+    pycache_dirs_post = [p for p in g1_dir.rglob("__pycache__") if p.is_dir()]
+    pyc_after: dict[Path, str] = {
+        p: sha256_path(p)
+        for d in pycache_dirs_post
+        for p in d.glob("g1_*.pyc")
+    }
+    new_pyc = [p for p in pyc_after if p not in pyc_before]
+    changed_pyc = [p for p in pyc_after if p in pyc_before and pyc_after[p] != pyc_before[p]]
+    if not new_pyc and not changed_pyc:
+        ok("D: 직접 실행 후 g1_*.pyc 신규 생성·변경 없음(-B 또는 dont_write_bytecode 효과)")
     else:
-        fail("D: 직접 실행 후 g1_*.pyc 파일 없어야 함", f"생성된 파일: {new_pyc}")
+        problems = new_pyc + changed_pyc
+        fail("D: 직접 실행 후 g1_*.pyc 신규 생성·변경 없어야 함", f"신규/변경: {problems}")
 
 
 # ---------------------------------------------------------------------------

@@ -47,10 +47,12 @@ VERIFY_BATCH = 4_099  # 전 조합 검증 묶음 크기(생성과 다르게 둔�
 N_DEV = 26
 N_EVAL = 420
 N_TRAIN_EXPECTED = 820_340  # 작업 A 사전 학습 조각 수(a-cpu-results §3.2)
+N_TE_TOTAL = 2_003_785      # 평가 창 전체 TE 조각 수 (exp/v2dev/cpu_a/pre_sim_costs.csv 합계)
 
 DEV_SCHED = "exp/dev_sched.txt"
 EVAL_LIST = "exp/v2dev/daypool/all.txt"
 CPU_A_ENV = "exp/v2dev/cpu_a/environment.json"
+PRE_SIM_COSTS = "exp/v2dev/cpu_a/pre_sim_costs.csv"
 PLAN = "docs/additional-analysis-plan-v4.md"
 SELECTION = "exp/v2dev/g1/feature-selection.json"
 RUNTIME_ENV = "exp/v2dev/g1/runtime-environment.json"
@@ -62,7 +64,7 @@ CODE_SHA256_REQUIRED = ["paperexp.py", "paperexp2.py", "paperexp3.py", "chunksli
 FROZEN_CONFIG = "exp/frozen.json"
 RECORDED_CSVS = ["exp/v2dev/chunk/res_q1.csv", "exp/v2dev/chunk/res_q2.csv"]  # 특징 선택 검증 B의 기록 파일
 G1_CODE = ["exp/v2dev/g1/g1_common.py", "exp/v2dev/g1/g1_build_models.py", "exp/v2dev/g1/g1_compile_tables.py",
-           "exp/v2dev/g1/g1_verify_tables.py"]
+           "exp/v2dev/g1/g1_verify_tables.py", "exp/v2dev/g1/g1_simulate.py"]
 
 
 # ---------------------------------------------------------------- 경로·해시·원자적 저장
