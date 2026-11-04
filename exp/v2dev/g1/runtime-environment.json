@@ -1,0 +1,53 @@
+{
+  "timestamp": "2026-11-04T11:49:33.547996+09:00",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "executable": "/home/dlxogjs4326/.venvs/membench-g1/bin/python",
+  "numpy": "2.5.4",
+  "scipy": "1.18.1",
+  "scikit_learn": "1.9.1",
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "cpu_model": "Intel(R) Core(TM) Ultra 7 155H",
+  "cpu_affinity": [
+    1
+  ],
+  "thread_environment": {
+    "OMP_NUM_THREADS": "1",
+    "OPENBLAS_NUM_THREADS": "1",
+    "MKL_NUM_THREADS": "1",
+    "NUMEXPR_NUM_THREADS": "1"
+  },
+  "threadpools": [
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libscipy_openblas",
+      "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/numpy.libs/libscipy_openblas64_-f48b354e.so",
+      "version": "0.3.34.106.0",
+      "threading_layer": "pthreads",
+      "architecture": "Haswell"
+    },
+    {
+      "user_api": "openmp",
+      "internal_api": "openmp",
+      "num_threads": 1,
+      "prefix": "libgomp",
+      "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/scikit_learn.libs/libgomp-e985bcbb.so.1.0.0",
+      "version": null
+    },
+    {
+      "user_api": "blas",
+      "internal_api": "openblas",
+      "num_threads": 1,
+      "prefix": "libscipy_openblas",
+      "filepath": "/home/dlxogjs4326/.venvs/membench-g1/lib/python3.12/site-packages/scipy.libs/libscipy_openblas-5f890258.so",
+      "version": "0.3.31.dev",
+      "threading_layer": "pthreads",
+      "architecture": "Haswell"
+    }
+  ],
+  "git_head": "7070ca38aaa45839e35c9fdb4f1fac60a21defa9",
+  "git_branch": "exp/a-cpu",
+  "result_json_sha256": "228c435641c3887bd81b92cf46e9e60edf68618b9088dd8b1a607655bba2c57d",
+  "script_sha256": "fceddaee8e3b09e3cb4ed702872698f049195f8a6c7d520624e9ca4c45c77361"
+}
