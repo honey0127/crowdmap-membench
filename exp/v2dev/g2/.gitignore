@@ -1,0 +1,8 @@
+# 창 파일: g2_prepare.py로 재생성 가능
+windows/
+
+# parity 결과: g2_harness parity로 재생성 가능
+results/
+
+# 컴파일 바이너리: g2_build.sh로 재빌드
+g2_harness

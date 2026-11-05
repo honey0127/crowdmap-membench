@@ -1,0 +1,14 @@
+{
+  "platform": "Linux-6.6.87.2-microsoft-standard-WSL2-x86_64-with-glibc2.39",
+  "python": "3.12.3 (main, Aug 31 2026, 10:18:26) [GCC 13.3.0]",
+  "compiler_version": "g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0\nCopyright (C) 2023 Free Software Foundation, Inc.\nThis is free software; see the source for copying conditions.  There is NO\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.",
+  "cpu_affinity": "/usr/bin/taskset -c 1",
+  "omp_num_threads": "unset",
+  "git_branch": "exp/a-cpu",
+  "git_commit": "7bc849719c82decd6980a70d2cec3a8654b391a2",
+  "git_dirty": true,
+  "harness_sha256": "2bb63c43d6d5e449435798fdb571cd260f556a7257af7f39956ab191283bbcea",
+  "model_sha256": "35338f0fba9bfe2789c888159c7119afdc660e23845554f974529ab369930730",
+  "n_windows": 420,
+  "dev_test": true
+}
