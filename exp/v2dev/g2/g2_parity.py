@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""g2_parity.py — C++ 하니스 출력과 Python 기준선의 대칭 검증 (G2W2).
+"""g2_parity.py — C++ 하니스 출력과 Python 기준선의 대칭 검증 (G2W3).
 
 C++ 하니스(g2_harness parity)가 results/ 에 쓴 .bin 파일을
 windows/ 의 Python 기준선과 대조한다. T_base 포함.

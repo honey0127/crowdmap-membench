@@ -1,13 +1,18 @@
-/* g2_harness.cpp — G2 C++ 대응 구현 (G2W2 형식)
+/* g2_harness.cpp — G2 C++ 대응 구현 (G2W3 형식)
  *
  * 용도:
  *   parity  : Python 기준선과의 수치 동등성 검증
  *   measure : CPU_rule / CPU_C3 경로 처리 시간 측정
  *
- * 측정 경계:
- *   타이머 안: Ledger::build, online_group_T(base+rule), run_fallback3,
- *              compute_Tk(encode+lookup+scale), online_kappa_T, 비용 계산
- *   타이머 밖: 파일 읽기, 메모리 적재, 출력 파일 쓰기
+ * 측정 경계 (G2W3):
+ *   타이머 밖: 파일 I/O, 메모리 적재, 출력 파일 쓰기
+ *   CPU_rule 타이머 안:
+ *     Ledger::build, compute_grp_r(bin_ids+unique-remap),
+ *     online_group_T(base+rule), run_fallback3, 비용 계산
+ *   CPU_C3 타이머 안 (CPU_rule 공통 연산 포함):
+ *     compute_p1b_features(pos/D0/mD → x0,x1,x2),
+ *     compute_Tk(encode+lookup+κ-scale),
+ *     online_kappa_T, fallback, 비용 계산
  *
  * 빌드: bash exp/v2dev/g2/g2_build.sh
  *
@@ -33,7 +38,7 @@
 namespace fs = std::filesystem;
 
 // ---------------------------------------------------------------- 형식 상수
-static const uint8_t MAGIC_WIN[4] = {'G', '2', 'W', '2'};
+static const uint8_t MAGIC_WIN[4] = {'G', '2', 'W', '3'};
 static const uint8_t MAGIC_MOD[4] = {'G', '2', 'M', 'B'};
 static const int K_SIZE   = 9;
 static const double KGRID[K_SIZE] = {0.25, 0.35, 0.5, 0.7, 1.0, 1.4, 2.0, 2.8, 4.0};
@@ -57,11 +62,11 @@ static uint32_t le32(const uint8_t* p) {
 
 // ---------------------------------------------------------------- P1b 모델
 struct P1bModel {
-    std::vector<double> cuts[3];  // cutpoints per feature
+    std::vector<double> cuts[3];
     int n_cuts[3];
-    std::vector<double> knots;    // KNOTS array (11 values)
-    std::vector<uint8_t> table;   // flat [65*65*65]
-    int sentinel;                 // 64
+    std::vector<double> knots;
+    std::vector<uint8_t> table;
+    int sentinel;
 };
 
 P1bModel read_model(const std::string& path) {
@@ -82,7 +87,7 @@ P1bModel read_model(const std::string& path) {
     P1bModel m;
     m.sentinel = (int)sentinel;
     for (int fi = 0; fi < 3; fi++) {
-        uint32_t nc = (fi==0)?nc0:(fi==1)?nc1:nc2 ;
+        uint32_t nc = (fi==0)?nc0:(fi==1)?nc1:nc2;
         m.n_cuts[fi] = (int)nc;
         m.cuts[fi].resize(nc);
         std::memcpy(m.cuts[fi].data(), raw.data()+off, nc*8); off += nc*8;
@@ -91,21 +96,22 @@ P1bModel read_model(const std::string& path) {
     std::memcpy(m.knots.data(), raw.data()+off, nk*8); off += nk*8;
     int tsz = TABLE_DIM*TABLE_DIM*TABLE_DIM;
     m.table.resize(tsz);
-    std::memcpy(m.table.data(), raw.data()+off, tsz); off += tsz;
+    std::memcpy(m.table.data(), raw.data()+off, tsz);
 
     return m;
 }
 
-// ---------------------------------------------------------------- 창 데이터
+// ---------------------------------------------------------------- 창 데이터 (G2W3)
 struct Window {
-    int n, G_r, n_grid;
-    double b, cap, W_cal, U, W_fb;
+    int n, G_r, n_grid, rule_n_rf;
+    double b, cap, W_cal, U, W_fb, mD;
 
     std::vector<double>  g, h, ts;
     std::vector<uint8_t> r, dec_mask, te_mask;
-    std::vector<int32_t> grp_r;
-    std::vector<double>  grid;      // timeout grid
-    std::vector<double>  X_p1b;    // n*3, row-major: X[j*3+f]
+    std::vector<double>  pos, D0;             // 원시 슬라이스 속성 (bytes)
+    std::vector<double>  X_rule;              // n × rule_n_rf, row-major (NaN→-1e9)
+    std::vector<std::vector<double>> rule_edges; // 특징별 분위 경계
+    std::vector<double>  grid;
 
     // Python 기준선 (parity 검증용)
     std::vector<double> py_T_base, py_T_rule, py_T_rb;
@@ -121,7 +127,7 @@ Window read_window(const std::string& path) {
     f.read(reinterpret_cast<char*>(raw.data()), sz);
 
     size_t off = 0;
-    // header: magic(4)+n(4)+G_r(4)+n_grid(4)+b(8)+cap(8)+W_cal(8)+U(8)+W_fb(8) = 52
+    // 헤더: magic(4)+n(4)+G_r(4)+n_grid(4)+rule_n_rf(4)+b(8)+cap(8)+W_cal(8)+U(8)+W_fb(8)+mD(8) = 68
     if (std::memcmp(raw.data(), MAGIC_WIN, 4) != 0) {
         fprintf(stderr, "창 매직 불일치: %s\n", path.c_str()); std::exit(1);
     }
@@ -130,16 +136,18 @@ Window read_window(const std::string& path) {
     auto rd64f = [&]() -> double   { double   v=le64f(raw.data()+off); off+=8; return v; };
 
     Window w;
-    w.n     = (int)rd32();
-    w.G_r   = (int)rd32();
-    w.n_grid= (int)rd32();
+    w.n        = (int)rd32();
+    w.G_r      = (int)rd32();
+    w.n_grid   = (int)rd32();
+    w.rule_n_rf= (int)rd32();
     w.b     = rd64f();
     w.cap   = rd64f();
     w.W_cal = rd64f();
     w.U     = rd64f();
     w.W_fb  = rd64f();
+    w.mD    = rd64f();
 
-    int n = w.n, n_grid = w.n_grid;
+    int n = w.n, n_grid = w.n_grid, n_rf = w.rule_n_rf;
 
     auto rdF64 = [&](int cnt) {
         std::vector<double> v(cnt);
@@ -151,11 +159,6 @@ Window read_window(const std::string& path) {
         std::memcpy(v.data(), raw.data()+off, cnt); off += cnt;
         return v;
     };
-    auto rdI32 = [&](int cnt) {
-        std::vector<int32_t> v(cnt);
-        std::memcpy(v.data(), raw.data()+off, cnt*4); off += cnt*4;
-        return v;
-    };
 
     w.g        = rdF64(n);
     w.h        = rdF64(n);
@@ -163,9 +166,30 @@ Window read_window(const std::string& path) {
     w.ts       = rdF64(n);
     w.dec_mask = rdU8(n);
     w.te_mask  = rdU8(n);
-    w.grp_r    = rdI32(n);
-    w.grid     = rdF64(n_grid);
-    w.X_p1b    = rdF64(n * 3);    // row-major
+    w.pos      = rdF64(n);
+    w.D0       = rdF64(n);
+    w.X_rule   = rdF64(n * n_rf);    // row-major
+
+    // rule_ne[n_rf] (uint32)
+    std::vector<uint32_t> rule_ne(n_rf);
+    std::memcpy(rule_ne.data(), raw.data()+off, n_rf*4); off += n_rf*4;
+
+    // rule_edges_flat
+    uint32_t ne_total = 0;
+    for (int i = 0; i < n_rf; i++) ne_total += rule_ne[i];
+    std::vector<double> edges_flat(ne_total);
+    std::memcpy(edges_flat.data(), raw.data()+off, ne_total*8); off += ne_total*8;
+
+    // 특징별 edges 분리
+    w.rule_edges.resize(n_rf);
+    int ei = 0;
+    for (int rf = 0; rf < n_rf; rf++) {
+        int ne = (int)rule_ne[rf];
+        w.rule_edges[rf].assign(edges_flat.begin()+ei, edges_flat.begin()+ei+ne);
+        ei += ne;
+    }
+
+    w.grid = rdF64(n_grid);
 
     // Python 기준선
     w.py_T_base   = rdF64(n);
@@ -223,9 +247,59 @@ static std::vector<double> observed(
     return g_obs;
 }
 
+// ---------------------------------------------------------------- grp_r 계산 (C++ 타이머 안)
+// Python: np.unique(gid_all, return_inverse=True) + upper_bound 경계 탐색
+static std::vector<int32_t> compute_grp_r(
+    int n, int n_rf,
+    const double* X_rule,
+    const std::vector<std::vector<double>>& rule_edges,
+    int expected_G_r)
+{
+    std::vector<int64_t> gid(n, 0);
+    for (int rf = 0; rf < n_rf; rf++) {
+        const auto& edges = rule_edges[rf];
+        for (int j = 0; j < n; j++) {
+            double x = X_rule[j * n_rf + rf];
+            // searchsorted(side="right") = upper_bound
+            int bid = (int)(std::upper_bound(edges.begin(), edges.end(), x) - edges.begin());
+            gid[j] = gid[j] * 8 + bid;
+        }
+    }
+
+    // unique-remap: np.unique(gid_all, return_inverse=True)
+    std::vector<int64_t> uniq_gid = gid;
+    std::sort(uniq_gid.begin(), uniq_gid.end());
+    uniq_gid.erase(std::unique(uniq_gid.begin(), uniq_gid.end()), uniq_gid.end());
+    int G_r_computed = (int)uniq_gid.size();
+    if (G_r_computed != expected_G_r) {
+        fprintf(stderr, "[경고] G_r 불일치: 계산=%d 기대=%d\n", G_r_computed, expected_G_r);
+    }
+
+    std::vector<int32_t> grp_r(n);
+    for (int j = 0; j < n; j++) {
+        grp_r[j] = (int)(std::lower_bound(uniq_gid.begin(), uniq_gid.end(), gid[j])
+                         - uniq_gid.begin());
+    }
+    return grp_r;
+}
+
+// ---------------------------------------------------------------- P1b 특징 계산 (C++ 타이머 안)
+// pos/D0/mD → x0=pos/MiB/mD, x1=D0/MiB/mD, x2=(pos+D0)/MiB/mD
+static std::vector<double> compute_p1b_features(
+    int n, const double* pos, const double* D0, double mD)
+{
+    std::vector<double> X(n * 3);
+    for (int j = 0; j < n; j++) {
+        double p = pos[j], d = D0[j];
+        X[j*3+0] = p / MiB / mD;           // 높이
+        X[j*3+1] = d / MiB / mD;           // 사용량
+        X[j*3+2] = (p + d) / MiB / mD;     // 수준
+    }
+    return X;
+}
+
 // ---------------------------------------------------------------- online_group_T (범용)
-// G=1, grp=nullptr → base path (모두 그룹 0)
-// G=G_r, grp=grp_r → rule path
+// G=1, grp=nullptr → base path; G=G_r, grp=grp_r → rule path
 static std::vector<double> online_group_T(
     int n, int G, const int32_t* grp,
     const double* g, const double* h, const double* ts,
@@ -316,15 +390,12 @@ static std::vector<double> online_group_T(
     return T;
 }
 
-// ---------------------------------------------------------------- P1b 인코딩 + Tk 계산
-// encode_one: searchsorted(side="right") = upper_bound
+// ---------------------------------------------------------------- P1b encode + Tk 계산
 static inline int encode_one(double x, const double* cuts, int n_cuts, int sentinel) {
     if (std::isnan(x)) return sentinel;
     return (int)(std::upper_bound(cuts, cuts + n_cuts, x) - cuts);
 }
 
-// compute_Tk: X_p1b[n*3] → table lookup → κ-scale → Tk[K_SIZE * n]
-// Tk[k * n + j] = min(KNOTS[table[c0,c1,c2]] * KGRID[k], cap)
 static std::vector<double> compute_Tk(
     int n, const double* X_p1b, const P1bModel& model, double cap)
 {
@@ -401,7 +472,7 @@ static std::vector<double> online_kappa_T(
     return T;
 }
 
-// ---------------------------------------------------------------- ledger_diff_events
+// ---------------------------------------------------------------- ledger_diff_events / run_fallback3
 struct Events { std::vector<double> t, a; };
 
 static Events ledger_diff_events(
@@ -447,7 +518,6 @@ static Events ledger_diff_events(
     return ev;
 }
 
-// ---------------------------------------------------------------- run_fallback3
 struct FallbackResult {
     std::vector<double> T;
     std::vector<bool>   mode;
@@ -556,7 +626,10 @@ static void process_window_parity(
     Ledger led;
     led.build(W.n, W.ts.data());
 
-    // T_base: G=1, 모든 청크 그룹 0
+    // grp_r 계산 (bin_ids + unique-remap)
+    auto grp_r = compute_grp_r(W.n, W.rule_n_rf, W.X_rule.data(), W.rule_edges, W.G_r);
+
+    // T_base: G=1
     auto T_base = online_group_T(
         W.n, 1, nullptr,
         W.g.data(), W.h.data(), W.ts.data(),
@@ -564,35 +637,34 @@ static void process_window_parity(
         W.n_grid, W.grid.data(),
         W.b, W.cap, W.W_cal, W.U, led);
 
-    // T_rule: G=G_r, grp=grp_r
+    // T_rule: G=G_r, grp=grp_r (C++에서 계산)
     auto T_rule = online_group_T(
-        W.n, W.G_r, W.grp_r.data(),
+        W.n, W.G_r, grp_r.data(),
         W.g.data(), W.h.data(), W.ts.data(),
         W.r.data(), W.dec_mask.data(),
         W.n_grid, W.grid.data(),
         W.b, W.cap, W.W_cal, W.U, led);
 
-    // T_rb = fallback3(T_rule, T_base)
     auto fb_rb = run_fallback3(W.n,
         W.g.data(), W.h.data(), W.ts.data(), W.r.data(),
         T_rule, T_base, W.dec_mask.data(), W.b, W.W_fb);
 
-    // Tk: encode X_p1b → table → κ-scale  (C++ 타이머 안)
-    auto Tk = compute_Tk(W.n, W.X_p1b.data(), model, W.cap);
+    // P1b 특징 계산 (pos/D0/mD → x0,x1,x2)
+    auto X_p1b = compute_p1b_features(W.n, W.pos.data(), W.D0.data(), W.mD);
 
-    // T_ai = online_kappa_T(Tk)
+    // Tk: encode + lookup + κ-scale
+    auto Tk = compute_Tk(W.n, X_p1b.data(), model, W.cap);
+
     auto T_ai = online_kappa_T(
         W.n, Tk.data(),
         W.g.data(), W.h.data(), W.ts.data(),
         W.r.data(), W.dec_mask.data(),
         W.b, W.cap, W.W_cal, W.U, led);
 
-    // T_ai_fb = fallback3(T_ai, T_base)
     auto fb_aifb = run_fallback3(W.n,
         W.g.data(), W.h.data(), W.ts.data(), W.r.data(),
         T_ai, T_base, W.dec_mask.data(), W.b, W.W_fb);
 
-    // T_c3 = fallback3(T_ai_fb, T_rb)
     auto fb_c3 = run_fallback3(W.n,
         W.g.data(), W.h.data(), W.ts.data(), W.r.data(),
         fb_aifb.T, fb_rb.T, W.dec_mask.data(), W.b, W.W_fb);
@@ -618,7 +690,6 @@ static inline int64_t wall_ns() {
     return (int64_t)t.tv_sec * 1000000000LL + t.tv_nsec;
 }
 
-// 체크섬: 최적화 방지용 FNV-1a 변형
 static inline uint64_t hash_T(const std::vector<double>& T,
                                const uint8_t* mask, int n) {
     uint64_t h = 14695981039346656037ULL;
@@ -637,7 +708,7 @@ struct MeasureResult {
     int64_t wall_ns_elapsed;
     uint64_t checksum;
     int64_t n_decisions;
-    double R_sum;   // 합산 비용 (체크섬 보조)
+    double R_sum;
     double H_sum;
 };
 
@@ -653,6 +724,9 @@ static MeasureResult run_cpu_rule(const std::vector<Window>& windows) {
         Ledger led;
         led.build(W.n, W.ts.data());
 
+        // grp_r 계산 (bin_ids + unique-remap) — 타이머 안
+        auto grp_r = compute_grp_r(W.n, W.rule_n_rf, W.X_rule.data(), W.rule_edges, W.G_r);
+
         auto T_base = online_group_T(
             W.n, 1, nullptr,
             W.g.data(), W.h.data(), W.ts.data(),
@@ -661,7 +735,7 @@ static MeasureResult run_cpu_rule(const std::vector<Window>& windows) {
             W.b, W.cap, W.W_cal, W.U, led);
 
         auto T_rule = online_group_T(
-            W.n, W.G_r, W.grp_r.data(),
+            W.n, W.G_r, grp_r.data(),
             W.g.data(), W.h.data(), W.ts.data(),
             W.r.data(), W.dec_mask.data(),
             W.n_grid, W.grid.data(),
@@ -682,7 +756,6 @@ static MeasureResult run_cpu_rule(const std::vector<Window>& windows) {
     int64_t c1 = cpu_ns();
     int64_t w1 = wall_ns();
 
-    // volatile sink — 최적화 방지
     volatile uint64_t sink = checksum; (void)sink;
     volatile double   dsink = R_sum + H_sum; (void)dsink;
 
@@ -703,6 +776,9 @@ static MeasureResult run_cpu_c3(const std::vector<Window>& windows,
         Ledger led;
         led.build(W.n, W.ts.data());
 
+        // grp_r 계산 — 타이머 안 (CPU_rule과 공통)
+        auto grp_r = compute_grp_r(W.n, W.rule_n_rf, W.X_rule.data(), W.rule_edges, W.G_r);
+
         auto T_base = online_group_T(
             W.n, 1, nullptr,
             W.g.data(), W.h.data(), W.ts.data(),
@@ -711,7 +787,7 @@ static MeasureResult run_cpu_c3(const std::vector<Window>& windows,
             W.b, W.cap, W.W_cal, W.U, led);
 
         auto T_rule = online_group_T(
-            W.n, W.G_r, W.grp_r.data(),
+            W.n, W.G_r, grp_r.data(),
             W.g.data(), W.h.data(), W.ts.data(),
             W.r.data(), W.dec_mask.data(),
             W.n_grid, W.grid.data(),
@@ -721,8 +797,11 @@ static MeasureResult run_cpu_c3(const std::vector<Window>& windows,
             W.g.data(), W.h.data(), W.ts.data(), W.r.data(),
             T_rule, T_base, W.dec_mask.data(), W.b, W.W_fb);
 
-        // C3 추가: encode + lookup + κ-scale
-        auto Tk = compute_Tk(W.n, W.X_p1b.data(), model, W.cap);
+        // C3 추가: P1b 특징 계산 — 타이머 안
+        auto X_p1b = compute_p1b_features(W.n, W.pos.data(), W.D0.data(), W.mD);
+
+        // encode + lookup + κ-scale
+        auto Tk = compute_Tk(W.n, X_p1b.data(), model, W.cap);
 
         auto T_ai = online_kappa_T(
             W.n, Tk.data(),
@@ -774,7 +853,6 @@ int main(int argc, char** argv) {
         return 1;
     }
 
-    // 모델 로드
     P1bModel model = read_model(model_path);
     printf("[모델] cuts=%d/%d/%d  knots=%d  sentinel=%d\n",
            model.n_cuts[0], model.n_cuts[1], model.n_cuts[2],
@@ -798,8 +876,8 @@ int main(int argc, char** argv) {
             auto W = read_window(bp.string());
             auto out = fs::path(res_dir) / bp.filename();
             process_window_parity(W, model, out.string());
-            printf("  %s  n=%d  G_r=%d  n_grid=%d\n",
-                   bp.filename().c_str(), W.n, W.G_r, W.n_grid);
+            printf("  %s  n=%d  G_r=%d  n_rf=%d  n_grid=%d\n",
+                   bp.filename().c_str(), W.n, W.G_r, W.rule_n_rf, W.n_grid);
         }
         printf("완료: %zu 창 처리\n", bins.size());
         return 0;
@@ -816,7 +894,6 @@ int main(int argc, char** argv) {
         fprintf(stderr, "measure 모드: --out-json <path> 필요\n"); return 1;
     }
 
-    // 창 목록 수집
     std::vector<fs::path> bins;
     for (const auto& e : fs::directory_iterator(win_dir)) {
         if (e.path().extension() == ".bin") bins.push_back(e.path());
@@ -826,21 +903,18 @@ int main(int argc, char** argv) {
 
     printf("[measure] 창 %zu 개 로드 중...\n", bins.size());
 
-    // 모든 창 메모리 적재 (타이머 밖)
     std::vector<Window> windows;
     windows.reserve(bins.size());
     for (const auto& bp : bins) windows.push_back(read_window(bp.string()));
 
     printf("[measure] 적재 완료: %zu 창\n", windows.size());
 
-    // 워밍업
     printf("[measure] 워밍업...\n");
     auto wu_rule = run_cpu_rule(windows);
     auto wu_c3   = run_cpu_c3(windows, model);
     printf("[measure] 워밍업 완료 (rule_ns=%lld  c3_ns=%lld)\n",
            (long long)wu_rule.cpu_ns, (long long)wu_c3.cpu_ns);
 
-    // 3회 교차 측정: 순서 1=rule→c3, 2=c3→rule, 3=rule→c3
     struct IterResult {
         std::string order;
         MeasureResult rule, c3;
@@ -868,7 +942,6 @@ int main(int argc, char** argv) {
     do_iter("c3_rule");
     do_iter("rule_c3");
 
-    // JSON 출력 (파일 쓰기 타이머 밖)
     fs::create_directories(fs::path(out_json).parent_path());
     FILE* jf = fopen(out_json.c_str(), "w");
     if (!jf) { perror(out_json.c_str()); return 1; }

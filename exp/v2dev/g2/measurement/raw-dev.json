@@ -4,10 +4,10 @@
   "n_decisions_c3": 9529,
   "R_sum_MiB": 1421,
   "H_sum_MiB": 4781.133943,
-  "warmup": {"cpu_rule_ns": 68482249, "cpu_c3_ns": 78781847},
+  "warmup": {"cpu_rule_ns": 69270923, "cpu_c3_ns": 80955781},
   "iterations": [
-    {"order": "rule_c3", "cpu_rule_ns": 67343779, "cpu_c3_ns": 78250492, "dI_ns": 10906713, "wall_rule_ns": 67892205, "wall_c3_ns": 78887881, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"},
-    {"order": "c3_rule", "cpu_rule_ns": 65654274, "cpu_c3_ns": 90810630, "dI_ns": 25156356, "wall_rule_ns": 66189087, "wall_c3_ns": 91552171, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"},
-    {"order": "rule_c3", "cpu_rule_ns": 66087726, "cpu_c3_ns": 77805332, "dI_ns": 11717606, "wall_rule_ns": 66626055, "wall_c3_ns": 78439231, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"}
+    {"order": "rule_c3", "cpu_rule_ns": 67849995, "cpu_c3_ns": 78732795, "dI_ns": 10882800, "wall_rule_ns": 68033953, "wall_c3_ns": 78946132, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"},
+    {"order": "c3_rule", "cpu_rule_ns": 67203631, "cpu_c3_ns": 79166184, "dI_ns": 11962553, "wall_rule_ns": 67385734, "wall_c3_ns": 79381066, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"},
+    {"order": "rule_c3", "cpu_rule_ns": 68621784, "cpu_c3_ns": 91635891, "dI_ns": 23014107, "wall_rule_ns": 68826651, "wall_c3_ns": 91911349, "checksum_rule": "29c6559605a624d9", "checksum_c3": "c9982156ebe7061f"}
   ]
 }

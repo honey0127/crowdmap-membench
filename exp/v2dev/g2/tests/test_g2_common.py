@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-"""test_g2_common.py — G2W2 이진 형식 단위 시험 + 합성 데이터로 C++ 대칭 검증.
+"""test_g2_common.py — G2W3 이진 형식 단위 시험 + 합성 데이터로 C++ 대칭 검증.
 
 Python 참조 구현(이 파일 안에 인라인)으로 합성 창과 합성 모델을 만들고,
 g2_common으로 쓴 뒤 g2_harness(parity)로 처리하고, 결과를 비교한다.
@@ -144,14 +144,12 @@ def _online_group_T_py(n, g, h, ts, r, grp, G, dec_mask, grid, cap, W_cal, U, b)
 
 
 def _encode_one_py(x, cuts, sentinel):
-    """Python encode: upper_bound = searchsorted(side='right')."""
     if np.isnan(x):
         return sentinel
     return int(np.searchsorted(cuts, x, side="right"))
 
 
 def _compute_Tk_py(X_p1b, cuts_list, table_np, knots, cap, sentinel=64):
-    """Python 버전 compute_Tk: X_p1b(n,3) → Tk(K,n)."""
     n = len(X_p1b)
     K = len(gc.KGRID)
     kgrid = np.array(gc.KGRID)
@@ -166,41 +164,62 @@ def _compute_Tk_py(X_p1b, cuts_list, table_np, knots, cap, sentinel=64):
     return Tk
 
 
+# ---------------------------------------------------------------- G2W3 Python 참조 구현
+def _compute_grp_r_py(X_rule, rule_edges_list):
+    """C++ compute_grp_r의 Python 복제 (bin_ids=upper_bound, unique-remap)."""
+    n = len(X_rule)
+    n_rf = len(rule_edges_list)
+    gid = np.zeros(n, dtype=np.int64)
+    for rf in range(n_rf):
+        edges = np.asarray(rule_edges_list[rf])
+        bids = np.searchsorted(edges, X_rule[:, rf], side='right').astype(np.int64)
+        gid = gid * 8 + bids
+    uniq = np.sort(np.unique(gid))
+    grp_r = np.searchsorted(uniq, gid).astype(np.int32)
+    return grp_r, len(uniq)
+
+
+def _compute_p1b_features_py(pos, D0, mD):
+    """C++ compute_p1b_features의 Python 복제."""
+    n = len(pos)
+    MiB = gc.MiB
+    X = np.zeros((n, 3))
+    X[:, 0] = pos / MiB / mD
+    X[:, 1] = D0 / MiB / mD
+    X[:, 2] = (pos + D0) / MiB / mD
+    return X
+
+
 # ---------------------------------------------------------------- 합성 모델 생성
 def make_synthetic_model():
-    """단순한 합성 P1b 모델: 2개 컷포인트씩, 패턴 조회표."""
-    rng = np.random.default_rng(7)
-    # 각 특징별 2개 컷포인트 (3개 bin: 0,1,2)
     cuts_list = [
-        np.array([0.3, 0.7]),    # feature 0
-        np.array([0.4, 0.8]),    # feature 1
-        np.array([0.2, 0.6]),    # feature 2
+        np.array([0.3, 0.7]),
+        np.array([0.4, 0.8]),
+        np.array([0.2, 0.6]),
     ]
-    knots = np.array(gc.KNOTS, dtype=np.float64)  # 11개
-
-    # table: (65,65,65) uint8, 범위 0..10 (KNOTS 인덱스)
+    knots = np.array(gc.KNOTS, dtype=np.float64)
     table = np.zeros((gc.TABLE_DIM, gc.TABLE_DIM, gc.TABLE_DIM), dtype=np.uint8)
     for c0 in range(gc.TABLE_DIM):
         for c1 in range(gc.TABLE_DIM):
             for c2 in range(gc.TABLE_DIM):
                 table[c0, c1, c2] = (c0 + c1 + c2) % len(knots)
-
     return dict(cuts_list=cuts_list, knots=knots, table=table, sentinel=64)
 
 
-# ---------------------------------------------------------------- 합성 창 생성 (G2W2 형식)
+# ---------------------------------------------------------------- 합성 창 생성 (G2W3 형식)
 def make_synthetic_window(model=None):
-    """소규모 합성 창(n=20): G2W2 형식, X_p1b 포함."""
+    """소규모 합성 창(n=20): G2W3 형식, pos/D0/mD/X_rule/rule_edges."""
     if model is None:
         model = make_synthetic_model()
 
     rng = np.random.default_rng(42)
     n = 20
     b = gc.TSTAR; cap = gc.CAP; W_cal = gc.W_CAL; U = gc.U_PERIOD; W_fb = gc.W_FB
+    MiB = gc.MiB
 
     ts = np.sort(rng.uniform(0.0, 500.0, n))
     g  = rng.exponential(10.0, n)
-    h  = rng.uniform(0.5, 2.0, n) * gc.MiB
+    h  = rng.uniform(0.5, 2.0, n) * MiB
     r  = rng.integers(0, 2, n).astype(bool)
 
     dec_mask = np.zeros(n, dtype=bool)
@@ -209,23 +228,32 @@ def make_synthetic_window(model=None):
     te_mask = np.zeros(n, dtype=bool)
     te_mask[mid+10:mid+15] = True
 
-    G_r = 3
-    grp_r = rng.integers(0, G_r, n).astype(np.int32)
+    # G2W3: 규칙 데이터 (X_rule, rule_edges)
+    n_rf = 2
+    rule_edges_list = [np.array([0.3, 0.7]), np.array([0.4, 0.8])]
+    rule_ne = np.array([len(e) for e in rule_edges_list], dtype=np.uint32)
+    rule_edges_flat = np.concatenate(rule_edges_list)
+    X_rule = rng.uniform(0.0, 1.0, (n, n_rf))
+
+    # grp_r: Python 버전 — C++와 동일 알고리즘 (상단 _compute_grp_r_py)
+    grp_r, G_r = _compute_grp_r_py(X_rule, rule_edges_list)
+
+    # G2W3: pos/D0/mD (P1b 특징 원시 입력)
+    pos = rng.uniform(0.0, 100.0, n) * MiB   # bytes
+    D0  = rng.uniform(0.0,  50.0, n) * MiB   # bytes
+    mD  = 10.0
+
+    # P1b 특징: Python 버전 — C++와 동일 (상단 _compute_p1b_features_py)
+    X_p1b = _compute_p1b_features_py(pos, D0, mD)
 
     GRID_FULL = np.concatenate([[0.0], np.logspace(-3, math.log10(300.0), 101)])
     grid = GRID_FULL[GRID_FULL <= cap * (1.0 + 1e-9)]
 
-    # T_base: online_group_T(G=1)
     grp_base = np.zeros(n, dtype=np.int32)
     T_base = _online_group_T_py(n, g, h, ts, r, grp_base, 1, dec_mask, grid, cap, W_cal, U, b)
-
     T_rule = _online_group_T_py(n, g, h, ts, r, grp_r, G_r, dec_mask, grid, cap, W_cal, U, b)
     T_rb, _, _ = _run_fallback3_py(n, g, h, ts, r, T_rule, T_base, dec_mask, b, W_fb)
 
-    # X_p1b: 합성 특징값 (0~1 범위, 모델 cuts 범위 내)
-    X_p1b = rng.uniform(0.0, 1.0, (n, 3))
-
-    # Tk: Python으로 모델 적용
     cuts_list = model["cuts_list"]
     table_np  = model["table"]
     knots     = model["knots"]
@@ -236,16 +264,19 @@ def make_synthetic_window(model=None):
     T_c3, _, _ = _run_fallback3_py(n, g, h, ts, r, T_ai_fb, T_rb, dec_mask, b, W_fb)
 
     te_idx = np.where(te_mask)[0]
-    gt, ht, rt = g[te_idx], h[te_idx], r[te_idx]
-    R_MiB = float(ht[(rt) & (gt > T_c3[te_idx])].sum()) / gc.MiB
-    H_MiB = float((ht * np.minimum(gt, T_c3[te_idx])).sum()) / gc.MiB
+    r_bool = r.astype(bool)
+    R_MiB = float(h[te_idx][(r_bool[te_idx]) & (g[te_idx] > T_c3[te_idx])].sum()) / MiB
+    H_MiB = float((h[te_idx] * np.minimum(g[te_idx], T_c3[te_idx])).sum()) / MiB
 
     return dict(
-        n=n, G_r=G_r, n_grid=len(grid),
-        b=b, cap=cap, W_cal=W_cal, U=U, W_fb=W_fb,
+        n=n, G_r=G_r, n_grid=len(grid), rule_n_rf=n_rf,
+        b=b, cap=cap, W_cal=W_cal, U=U, W_fb=W_fb, mD=mD,
         g=g, h=h, r=r.astype(np.uint8), ts=ts,
         dec_mask=dec_mask.astype(np.uint8), te_mask=te_mask.astype(np.uint8),
-        grp_r=grp_r, grid=grid, X_p1b=X_p1b,
+        pos=pos, D0=D0,
+        X_rule=X_rule, rule_ne=rule_ne, rule_edges_flat=rule_edges_flat,
+        rule_edges_list=rule_edges_list,
+        grid=grid,
         T_base=T_base, T_rule=T_rule, T_rb=T_rb,
         T_ai=T_ai, T_ai_fb=T_ai_fb, T_c3=T_c3,
         R_MiB=R_MiB, H_MiB=H_MiB,
@@ -254,7 +285,7 @@ def make_synthetic_window(model=None):
 
 # ================================================================ 단위 시험
 class TestBinaryFormat(unittest.TestCase):
-    """g2_common G2W2 이진 형식 왕복 (쓰기 → 읽기)."""
+    """g2_common G2W3 이진 형식 왕복 (쓰기 → 읽기)."""
 
     def setUp(self):
         self.d = make_synthetic_window()
@@ -268,11 +299,13 @@ class TestBinaryFormat(unittest.TestCase):
         d = self.d
         gc.write_window(
             self.tmp.name,
-            d["n"], d["G_r"], d["n_grid"],
-            d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"],
+            d["n"], d["G_r"], d["n_grid"], d["rule_n_rf"],
+            d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"], d["mD"],
             d["g"], d["h"], d["r"], d["ts"],
-            d["dec_mask"], d["te_mask"], d["grp_r"],
-            d["grid"], d["X_p1b"],
+            d["dec_mask"], d["te_mask"],
+            d["pos"], d["D0"],
+            d["X_rule"], d["rule_ne"], d["rule_edges_flat"],
+            d["grid"],
             d["T_base"], d["T_rule"], d["T_rb"],
             d["T_ai"], d["T_ai_fb"], d["T_c3"],
             d["R_MiB"], d["H_MiB"],
@@ -281,24 +314,34 @@ class TestBinaryFormat(unittest.TestCase):
 
     def test_scalars_roundtrip(self):
         d = self.d; w = self._write_read()
-        self.assertEqual(w["n"],      d["n"])
-        self.assertEqual(w["G_r"],    d["G_r"])
-        self.assertEqual(w["n_grid"], d["n_grid"])
+        self.assertEqual(w["n"],         d["n"])
+        self.assertEqual(w["G_r"],       d["G_r"])
+        self.assertEqual(w["n_grid"],    d["n_grid"])
+        self.assertEqual(w["rule_n_rf"], d["rule_n_rf"])
         self.assertAlmostEqual(w["b"],     d["b"])
         self.assertAlmostEqual(w["cap"],   d["cap"])
         self.assertAlmostEqual(w["W_cal"], d["W_cal"])
         self.assertAlmostEqual(w["U"],     d["U"])
         self.assertAlmostEqual(w["W_fb"],  d["W_fb"])
+        self.assertAlmostEqual(w["mD"],    d["mD"])
 
     def test_arrays_roundtrip(self):
         d = self.d; w = self._write_read()
-        for k in ("g", "h", "ts"):
-            np.testing.assert_array_equal(w[k], np.asarray(d[k], np.float64), err_msg=k)
+        for k in ("g", "h", "ts", "pos", "D0"):
+            np.testing.assert_array_equal(
+                w[k], np.asarray(d[k], np.float64), err_msg=k)
         for k in ("r", "dec_mask", "te_mask"):
-            np.testing.assert_array_equal(w[k], np.asarray(d[k], bool), err_msg=k)
-        np.testing.assert_array_equal(w["grp_r"], np.asarray(d["grp_r"], np.int32))
-        np.testing.assert_array_equal(w["grid"],  np.asarray(d["grid"],  np.float64))
-        np.testing.assert_array_equal(w["X_p1b"], np.asarray(d["X_p1b"], np.float64))
+            np.testing.assert_array_equal(
+                w[k], np.asarray(d[k], bool), err_msg=k)
+        np.testing.assert_array_equal(
+            w["X_rule"], np.asarray(d["X_rule"], np.float64))
+        np.testing.assert_array_equal(
+            w["rule_ne"], np.asarray(d["rule_ne"], np.uint32))
+        for i, (we, de) in enumerate(zip(w["rule_edges"], d["rule_edges_list"])):
+            np.testing.assert_array_equal(
+                we, np.asarray(de, np.float64), err_msg=f"rule_edges[{i}]")
+        np.testing.assert_array_equal(
+            w["grid"], np.asarray(d["grid"], np.float64))
 
     def test_baseline_roundtrip(self):
         d = self.d; w = self._write_read()
@@ -339,7 +382,7 @@ class TestBinaryFormat(unittest.TestCase):
 
 
 class TestCppParity(unittest.TestCase):
-    """합성 창으로 C++ 하니스 출력과 Python 기준선 대칭 검증 (G2W2)."""
+    """합성 창으로 C++ 하니스 출력과 Python 기준선 대칭 검증 (G2W3)."""
 
     @unittest.skipUnless(HARNESS.exists(), "g2_harness 없음 (g2_build.sh 먼저 실행)")
     def test_parity_synthetic(self):
@@ -352,19 +395,19 @@ class TestCppParity(unittest.TestCase):
             mod_path = Path(tmpdir) / "model.bin"
             win_dir.mkdir()
 
-            # 모델 파일 쓰기
             gc.write_model(str(mod_path),
                            m_dict["cuts_list"], m_dict["knots"], m_dict["table"])
 
-            # 창 파일 쓰기
             win_path = win_dir / "test.bin"
             gc.write_window(
                 str(win_path),
-                d["n"], d["G_r"], d["n_grid"],
-                d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"],
+                d["n"], d["G_r"], d["n_grid"], d["rule_n_rf"],
+                d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"], d["mD"],
                 d["g"], d["h"], d["r"], d["ts"],
-                d["dec_mask"], d["te_mask"], d["grp_r"],
-                d["grid"], d["X_p1b"],
+                d["dec_mask"], d["te_mask"],
+                d["pos"], d["D0"],
+                d["X_rule"], d["rule_ne"], d["rule_edges_flat"],
+                d["grid"],
                 d["T_base"], d["T_rule"], d["T_rb"],
                 d["T_ai"], d["T_ai_fb"], d["T_c3"],
                 d["R_MiB"], d["H_MiB"],
@@ -405,28 +448,27 @@ class TestCppParity(unittest.TestCase):
 
     @unittest.skipUnless(HARNESS.exists(), "g2_harness 없음 (g2_build.sh 먼저 실행)")
     def test_parity_all_equal_T(self):
-        """T_ai == T_rb 인 경우: run_fallback3가 T_ai를 그대로 돌려줘야 한다."""
+        """T_rb == T_base인 경우: T_c3 = T_ai_fb (rule 모드 없음)."""
         m_dict = make_synthetic_model()
         d = make_synthetic_window(model=m_dict)
 
-        # T_rb를 T_base와 같게 → T_c3 = T_ai_fb (rule 모드 없음)
         d["T_rb"] = d["T_base"].copy()
-        g, h, ts = d["g"], d["h"], d["ts"]
+        g_, h_, ts_ = d["g"], d["h"], d["ts"]
         r_ = d["r"].astype(bool)
         dec_mask = d["dec_mask"].astype(bool)
-        b, W_fb = d["b"], d["W_fb"]
+        b_, W_fb_ = d["b"], d["W_fb"]
 
         T_ai_fb, _, _ = _run_fallback3_py(
-            d["n"], g, h, ts, r_, d["T_ai"], d["T_base"], dec_mask, b, W_fb)
+            d["n"], g_, h_, ts_, r_, d["T_ai"], d["T_base"], dec_mask, b_, W_fb_)
         T_c3, _, _ = _run_fallback3_py(
-            d["n"], g, h, ts, r_, T_ai_fb, d["T_rb"], dec_mask, b, W_fb)
+            d["n"], g_, h_, ts_, r_, T_ai_fb, d["T_rb"], dec_mask, b_, W_fb_)
         d["T_ai_fb"] = T_ai_fb
         d["T_c3"] = T_c3
         te_idx = np.where(d["te_mask"].astype(bool))[0]
-        R_MiB = float(d["h"][te_idx][r_[te_idx] & (d["g"][te_idx] > T_c3[te_idx])].sum()) / gc.MiB
-        H_MiB = float((d["h"][te_idx] * np.minimum(d["g"][te_idx], T_c3[te_idx])).sum()) / gc.MiB
-        d["R_MiB"] = R_MiB
-        d["H_MiB"] = H_MiB
+        r_bool = r_.astype(bool)
+        MiB = gc.MiB
+        d["R_MiB"] = float(h_[te_idx][(r_bool[te_idx]) & (g_[te_idx] > T_c3[te_idx])].sum()) / MiB
+        d["H_MiB"] = float((h_[te_idx] * np.minimum(g_[te_idx], T_c3[te_idx])).sum()) / MiB
 
         with tempfile.TemporaryDirectory() as tmpdir:
             win_dir = Path(tmpdir) / "windows"
@@ -438,11 +480,13 @@ class TestCppParity(unittest.TestCase):
             win_path = win_dir / "eq.bin"
             gc.write_window(
                 str(win_path),
-                d["n"], d["G_r"], d["n_grid"],
-                d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"],
+                d["n"], d["G_r"], d["n_grid"], d["rule_n_rf"],
+                d["b"], d["cap"], d["W_cal"], d["U"], d["W_fb"], d["mD"],
                 d["g"], d["h"], d["r"], d["ts"],
-                d["dec_mask"], d["te_mask"], d["grp_r"],
-                d["grid"], d["X_p1b"],
+                d["dec_mask"], d["te_mask"],
+                d["pos"], d["D0"],
+                d["X_rule"], d["rule_ne"], d["rule_edges_flat"],
+                d["grid"],
                 d["T_base"], d["T_rule"], d["T_rb"],
                 d["T_ai"], d["T_ai_fb"], d["T_c3"],
                 d["R_MiB"], d["H_MiB"],
@@ -455,7 +499,6 @@ class TestCppParity(unittest.TestCase):
             self.assertEqual(proc.returncode, 0,
                              proc.stderr + proc.stdout)
             r2 = gc.read_results(str(res_dir / "eq.bin"), d["n"])
-            # T_ai_fb == T_ai (T_rb == T_base 이므로 mode 없음)
             m = ~np.isnan(d["T_ai_fb"])
             np.testing.assert_array_equal(r2["T_ai_fb"][m], T_ai_fb[m])
 
