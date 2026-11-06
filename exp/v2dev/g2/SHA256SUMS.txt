@@ -3,5 +3,5 @@
 190f37cac4a738e68db9ac450340cfc18a2671c17b484d1cacd8e077f60a5e2e  exp/v2dev/g2/g2_prepare.py
 a1aea1e55ce90ed718a4ed1c60f310f11bbb573df35a859c2e1920cd13f36ad9  exp/v2dev/g2/g2_parity.py
 5a2c44b4fd2acf51dee416ad3d0c8e06a5c2faf756ee569f61a31ef71844cfa4  exp/v2dev/g2/g2_build.sh
-1fc7861faad00a0a746747947faaadd48f70c13a5dc136bc66090322fbc26f10  exp/v2dev/g2/g2_preflight.py
-cd0d4196f2fed2faba273fcf8ed70b7f1c3c78e9edf81732a46c154323526393  exp/v2dev/g2/g2_measure.py
+9bfcd761c6167255d849c48361a0bc1e33455f6ba258ca7117c2b6ef4e32b6f1  exp/v2dev/g2/g2_preflight.py
+086f0db44ba210ffcb4b14311ab299c286b05bd0ea345d763813e2bc2622a8d2  exp/v2dev/g2/g2_measure.py

@@ -3,14 +3,19 @@
 
 사전 점검 → CPU affinity/환경 설정 → C++ measure 모드 실행 → 결과 보고.
 
-측정 경계 (C++ 타이머 기준):
-  타이머 안: Ledger::build, online_group_T(base+rule), run_fallback3,
-             compute_Tk(encode+lookup+κ-scale), online_kappa_T, 비용 계산
+측정 경계 (C++ 타이머 기준, G2W3):
+  CPU_rule 타이머 안: Ledger::build, compute_grp_r(bin_ids+unique-remap),
+                     online_group_T(base+rule), run_fallback3, 비용 계산
+  CPU_C3 타이머 안:  위 전체 + compute_p1b_features(pos/D0/mD→x0,x1,x2),
+                     compute_Tk(encode+lookup+κ-scale), online_kappa_T,
+                     fallback×2 추가, 비용 계산
   타이머 밖: 파일 읽기·메모리 적재, 출력 파일 쓰기
 
-X_p1b 특징(높이·사용량·수준) 계산은 Python 사전계산으로 타이머 밖임.
-이유: d_history/trailing_max 등 trace 전체 역사 필요 → C++ 재구현 불가.
-ΔI는 encode + table lookup + κ-scale + online_kappa_T + fallback 추가 비용을 측정.
+저장 파일:
+  raw-dev.json / raw.json              — C++ 하니스 원시 출력
+  raw-runs-dev.csv / raw-runs.csv      — 반복별 측정값
+  run-environment-dev.json / run-environment.json — 실행 환경
+  measure-summary-dev.json / measure-summary-official.json — 최종 요약
 
 사용:
   python3 exp/v2dev/g2/g2_measure.py [--dev-test] [--force] [--out-dir measurement/]
@@ -147,11 +152,17 @@ def compute_metrics(data):
     return rows
 
 
-def save_results(out_dir, data, rows, run_env, dev_test):
-    out_dir.mkdir(parents=True, exist_ok=True)
+def save_results(out_dir, data, rows, run_env, dev_test, summ_path):
+    """측정 결과를 dev/official 별 경로로 저장한다.
 
-    # raw-runs.csv
-    csv_path = out_dir / "raw-runs.csv"
+    summ_path: measure-summary-dev.json 또는 measure-summary-official.json
+    raw-runs, run-environment도 동일 suffix를 사용.
+    """
+    out_dir.mkdir(parents=True, exist_ok=True)
+    suffix = "-dev" if dev_test else ""
+
+    # raw-runs{suffix}.csv
+    csv_path = out_dir / f"raw-runs{suffix}.csv"
     with open(csv_path, "w") as f:
         f.write("iter,order,cpu_rule_s,cpu_c3_s,dI_s,dI_us_per_dec,G_model_s,G_CPU_s,"
                 "checksum_rule,checksum_c3\n")
@@ -161,9 +172,9 @@ def save_results(out_dir, data, rows, run_env, dev_test):
                     f"{r['dI_s']:.6f},{r['dI_us_per_dec']:.4f},"
                     f"{r['G_model']:.6f},{r['G_CPU']:.6f},"
                     f"{r['checksum_rule']},{r['checksum_c3']}\n")
-    print(f"  raw-runs.csv → {csv_path}")
+    print(f"  raw-runs{suffix}.csv → {csv_path}")
 
-    # measure-summary.json
+    # measure-summary-dev.json 또는 measure-summary-official.json
     dI_vals   = [r["dI_s"] for r in rows]
     gm_vals   = [r["G_model"] for r in rows]
     gm_min    = min(gm_vals)
@@ -189,16 +200,15 @@ def save_results(out_dir, data, rows, run_env, dev_test):
         note="dev_test: 비공식 5창 측정" if dev_test else "공식 420창 측정",
         iterations=rows,
     )
-    summ_path = out_dir / "measure-summary.json"
     with open(summ_path, "w", encoding="utf-8") as f:
         json.dump(summary, f, ensure_ascii=False, indent=2)
-    print(f"  measure-summary.json → {summ_path}")
+    print(f"  {summ_path.name} → {summ_path}")
 
-    # run-environment.json
-    env_path = out_dir / "run-environment.json"
+    # run-environment{suffix}.json
+    env_path = out_dir / f"run-environment{suffix}.json"
     with open(env_path, "w", encoding="utf-8") as f:
         json.dump(run_env, f, ensure_ascii=False, indent=2)
-    print(f"  run-environment.json → {env_path}")
+    print(f"  run-environment{suffix}.json → {env_path}")
 
     return summary
 
@@ -257,7 +267,9 @@ def main():
 
     suffix = "-dev" if dev_test else ""
     out_json  = out_dir / f"raw{suffix}.json"
-    summ_path = out_dir / f"measure-summary{suffix}.json"
+    # dev → measure-summary-dev.json, official → measure-summary-official.json
+    summ_name = "measure-summary-dev.json" if dev_test else "measure-summary-official.json"
+    summ_path = out_dir / summ_name
 
     # 공식 측정 중복 방지
     if not dev_test and summ_path.exists() and not a.force:
@@ -309,7 +321,7 @@ def main():
     print("\n=== 결과 계산 ===")
     data = parse_json(out_json)
     rows = compute_metrics(data)
-    summary = save_results(out_dir, data, rows, run_env, dev_test)
+    summary = save_results(out_dir, data, rows, run_env, dev_test, summ_path)
     print_report(summary, rows)
 
 

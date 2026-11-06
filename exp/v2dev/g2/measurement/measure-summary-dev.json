@@ -1,0 +1,54 @@
+{
+  "dev_test": true,
+  "n_windows": 5,
+  "n_decisions_rule": 9529,
+  "n_decisions_c3": 9529,
+  "g1_smodel_c_s": 1.5608601903,
+  "g1_delta_r_mib": -906.0,
+  "g1_c_us_per_mib": 281.8,
+  "g1_tstar_s": 2.6,
+  "dI_s_min": 0.009242085,
+  "dI_s_max": 0.010019787,
+  "G_model_min": 1.5508404032999998,
+  "G_model_max": 1.5516181053,
+  "G_CPU_min": -0.265330587,
+  "G_CPU_max": -0.264552885,
+  "g2_pass": false,
+  "g2_pass_dev": true,
+  "note": "dev_test: 비공식 5창 측정",
+  "iterations": [
+    {
+      "order": "rule_c3",
+      "cpu_rule_s": 0.071930977,
+      "cpu_c3_s": 0.081173062,
+      "dI_s": 0.009242085,
+      "dI_us_per_dec": 0.9698903347675518,
+      "G_model": 1.5516181053,
+      "G_CPU": -0.264552885,
+      "checksum_rule": "29c6559605a624d9",
+      "checksum_c3": "c9982156ebe7061f"
+    },
+    {
+      "order": "c3_rule",
+      "cpu_rule_s": 0.071596964,
+      "cpu_c3_s": 0.080965114,
+      "dI_s": 0.00936815,
+      "dI_us_per_dec": 0.983119949627453,
+      "G_model": 1.5514920402999999,
+      "G_CPU": -0.26467895,
+      "checksum_rule": "29c6559605a624d9",
+      "checksum_c3": "c9982156ebe7061f"
+    },
+    {
+      "order": "rule_c3",
+      "cpu_rule_s": 0.069765155,
+      "cpu_c3_s": 0.079784942,
+      "dI_s": 0.010019787,
+      "dI_us_per_dec": 1.0515045650120685,
+      "G_model": 1.5508404032999998,
+      "G_CPU": -0.265330587,
+      "checksum_rule": "29c6559605a624d9",
+      "checksum_c3": "c9982156ebe7061f"
+    }
+  ]
+}

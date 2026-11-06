@@ -1,0 +1,9 @@
+# G2W3 공식 측정 결과 파일 체크섬
+# 생성: 2026-11-05 (Asia/Seoul)
+# git commit: 5c07328c2c2fc30dc058453f4fcc067d00f503c1
+# 판정: FAIL (G_model < 0, 3회 모두)
+e7941ac41dc846ac2584ded7d6335a87d3223dbb53ac8a2f7f9ef546a32e98f7  exp/v2dev/g2/measurement/raw.json
+79dc1fa52ac3f726a06d11434f22d4d5a716f7ded1eb12aefa85cd187e592dd6  exp/v2dev/g2/measurement/raw-runs.csv
+669587f1836d525d357767d11d7329bd3a98a6a12953846ebbee5ab4ab94a3d1  exp/v2dev/g2/measurement/measure-summary-official.json
+f29b5dbfdc295ca4d8df9b238d85d401849ca843a51525102abead7bf944ba31  exp/v2dev/g2/measurement/run-environment.json
+3d1e56405d56c32eef39c0d4106a538ab6ea3e662781e6354cf59dc06a395865  exp/v2dev/g2/measurement/measurement-manifest.json

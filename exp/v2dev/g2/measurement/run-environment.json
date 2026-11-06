@@ -5,10 +5,10 @@
   "cpu_affinity": "/usr/bin/taskset -c 1",
   "omp_num_threads": "unset",
   "git_branch": "exp/a-cpu",
-  "git_commit": "90d7350502d800703816ed76211c4aa832f2438a",
+  "git_commit": "5c07328c2c2fc30dc058453f4fcc067d00f503c1",
   "git_dirty": true,
   "harness_sha256": "a8eec69815f0ca615a7167a5045c965bf5114b0239bea4c54aaa666c19922ee9",
   "model_sha256": "35338f0fba9bfe2789c888159c7119afdc660e23845554f974529ab369930730",
   "n_windows": 420,
-  "dev_test": true
+  "dev_test": false
 }

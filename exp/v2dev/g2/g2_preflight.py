@@ -7,10 +7,12 @@
   3. G1 아티팩트 (table, grid) 로드 가능 여부
   4. frozen.json 상수 일치 여부
   5. p1b_model.bin 모델 파일 존재 여부
+  6. 창 파일 G2W3 매직 바이트 검사 (windows/ 디렉터리)
 
 실행(저장소 루트)
-  python3 exp/v2dev/g2/g2_preflight.py
+  python3 exp/v2dev/g2/g2_preflight.py [--win-dir exp/v2dev/g2/windows]
 """
+import argparse
 import hashlib
 import json
 import os
@@ -141,7 +143,47 @@ def check_model_file():
         ERRORS.append(f"p1b_model.bin 읽기 오류: {e}")
 
 
+MAGIC_G2W3 = b"G2W3"
+N_EVAL = 420
+
+
+def check_window_magic(win_dir):
+    """windows/ 의 모든 .bin 파일이 G2W3 매직 바이트를 갖는지 확인한다."""
+    win_path = Path(win_dir)
+    if not check(win_path.exists(), f"창 디렉터리 없음: {win_path}"):
+        return
+
+    bins = sorted(win_path.glob("*.bin"))
+    if not check(len(bins) > 0, f"창 파일 없음: {win_path}"):
+        return
+
+    bad = []
+    for f in bins:
+        try:
+            with open(f, "rb") as fp:
+                magic = fp.read(4)
+        except OSError as e:
+            bad.append(f"{f.name}: 읽기 오류 ({e})")
+            continue
+        if magic != MAGIC_G2W3:
+            bad.append(f"{f.name}: 매직={magic!r} (기대 {MAGIC_G2W3!r})")
+
+    if bad:
+        for msg in bad[:10]:
+            ERRORS.append(f"G2W3 매직 불일치: {msg}")
+        if len(bad) > 10:
+            ERRORS.append(f"  ... (+{len(bad)-10}개)")
+    else:
+        print(f"  창 매직 G2W3: {len(bins)}개 전체 OK")
+
+
 def main():
+    ap = argparse.ArgumentParser(description=__doc__,
+                                 formatter_class=argparse.RawDescriptionHelpFormatter)
+    ap.add_argument("--win-dir", default=str(G2_DIR / "windows"),
+                    help="창 파일 디렉터리 (기본: exp/v2dev/g2/windows)")
+    a = ap.parse_args()
+
     print("=== G2 프리플라이트 점검 ===")
 
     sys.path.insert(0, str(G2_DIR))
@@ -160,6 +202,9 @@ def main():
 
     print("[5] p1b_model.bin")
     check_model_file()
+
+    print("[6] 창 파일 G2W3 매직 바이트")
+    check_window_magic(a.win_dir)
 
     print()
     if ERRORS:
