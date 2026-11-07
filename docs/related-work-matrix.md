@@ -366,6 +366,16 @@ jemalloc [Cite]와 TCMalloc [Cite]은 각각 시그모이드 감쇠 곡선(decay
   note      = {MGLRU vs 2QLRU cycle profiling; measurement study,
                no ML, no break-even; SC Workshops (not main track)}
 }
+
+@misc{azurellm2024,
+  author       = {{Microsoft Azure}},
+  title        = {{AzureLLMInferenceTrace}: {Azure} {LLM} Inference Trace Dataset (2024)},
+  howpublished = {\url{https://github.com/Azure/AzurePublicDataset}},
+  year         = {2024},
+  note         = {code 1-week (2024-05-10--16) and conv 1-week (2024-05-12--18) traces;
+                  v1 sealed evaluation only (14 windows out of 53);
+                  not used in v2 sealed, G1, or G2 evaluations}
+}
 ```
 
 ---
