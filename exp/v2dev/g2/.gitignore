@@ -6,3 +6,6 @@ results/
 
 # 컴파일 바이너리: g2_build.sh로 재빌드
 g2_harness
+
+# 분해판 바이너리
+g2_harness_breakdown
