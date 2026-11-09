@@ -1,0 +1,9 @@
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16347225212  c3_ns=17270818620)
+[측정] rule_c3  rule_ns=16330794789  c3_ns=17236950743  dI_ns=906155954
+[측정] c3_rule  rule_ns=16467098299  c3_ns=17348868198  dI_ns=881769899
+[측정] rule_c3  rule_ns=16361448046  c3_ns=17150000973  dI_ns=788552927
+[measure] JSON 저장: exp/v2dev/g2/kinc/measure.json

@@ -1,0 +1,5 @@
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[kbench] 창 420개
+[kbench] orig_inc  orig_ns=1608792137  inc_ns=111646214  ratio=14.4  checksum 같음
+[kbench] inc_orig  orig_ns=1599982714  inc_ns=109748730  ratio=14.6  checksum 같음
+[kbench] orig_inc  orig_ns=1630165736  inc_ns=108838254  ratio=15.0  checksum 같음

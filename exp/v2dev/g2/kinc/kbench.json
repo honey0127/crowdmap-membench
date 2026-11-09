@@ -1,0 +1,5 @@
+{"n_windows": 420, "iterations": [
+  {"order": "orig_inc", "orig_ns": 1608792137, "inc_ns": 111646214, "checksum_orig": "e3f27b9c9b2f7d83", "checksum_inc": "e3f27b9c9b2f7d83"},
+  {"order": "inc_orig", "orig_ns": 1599982714, "inc_ns": 109748730, "checksum_orig": "e3f27b9c9b2f7d83", "checksum_inc": "e3f27b9c9b2f7d83"},
+  {"order": "orig_inc", "orig_ns": 1630165736, "inc_ns": 108838254, "checksum_orig": "e3f27b9c9b2f7d83", "checksum_inc": "e3f27b9c9b2f7d83"}
+]}

@@ -1,0 +1,42 @@
+exp/v2dev/g2/g2_harness.cpp: OK
+date: 2026-11-09T21:59:50+09:00
+git: 2b2afa2825dea11906a983d9b465a1a8a7eacad5 exp/kappa-incremental dirty=4
+kernel: 6.6.87.2-microsoft-standard-WSL2
+cpu:  Intel(R) Core(TM) Ultra 7 155H
+gxx: g++ (Ubuntu 13.3.0-6ubuntu2~24.04.1) 13.3.0
+taskset: -c 1  OMP_NUM_THREADS=1
+51dc713e6c1d2139452979d8407db9bbc1b25245ce631cfa436e6e52899219aa  exp/v2dev/g2/g2_harness.cpp
+275139dfd7e5992d0567c54d4b1be0db7398761c58875e2ca0634decb4f88861  exp/v2dev/g2/g2_harness_kinc.cpp
+35338f0fba9bfe2789c888159c7119afdc660e23845554f974529ab369930730  exp/v2dev/g2/p1b_model.bin
+n_windows: 420
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[equiv] 창 420개
+[equiv] 창 420개 중 불일치 0개
+[equiv] κ 단계 19691, 정확 경로 1, 리셋 1, 기여값 불일치 0, k 불일치 0
+[equiv] T 비교 23013717개 중 다름 0, k 수열 다른 창 0
+[equiv] 증분 합 최대 상대 오차 1.887e-12 (허용 1e-09)
+[equiv] R/H 원본 386316 / 965726.7865 MiB, 증분 386316 / 965726.7865 MiB
+[equiv] C3 체크섬 원본 ba240bd4f8369334 증분 ba240bd4f8369334
+[확인] 원본 C3 체크섬 = 공식 측정 체크섬
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[kbench] 창 420개
+[kbench] orig_inc  orig_ns=1608792137  inc_ns=111646214  ratio=14.4  checksum 같음
+[kbench] inc_orig  orig_ns=1599982714  inc_ns=109748730  ratio=14.6  checksum 같음
+[kbench] orig_inc  orig_ns=1630165736  inc_ns=108838254  ratio=15.0  checksum 같음
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16347225212  c3_ns=17270818620)
+[측정] rule_c3  rule_ns=16330794789  c3_ns=17236950743  dI_ns=906155954
+[측정] c3_rule  rule_ns=16467098299  c3_ns=17348868198  dI_ns=881769899
+[측정] rule_c3  rule_ns=16361448046  c3_ns=17150000973  dI_ns=788552927
+[measure] JSON 저장: exp/v2dev/g2/kinc/measure.json
+사후 최적화: κ 보정 증분 갱신 (실측, 이 실행)
+C3 체크섬: ['ba240bd4f8369334'] = 공식
+  rule_c3: CPU_rule 16.3308 s, CPU_C3 17.2370 s, ΔI 906.2 ms, G +654.7 ms
+  c3_rule: CPU_rule 16.4671 s, CPU_C3 17.3489 s, ΔI 881.8 ms, G +679.1 ms
+  rule_c3: CPU_rule 16.3614 s, CPU_C3 17.1500 s, ΔI 788.6 ms, G +772.3 ms
+ΔI 평균 858.8 ms (SD 62.1), G 평균 +702.0 ms (V_pool 1560.86 ms, 결정이 같아 V_pool 불변)
+세 회 모두 G > 0: True
+③만: 원본 1613.0 ms → 증분 110.1 ms (14.7배)

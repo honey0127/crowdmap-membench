@@ -1,0 +1,8 @@
+사후 최적화: κ 보정 증분 갱신 (실측, 이 실행)
+C3 체크섬: ['ba240bd4f8369334'] = 공식
+  rule_c3: CPU_rule 16.3308 s, CPU_C3 17.2370 s, ΔI 906.2 ms, G +654.7 ms
+  c3_rule: CPU_rule 16.4671 s, CPU_C3 17.3489 s, ΔI 881.8 ms, G +679.1 ms
+  rule_c3: CPU_rule 16.3614 s, CPU_C3 17.1500 s, ΔI 788.6 ms, G +772.3 ms
+ΔI 평균 858.8 ms (SD 62.1), G 평균 +702.0 ms (V_pool 1560.86 ms, 결정이 같아 V_pool 불변)
+세 회 모두 G > 0: True
+③만: 원본 1613.0 ms → 증분 110.1 ms (14.7배)
