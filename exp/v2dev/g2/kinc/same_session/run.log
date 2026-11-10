@@ -1,0 +1,42 @@
+=== round 1 orig 22:04:35 ===
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16298524128  c3_ns=18638172050)
+[측정] rule_c3  rule_ns=16255992716  c3_ns=18657697719  dI_ns=2401705003
+[측정] c3_rule  rule_ns=16274738378  c3_ns=18698188851  dI_ns=2423450473
+[측정] rule_c3  rule_ns=16452342553  c3_ns=18610589755  dI_ns=2158247202
+[measure] JSON 저장: exp/v2dev/g2/kinc/same_session/measure_orig_r1.json
+=== round 1 inc 22:06:56 ===
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16234342256  c3_ns=17039233048)
+[측정] rule_c3  rule_ns=16388488806  c3_ns=17020644467  dI_ns=632155661
+[측정] c3_rule  rule_ns=16114107540  c3_ns=17141642830  dI_ns=1027535290
+[측정] rule_c3  rule_ns=16121367217  c3_ns=16999644394  dI_ns=878277177
+[measure] JSON 저장: exp/v2dev/g2/kinc/same_session/measure_inc_r1.json
+=== round 2 orig 22:09:09 ===
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16222148538  c3_ns=18679421440)
+[측정] rule_c3  rule_ns=16298038227  c3_ns=18655952306  dI_ns=2357914079
+[측정] c3_rule  rule_ns=16173961412  c3_ns=18499320865  dI_ns=2325359453
+[측정] rule_c3  rule_ns=16084009680  c3_ns=18607128399  dI_ns=2523118719
+[measure] JSON 저장: exp/v2dev/g2/kinc/same_session/measure_orig_r2.json
+=== round 2 inc 22:11:29 ===
+[모델] cuts=60/35/63  knots=11  sentinel=64
+[measure] 창 420 개 로드 중...
+[measure] 적재 완료: 420 창
+[measure] 워밍업...
+[measure] 워밍업 완료 (rule_ns=16396582153  c3_ns=17055018942)
+[측정] rule_c3  rule_ns=16189985783  c3_ns=17233440479  dI_ns=1043454696
+[측정] c3_rule  rule_ns=16313593954  c3_ns=17187396629  dI_ns=873802675
+[측정] rule_c3  rule_ns=16307997310  c3_ns=17190002523  dI_ns=882005213
+[measure] JSON 저장: exp/v2dev/g2/kinc/same_session/measure_inc_r2.json
+orig: n=6 CPU_rule 16.084-16.452 s, ΔI 평균 2365.0 ms (SD 121.8, 2158.2-2523.1), G 평균 -804.1 ms, 체크섬 ['ba240bd4f8369334']
+inc: n=6 CPU_rule 16.114-16.388 s, ΔI 평균 889.5 ms (SD 147.9, 632.2-1043.5), G 평균 +671.3 ms, 체크섬 ['ba240bd4f8369334']

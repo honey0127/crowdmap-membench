@@ -1,0 +1,13 @@
+{
+  "n_windows": 420,
+  "n_decisions_rule": 2003785,
+  "n_decisions_c3": 2003785,
+  "R_sum_MiB": 386316,
+  "H_sum_MiB": 965726.7865,
+  "warmup": {"cpu_rule_ns": 16222148538, "cpu_c3_ns": 18679421440},
+  "iterations": [
+    {"order": "rule_c3", "cpu_rule_ns": 16298038227, "cpu_c3_ns": 18655952306, "dI_ns": 2357914079, "wall_rule_ns": 16341726790, "wall_c3_ns": 18709863304, "checksum_rule": "b2bb4067b5354578", "checksum_c3": "ba240bd4f8369334"},
+    {"order": "c3_rule", "cpu_rule_ns": 16173961412, "cpu_c3_ns": 18499320865, "dI_ns": 2325359453, "wall_rule_ns": 16053219502, "wall_c3_ns": 18447219417, "checksum_rule": "b2bb4067b5354578", "checksum_c3": "ba240bd4f8369334"},
+    {"order": "rule_c3", "cpu_rule_ns": 16084009680, "cpu_c3_ns": 18607128399, "dI_ns": 2523118719, "wall_rule_ns": 16202146989, "wall_c3_ns": 18568861255, "checksum_rule": "b2bb4067b5354578", "checksum_c3": "ba240bd4f8369334"}
+  ]
+}
